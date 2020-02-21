@@ -1,0 +1,274 @@
+broadleaf:
+  adminnavigation:
+    mongodb:
+      init:
+        files:
+          - 'classpath:/admin-navigation-data-mongo.js'
+        initialize: true
+      uri: 'mongodb://localhost:27017/admin-navigation'
+  asset:
+    data:
+      load-on-startup: true
+      path: 'classpath:__initial-data.zip'
+    mongodb:
+      init:
+        files:
+          - 'classpath:/asset-data-mongo.js'
+        initialize: true
+      uri: 'mongodb://localhost:27017/asset'
+    provider:
+      contentUrlPrefix: 'https://localhost:8447/content'
+  campaign:
+    mongodb:
+      init:
+        files:
+          - 'classpath:/campaign-data-mongo.js'
+        initialize: true
+      uri: 'mongodb://localhost:27017/campaign'
+  cart:
+    datasource:
+      initialization-mode: always
+      password: demo
+      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=cart'
+      username: broadleaf
+    jpa:
+      hibernate:
+        ddl-auto: create
+      open-in-view: false
+      properties:
+        hibernate:
+          jdbc:
+            lob:
+              non_contextual_creation: true
+    liquibase:
+      change-log: 'classpath:/db/changelog/cart.db.changelog-master.yaml'
+      liquibase-schema: public
+  cartoperation:
+    anonymouscart:
+      site-id-included-in-cookie-name: true
+    campaignprovider:
+      url: 'https://localhost:8447'
+    cartprovider:
+      url: 'https://localhost:8447'
+    catalogprovider:
+      url: 'https://localhost:8447'
+    offerprovider:
+      url: 'https://localhost:8447'
+    pricingprovider:
+      url: 'https://localhost:8447'
+    walletprovider:
+      url: 'https://localhost:8447'
+  catalog:
+    mongodb:
+      init:
+        files:
+          - 'classpath:/catalog-data-mongo.js'
+        initialize: true
+      uri: 'mongodb://localhost:27017/catalog'
+  catalogbrowse:
+    catalogprovider:
+      url: 'https://localhost:8447'
+    pricingprovider:
+      url: 'https://localhost:8447'
+  common:
+    policy:
+      validation:
+        enforce: true
+  customer:
+    mongodb:
+      init:
+        files:
+          - 'classpath:/customer-data-mongo.js'
+        initialize: true
+      uri: 'mongodb://localhost:27017/customer'
+  dataimport:
+    mongodb:
+      init:
+        files:
+          - 'classpath:/dataimport-data-mongo.js'
+        initialize: true
+      uri: 'mongodb://localhost:27017/import'
+  image:
+    availableEffects: 'crop, resize, scale, thumbnail, unsharp'
+  indexer:
+    catalog:
+      service:
+        endpoint: 'https://localhost:8447'
+    customer:
+      service:
+        endpoint: 'https://localhost:8447'
+    mongodb:
+      init:
+        files:
+          - 'classpath:/indexer-data-mongo.js'
+        initialize: true
+      uri: 'mongodb://localhost:27017/indexer'
+    search:
+      service:
+        endpoint: 'https://localhost:8447'
+  menu:
+    mongodb:
+      init:
+        files:
+          - 'classpath:/menu-data-mongo.js'
+        initialize: true
+      uri: 'mongodb://localhost:27017/menu'
+  metadata:
+    mongodb:
+      uri: 'mongodb://localhost:27017/metadata'
+  offer:
+    mongodb:
+      init:
+        files:
+          - 'classpath:/offer-data-mongo.js'
+        initialize: true
+      uri: 'mongodb://localhost:27017/offer'
+  payment:
+    gateway:
+      passthrough-transactions:
+        active: true
+  persistence:
+    retry:
+      developerMode: true
+  personalization:
+    mongodb:
+      init:
+        files:
+          - 'classpath:/personalization-data-mongo.js'
+        initialize: true
+      uri: 'mongodb://localhost:27017/personalization'
+  pricing:
+    mongodb:
+      init:
+        files:
+          - 'classpath:/pricing-data-mongo.js'
+        initialize: true
+      uri: 'mongodb://localhost:27017/pricing'
+  resource:
+    security:
+      oauth2:
+        defaultAllowAllAnonymous: false
+  sandbox:
+    mongodb:
+      init:
+        files:
+          - 'classpath:/sandbox-data-mongo.js'
+        initialize: true
+      uri: 'mongodb://localhost:27017/sandbox'
+  scheduledjob:
+    mongodb:
+      init:
+        files:
+          - 'classpath:/scheduled-job-data-mongo.js'
+        initialize: true
+      uri: 'mongodb://localhost:27017/scheduledjob'
+  search:
+    catalog:
+      primaryAlias: catalog_alias_1
+      secondaryAlias: catalog_alias_2
+    customer:
+      primaryAlias: customer_alias_1
+      secondaryAlias: customer_alias_2
+    mongodb:
+      init:
+        files:
+          - 'classpath:/search-data-mongo.js'
+          - 'classpath:/search-catalog-data-mongo.js'
+          - 'classpath:/search-customer-data-mongo.js'
+        initialize: true
+      uri: 'mongodb://localhost:27017/search'
+    solr:
+      boost:
+        phraseBoost: 3
+        phraseExactBoost: 4
+        phraseSlop: 2
+        wordBoost: 2
+      server:
+        chroot: /solr
+        host: 'localhost:2181'
+        password: SolrRocks
+        user-name: indexer
+    spell-check:
+      config:
+        PRODUCT:
+          autoCorrectQuery: true
+          showSuggestionQueryHitCount: true
+          spellCheckEnabled: true
+          spellCheckQuery: true
+          suggestedQueryCount: 1
+          suggestionCount: 1
+          suggestionQueryCollationTries: 1
+  tenant:
+    mongodb:
+      init:
+        files:
+          - 'classpath:/tenant-data-mongo.js'
+        initialize: true
+      uri: 'mongodb://localhost:27017/tenant'
+    site:
+      global:
+        allowed-locales:
+          - en_US
+          - en
+          - en_GB
+          - es
+          - es_ES
+          - es_MX
+          - fr
+          - fr_FR
+        default-locale: en_US
+server:
+  port: 8447
+  servlet:
+    context-path: /
+  ssl:
+    key-password: keypass
+    key-store: 'classpath:local.keystore'
+    key-store-password: storepass
+spring:
+  cloud:
+    bus:
+      enabled: false
+  datasource:
+    initialization-mode: never
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+  messages:
+    useCodeAsDefaultMessage: true
+  security:
+    oauth2:
+      client:
+        provider:
+          catalog:
+            token-uri: 'https://localhost:8443/auth/oauth/token'
+          customer:
+            token-uri: 'https://localhost:8443/auth/oauth/token'
+          search:
+            token-uri: 'https://localhost:8443/auth/oauth/token'
+        registration:
+          catalog:
+            authorization-grant-type: client_credentials
+            client-id: catalog
+            client-secret: catalog_secret
+          customer:
+            authorization-grant-type: client_credentials
+            client-id: customer
+            client-secret: customer_secret
+          search:
+            authorization-grant-type: client_credentials
+            client-id: search
+            client-secret: search_secret
+  servlet:
+    multipart:
+      max-file-size: 1MB
+      max-request-size: 20MB
+      resolve-lazily: true
+  thymeleaf:
+    cache: false
