@@ -1,0 +1,73 @@
+:toc:
+:icons: font
+:source-highlighter: prettify
+:sectnums:
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+= Customization & Extension Guide
+
+The following guides will help you work with and develop extensions on top of the
+backend APIs and microservices framework provided with Broadleaf.
+
+They are a great way to experience some core fundamentals before diving into more complex scenarios.
+
+[TIP]
+====
+We recommend following along with this guide in the order in which it is presented. Each section
+may build on and reference extensions created in a previous section
+====
+
+== Service Anatomy Overview
+
+Before we begin, it's best to understand the general anatomy of every Broadleaf microservice.
+The diagram below provides a good high level overview depicting the different layers that a request
+can go through as it flows through a particular service. The key takeaway is that that every layer
+in the architecture can be customized and extended to fit unique business needs and requirements.
+In these tutorials, we'll be walking you through typical customizations paths that touch some
+of these different layers.
+
+image::../images/MS_Service_Anatomy.jpg[]
+
+== Product Projection Domain
+
+include::sections/projection-domain-extension.adoc[]
+
+== Product Repository Domain
+
+include::sections/repository-domain-extension.adoc[]
+
+== Customizing a Service
+
+include::sections/customizing-service.adoc[]
+
+== API Endpoints
+
+include::sections/customizing-endpoints.adoc[]
+
+== Additional Spring Components
+
+include::sections/customizing-other-components.adoc[]
+
+== Admin Metadata Customizations
+
+include::sections/admin-metadata-extension.adoc[]
+
+== Putting It All Together
+
+Now that we have all the customizations and extensions in place, let's go ahead and re-build
+our application and re-start our backend services.
+
+With the customizations above, we should:
+
+- see our new simple property field on `Product` be manageable in the Admin
+- whenever a new `Product` is created through the admin, you should see some
+information logging in your console that was added in Step 4
+- when you create a new `Product` and create a new `Export` job, the resulting CSV should also
+contain a new header and column with the appropriate extended field
+

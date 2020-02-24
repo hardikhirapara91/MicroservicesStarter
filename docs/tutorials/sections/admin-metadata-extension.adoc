@@ -1,0 +1,93 @@
+In this section, we'll go over how to manage your simple property that you've added to
+both the projection and repository domains.
+
+==== Overview
+
+The following diagram is a high level diagram that depicts the Metadata "Pipeline"
+in which it is responsible for rendering navigation, requesting view metadata,
+requesting user allowed scopes for views, requesting access tokens, rendering the view,
+and finally, requesting CRUD on the domain service.
+
+image::../images/MS_Metadata_Pipeline.png[]
+
+1. the metadata service receives its initial set of metadata from a variety of sources
+(metadata providers)
+
+2. Each Broadleaf Microservice has a provider out-of-box, like catalog and pricing, which provide
+the metadata needed for those services
+
+3. the metadata from these providers is then stored in the metadata service
+
+4. when the client requests metadata for a view from the REST API, the metadata is processed by
+an augmentation layer before being returned to the client
+
+5. this augmentation layer is another useful extension point for making modification to the metadata
+before it’s returned to the client
+
+==== Extension Example
+For this example, we'll extend the `CatalogService` default metadata provider and add a reference
+to the new attribute we've added to `Product`.
+
+In order to do this, we'll need to create a new Metadata Config class that extends some built in
+product components.
+
+
+[source,java]
+----
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+
+import com.broadleafcommerce.catalog.metadata.product.CommonPriceDataComponents;
+import com.broadleafcommerce.catalog.metadata.product.IncludedProductFields;
+import com.broadleafcommerce.catalog.metadata.product.NonSkuPriceDataComponents;
+import com.broadleafcommerce.catalog.metadata.product.ProductFields;
+import com.broadleafcommerce.catalog.metadata.product.ProductForms;
+import com.broadleafcommerce.catalog.metadata.product.ProductOptionFields;
+import com.broadleafcommerce.catalog.metadata.product.ProductOptionForms;
+import com.broadleafcommerce.catalog.metadata.product.PromotionalProductFields;
+import com.broadleafcommerce.catalog.metadata.product.VariantFields;
+import com.broadleafcommerce.catalog.metadata.product.pricing.PriceDataFields;
+import com.broadleafcommerce.metadata.domain.FieldComponent;
+import com.broadleafcommerce.metadata.domain.builder.EntityFormBuilder;
+
+@Configuration
+public class TutorialMetadataConfig {
+
+    @Component
+    class TutorialProductFields extends ProductFields {
+
+        public static final String MY_PROPERTY = "myProperty";
+
+        public TutorialProductFields() {
+            super();
+            add(FieldComponent.builder(MY_PROPERTY)
+                    .label("My Property")
+                    .required(false)
+                    .translatable(false));
+        }
+
+    }
+
+    @Component
+    class TutorialProductForms extends ProductForms {
+
+        public TutorialProductForms(ProductFields productFields,
+                ProductOptionFields productOptionFields, VariantFields variantFields,
+                PromotionalProductFields promotionalProductFields,
+                IncludedProductFields includedProductFields, PriceDataFields priceDataFields,
+                CommonPriceDataComponents commonPriceDataComponents, ProductOptionForms optionForms,
+                NonSkuPriceDataComponents nonSkuPriceDataComponents) {
+            super(productFields, productOptionFields, variantFields, promotionalProductFields,
+                    includedProductFields, priceDataFields, commonPriceDataComponents, optionForms,
+                    nonSkuPriceDataComponents);
+        }
+
+        @Override
+        protected EntityFormBuilder generalForm() {
+            return super.generalForm()
+                    .addField(getProductFields().get(TutorialProductFields.MY_PROPERTY)
+                            .order(20000).build());
+        }
+    }
+}
+----

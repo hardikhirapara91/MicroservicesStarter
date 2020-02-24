@@ -1,0 +1,68 @@
+In this section, we're going to cover how to extend the actual `Product` *repository* domain so that
+we can keep track of a new attribute directly on the persisted entity.
+
+=== Overview
+Broadleaf leverages https://spring.io/projects/spring-data[Spring Data] for entity persistence.
+Spring Data supports polymorphism as part of the data interaction, which facilitates standard
+Java OOP extension of out-of-the-box Broadleaf repository domain classes.
+Fields may be added in extensions to support additional business
+requirements. Also, mutator methods can be overridden for additional customization.
+
+Queries through existing Broadleaf repositories should return the more derived repository domain
+as appropriate. As well, creation of entity state should be accurate to the more derived type.
+
+=== Extension Example
+We're going to create a simple `String` property on `JpaProduct` to demonstrate extending a base
+framework *repository* domain.
+
+//TODO Convert Example to JPA
+[source,java]
+----
+import org.modelmapper.Conditions;
+import org.modelmapper.ModelMapper;
+
+import com.broadleafcommerce.catalog.provider.mongo.domain.product.MongoProduct;
+import com.broadleafsamples.tutorials.services.catalog.domain.TutorialProduct;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class TutorialMongoProduct extends MongoProduct {
+
+    private static final long serialVersionUID = 1L;
+
+    private String myProperty;
+
+    @Override
+    public ModelMapper fromMe() {
+        ModelMapper mapper = super.fromMe();
+        mapper.createTypeMap(TutorialMongoProduct.class, TutorialProduct.class)
+                .addMapping(TutorialMongoProduct::getContextId, TutorialProduct::setId);
+        return mapper;
+    }
+
+    @Override
+    public ModelMapper toMe() {
+        ModelMapper mapper = super.toMe();
+        mapper.createTypeMap(TutorialProduct.class, TutorialMongoProduct.class)
+                .addMappings(mapping -> mapping.when(Conditions.isNotNull())
+                        .map(TutorialProduct::getId, TutorialMongoProduct::setContextId));
+        return mapper;
+    }
+
+    @Override
+    public Class<?> getBusinessDomainType() {
+        return TutorialProduct.class;
+    }
+
+}
+----
+
+[NOTE]
+====
+If there is a single line extension detected, the framework will auto-register the extension with
+the `Type Factory`. This means you do not have to specify a custom `Type Supplier` as you did for
+the projection.
+====

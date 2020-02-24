@@ -1,0 +1,63 @@
+In this section, we're going to cover how to extend the actual `Product` *projection* domain so that
+we can keep track of a new attributes directly on the "business" object.
+
+=== Overview
+Projections or "business" domains are just DTOs that represents the data structure used at
+the service tier, and beyond. This structure is agnostic to the specifics of the backing data tier
+and is capable of supporting business logic regardless of how the data is eventually persisted
+or retrieved.
+
+The projection is eventually serialized/de-serialized at the API endpoint tier as part of
+the `@RestController` component. Projections should also be extended using standard
+Java OOP extension. The `@RestController` tier can be engaged to deserialize API input into
+the extended structure via a registered
+https://docs.spring.io/spring/docs/3.0.0.RC3/reference/html/ch05s05.html[Spring Converter] instance.
+As long as the repository domain is extended to map the additional properties,
+the rest of the flow is designed to accommodate the more derived type.
+
+=== Extension Example
+We're going to create a simple `String` property on `Product` to demonstrate extending a base
+framework entity.
+
+[source,java]
+----
+import com.broadleafcommerce.catalog.domain.RequestView;
+import com.broadleafcommerce.catalog.domain.ResponseView;
+import com.broadleafcommerce.catalog.domain.product.Product;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.With;
+
+@Data // <1>
+@With
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonView({RequestView.class, ResponseView.class}) // <2>
+public class TutorialProduct extends Product { // <3>
+
+    private String myProperty; // <4>
+
+}
+----
+<1> Utilizing the https://projectlombok.org/[Lombok] library to minimize boilerplate
+<2> Base catalog request & response view interfaces
+<3> Demonstrate extending the framework's `Product` domain class
+<4> Demonstrate adding an additional simple property that needs to be managed
+
+Finally, you'll want to inform the framework of your extension. You can do this by specifying a custom
+`Type Supplier` in your configuration class.
+
+[source,java]
+----
+@Bean
+public TypeSupplier customProductSupplier() {
+    return () -> new TypeSupplier.TypeMapping(Product.class,
+            TutorialProduct.class); // <1>
+}
+----
+<1> *Type Supplier* is a Broadleaf interface of type `com.broadleafcommerce.common.extension.TypeSupplier`

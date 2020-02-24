@@ -1,0 +1,55 @@
+In this section, let's walk through customizing the service tier.
+
+=== Overview
+The service tier is responsible for executing business logic against projections and represents
+the main source of business requirement fulfillment in the microservice. Like other Broadleaf
+components, service components load in a deferred loader and will be ignored if another bean of
+the same type is already registered. This allows for an extended service to be loaded instead of
+the out-of-the-box Broadleaf service. Existing methods may be overridden, or new ones introduced.
+
+=== Extension Example
+Let's add some additional logging to denote how you may want to hook into the execution of certain
+business flows. In this case, let's add some arbitrary logging in the creation flow of a `Product`.
+
+[source,java]
+----
+import com.broadleafcommerce.catalog.repository.product.ProductRepository;
+import com.broadleafcommerce.catalog.service.product.DefaultProductService;
+import com.broadleafcommerce.catalog.service.product.VariantService;
+import com.broadleafcommerce.data.tracking.core.context.ContextInfo;
+import com.broadleafcommerce.data.tracking.core.service.RsqlCrudEntityHelper;
+
+import lombok.extern.apachecommons.CommonsLog;
+
+@CommonsLog
+public class TutorialProductService extends DefaultProductService {
+
+    public TutorialProductService(ProductRepository repository, RsqlCrudEntityHelper helper,
+            VariantService variantService) {
+        super(repository, helper, variantService);
+    }
+
+    @Override
+    public Object create(Object businessInstance, ContextInfo context) {
+        log.info("EXTENSION TUTORIAL - DEMONSTRATE EXECUTION OF CUSTOM BUSINESS LOGIC");
+        return super.create(businessInstance, context);
+    }
+}
+----
+
+[IMPORTANT]
+====
+You must still register your component with Spring either by component scanning or explicitly
+defining the `@Bean` in your own configuration class e.g.
+
+[source,java]
+----
+@Bean
+public ProductService<Product> customProductService(
+        ProductRepository<Trackable> productRepository,
+        RsqlCrudEntityHelper helper,
+        VariantService<Variant> variantService) {
+    return new TutorialProductService(productRepository, helper, variantService);
+}
+----
+====
