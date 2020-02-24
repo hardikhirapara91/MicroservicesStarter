@@ -252,11 +252,11 @@
             <artifactId>broadleaf-import-services</artifactId>
             <version>${blc.import.services}</version>
         </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-indexer-solr-starter</artifactId>
-            <version>${blc.indexer.services}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.broadleafcommerce.microservices</groupId>-->
+<!--            <artifactId>broadleaf-indexer-solr-starter</artifactId>-->
+<!--            <version>${blc.indexer.services}</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
             <artifactId>broadleaf-menu-services</artifactId>
