@@ -123,8 +123,8 @@ mvn spring-boot:run -Dspring-boot.run.jvmArguments="-DzkACLProvider=org.apache.s
 the administration console and the consumer storefront from a browser:
 +
 - Admin Console: https://localhost:8446/?site=global
-  - Username: `master@test.com`
-  - Password: `Pass1word!`
+* Username: `master@test.com`
+* Password: `Pass1word!`
 - Storefront: https://localhost:8456/?site=heatclinic.com  
 
 === Testing Endpoints Directly
@@ -179,7 +179,7 @@ Now that you have the project running and have a high level understanding of how
 and use it, the next step would be to walk through some typical customizations. See the following
 for more details:
 
-- link:tutorials/README.adoc[Customization & Extension Guide]
+- https://github.com/BroadleafCommerce/MicroservicesStarter/tree/master/docs/tutorials[Customization & Extension Guide]
 
 
 == FAQ
