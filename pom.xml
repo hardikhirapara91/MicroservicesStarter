@@ -287,11 +287,11 @@
             <artifactId>broadleaf-sandbox-services</artifactId>
             <version>${blc.sandbox.services}</version>
         </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-search-solr-starter</artifactId>
-            <version>${blc.search.services}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.broadleafcommerce.microservices</groupId>-->
+<!--            <artifactId>broadleaf-search-solr-starter</artifactId>-->
+<!--            <version>${blc.search.services}</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
             <artifactId>broadleaf-scheduled-job-services</artifactId>
@@ -354,11 +354,11 @@
             <artifactId>broadleaf-sandbox-services-metadata</artifactId>
             <version>${blc.sandbox.metadata}</version>
         </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-search-services-metadata</artifactId>
-            <version>${blc.search.metadata}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.broadleafcommerce.microservices</groupId>-->
+<!--            <artifactId>broadleaf-search-services-metadata</artifactId>-->
+<!--            <version>${blc.search.metadata}</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
             <artifactId>broadleaf-scheduled-job-services-metadata</artifactId>

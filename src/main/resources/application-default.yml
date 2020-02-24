@@ -14,6 +14,8 @@ broadleaf:
       password: demo
       data:
         - 'classpath:/admin-navigation-data-jpa.sql'
+    liquibase:
+      enabled: false
   asset:
     data:
       load-on-startup: true
@@ -31,6 +33,8 @@ broadleaf:
         - 'classpath:/asset-data-jpa.sql'
     provider:
       contentUrlPrefix: 'https://localhost:8447/content'
+    liquibase:
+      enabled: false
   campaign:
     jpa:
       hibernate:
@@ -43,6 +47,8 @@ broadleaf:
       password: demo
       data:
         - 'classpath:/campaign-data-jpa.sql'
+    liquibase:
+      enabled: false
   cart:
     datasource:
       initialization-mode: always
@@ -88,6 +94,8 @@ broadleaf:
       password: demo
       data:
         - 'classpath:/catalog-data-jpa.sql'
+    liquibase:
+      enabled: false
   catalogbrowse:
     catalogprovider:
       url: 'https://localhost:8447'
@@ -112,6 +120,8 @@ broadleaf:
       password: demo
       data:
         - 'classpath:/customer-data-jpa.sql'
+    liquibase:
+      enabled: false
   dataimport:
     jpa:
       hibernate:
@@ -124,6 +134,8 @@ broadleaf:
       password: demo
       data:
         - 'classpath:/dataimport-data-jpa.sql'
+    liquibase:
+      enabled: false
   image:
     availableEffects: 'crop, resize, scale, thumbnail, unsharp'
 #  indexer:
@@ -154,6 +166,8 @@ broadleaf:
       password: demo
       data:
         - 'classpath:/menu-data-jpa.sql'
+    liquibase:
+      enabled: false
   metadata:
     jpa:
       hibernate:
@@ -164,6 +178,8 @@ broadleaf:
       url: jdbc:postgresql://localhost:5432/broadleaf
       username: broadleaf
       password: demo
+    liquibase:
+      enabled: false
   offer:
     jpa:
       hibernate:
@@ -176,6 +192,8 @@ broadleaf:
       password: demo
       data:
         - 'classpath:/offer-data-jpa.sql'
+    liquibase:
+      enabled: false
   payment:
     gateway:
       passthrough-transactions:
@@ -195,6 +213,8 @@ broadleaf:
       password: demo
       data:
         - 'classpath:/personalization-data-jpa.sql'
+    liquibase:
+      enabled: false
   pricing:
     jpa:
       hibernate:
@@ -207,6 +227,8 @@ broadleaf:
       password: demo
       data:
         - 'classpath:/pricing-data-jpa.sql'
+    liquibase:
+      enabled: false
   resource:
     security:
       oauth2:
@@ -223,6 +245,8 @@ broadleaf:
       password: demo
       data:
         - 'classpath:/sandbox-data-jpa.sql'
+    liquibase:
+      enabled: false
   scheduledjob:
     jpa:
       hibernate:
@@ -235,6 +259,8 @@ broadleaf:
       password: demo
       data:
         - 'classpath:/scheduled-job-data-jpa.sql'
+    liquibase:
+      enabled: false
 #  search:
 #    catalog:
 #      primaryAlias: catalog_alias_1
@@ -281,6 +307,8 @@ broadleaf:
       password: demo
       data:
         - 'classpath:/tenant-data-jpa.sql'
+    liquibase:
+      enabled: false
     site:
       global:
         allowed-locales:
@@ -302,15 +330,16 @@ server:
     key-store: 'classpath:local.keystore'
     key-store-password: storepass
 spring:
-  liquibase:
-    enabled: false
+  integration:
+    jdbc:
+      initialize-schema: always
   cloud:
     bus:
       enabled: false
   datasource:
     initialization-mode: never
+    platform: postgres
   jpa:
-    database: postgresql
     hibernate:
       ddl-auto: none
     open-in-view: false
@@ -318,6 +347,7 @@ spring:
       hibernate:
         temp:
           use_jdbc_metadata_defaults: false
+    database: postgresql
   messages:
     useCodeAsDefaultMessage: true
   security:
