@@ -1,30 +1,48 @@
+debug: true
 broadleaf:
+  database:
+    provider: jpa
   adminnavigation:
-    mongodb:
-      init:
-        files:
-          - 'classpath:/admin-navigation-data-mongo.js'
-        initialize: true
-      uri: 'mongodb://localhost:27017/admin-navigation'
+    jpa:
+      hibernate:
+        ddl-auto: create
+    datasource:
+      initialization-mode: always
+      platform: postgres
+      url: jdbc:postgresql://localhost:5432/broadleaf
+      username: broadleaf
+      password: demo
+      data:
+        - 'classpath:/admin-navigation-data-jpa.sql'
   asset:
     data:
       load-on-startup: true
       path: 'classpath:__initial-data.zip'
-    mongodb:
-      init:
-        files:
-          - 'classpath:/asset-data-mongo.js'
-        initialize: true
-      uri: 'mongodb://localhost:27017/asset'
+    jpa:
+      hibernate:
+        ddl-auto: create
+    datasource:
+      initialization-mode: always
+      platform: postgres
+      url: jdbc:postgresql://localhost:5432/broadleaf
+      username: broadleaf
+      password: demo
+      data:
+        - 'classpath:/asset-data-jpa.sql'
     provider:
       contentUrlPrefix: 'https://localhost:8447/content'
   campaign:
-    mongodb:
-      init:
-        files:
-          - 'classpath:/campaign-data-mongo.js'
-        initialize: true
-      uri: 'mongodb://localhost:27017/campaign'
+    jpa:
+      hibernate:
+        ddl-auto: create
+    datasource:
+      initialization-mode: always
+      platform: postgres
+      url: jdbc:postgresql://localhost:5432/broadleaf
+      username: broadleaf
+      password: demo
+      data:
+        - 'classpath:/campaign-data-jpa.sql'
   cart:
     datasource:
       initialization-mode: always
@@ -59,70 +77,105 @@ broadleaf:
     walletprovider:
       url: 'https://localhost:8447'
   catalog:
-    mongodb:
-      init:
-        files:
-          - 'classpath:/catalog-data-mongo.js'
-        initialize: true
-      uri: 'mongodb://localhost:27017/catalog'
+    jpa:
+      hibernate:
+        ddl-auto: create
+    datasource:
+      initialization-mode: always
+      platform: postgres
+      url: jdbc:postgresql://localhost:5432/broadleaf
+      username: broadleaf
+      password: demo
+      data:
+        - 'classpath:/catalog-data-jpa.sql'
   catalogbrowse:
     catalogprovider:
       url: 'https://localhost:8447'
     pricingprovider:
       url: 'https://localhost:8447'
   common:
+    data:
+      route:
+        enabled: true
     policy:
       validation:
         enforce: true
   customer:
-    mongodb:
-      init:
-        files:
-          - 'classpath:/customer-data-mongo.js'
-        initialize: true
-      uri: 'mongodb://localhost:27017/customer'
+    jpa:
+      hibernate:
+        ddl-auto: create
+    datasource:
+      initialization-mode: always
+      platform: postgres
+      url: jdbc:postgresql://localhost:5432/broadleaf
+      username: broadleaf
+      password: demo
+      data:
+        - 'classpath:/customer-data-jpa.sql'
   dataimport:
-    mongodb:
-      init:
-        files:
-          - 'classpath:/dataimport-data-mongo.js'
-        initialize: true
-      uri: 'mongodb://localhost:27017/import'
+    jpa:
+      hibernate:
+        ddl-auto: create
+    datasource:
+      initialization-mode: always
+      platform: postgres
+      url: jdbc:postgresql://localhost:5432/broadleaf
+      username: broadleaf
+      password: demo
+      data:
+        - 'classpath:/dataimport-data-jpa.sql'
   image:
     availableEffects: 'crop, resize, scale, thumbnail, unsharp'
-  indexer:
-    catalog:
-      service:
-        endpoint: 'https://localhost:8447'
-    customer:
-      service:
-        endpoint: 'https://localhost:8447'
-    mongodb:
-      init:
-        files:
-          - 'classpath:/indexer-data-mongo.js'
-        initialize: true
-      uri: 'mongodb://localhost:27017/indexer'
-    search:
-      service:
-        endpoint: 'https://localhost:8447'
+#  indexer:
+#    catalog:
+#      service:
+#        endpoint: 'https://localhost:8447'
+#    customer:
+#      service:
+#        endpoint: 'https://localhost:8447'
+#    mongodb:
+#      init:
+#        files:
+#          - 'classpath:/indexer-data-jpa.sql'
+#        initialize: true
+#      uri: 'mongodb://localhost:27017/indexer'
+#    search:
+#      service:
+#        endpoint: 'https://localhost:8447'
   menu:
-    mongodb:
-      init:
-        files:
-          - 'classpath:/menu-data-mongo.js'
-        initialize: true
-      uri: 'mongodb://localhost:27017/menu'
+    jpa:
+      hibernate:
+        ddl-auto: create
+    datasource:
+      initialization-mode: always
+      platform: postgres
+      url: jdbc:postgresql://localhost:5432/broadleaf
+      username: broadleaf
+      password: demo
+      data:
+        - 'classpath:/menu-data-jpa.sql'
   metadata:
-    mongodb:
-      uri: 'mongodb://localhost:27017/metadata'
+    jpa:
+      hibernate:
+        ddl-auto: create
+    datasource:
+      initialization-mode: always
+      platform: postgres
+      url: jdbc:postgresql://localhost:5432/broadleaf
+      username: broadleaf
+      password: demo
   offer:
-    mongodb:
-      init:
-        files:
-          - 'classpath:/offer-data-mongo.js'
-        initialize: true
-      uri: 'mongodb://localhost:27017/offer'
+    jpa:
+      hibernate:
+        ddl-auto: create
+    datasource:
+      initialization-mode: always
+      platform: postgres
+      url: jdbc:postgresql://localhost:5432/broadleaf
+      username: broadleaf
+      password: demo
+      data:
+        - 'classpath:/offer-data-jpa.sql'
   payment:
     gateway:
       passthrough-transactions:
@@ -131,80 +184,103 @@ broadleaf:
     retry:
       developerMode: true
   personalization:
-    mongodb:
-      init:
-        files:
-          - 'classpath:/personalization-data-mongo.js'
-        initialize: true
-      uri: 'mongodb://localhost:27017/personalization'
+    jpa:
+      hibernate:
+        ddl-auto: create
+    datasource:
+      initialization-mode: always
+      platform: postgres
+      url: jdbc:postgresql://localhost:5432/broadleaf
+      username: broadleaf
+      password: demo
+      data:
+        - 'classpath:/personalization-data-jpa.sql'
   pricing:
-    mongodb:
-      init:
-        files:
-          - 'classpath:/pricing-data-mongo.js'
-        initialize: true
-      uri: 'mongodb://localhost:27017/pricing'
+    jpa:
+      hibernate:
+        ddl-auto: create
+    datasource:
+      initialization-mode: always
+      platform: postgres
+      url: jdbc:postgresql://localhost:5432/broadleaf
+      username: broadleaf
+      password: demo
+      data:
+        - 'classpath:/pricing-data-jpa.sql'
   resource:
     security:
       oauth2:
         defaultAllowAllAnonymous: false
   sandbox:
-    mongodb:
-      init:
-        files:
-          - 'classpath:/sandbox-data-mongo.js'
-        initialize: true
-      uri: 'mongodb://localhost:27017/sandbox'
+    jpa:
+      hibernate:
+        ddl-auto: create
+    datasource:
+      initialization-mode: always
+      platform: postgres
+      url: jdbc:postgresql://localhost:5432/broadleaf
+      username: broadleaf
+      password: demo
+      data:
+        - 'classpath:/sandbox-data-jpa.sql'
   scheduledjob:
-    mongodb:
-      init:
-        files:
-          - 'classpath:/scheduled-job-data-mongo.js'
-        initialize: true
-      uri: 'mongodb://localhost:27017/scheduledjob'
-  search:
-    catalog:
-      primaryAlias: catalog_alias_1
-      secondaryAlias: catalog_alias_2
-    customer:
-      primaryAlias: customer_alias_1
-      secondaryAlias: customer_alias_2
-    mongodb:
-      init:
-        files:
-          - 'classpath:/search-data-mongo.js'
-          - 'classpath:/search-catalog-data-mongo.js'
-          - 'classpath:/search-customer-data-mongo.js'
-        initialize: true
-      uri: 'mongodb://localhost:27017/search'
-    solr:
-      boost:
-        phraseBoost: 3
-        phraseExactBoost: 4
-        phraseSlop: 2
-        wordBoost: 2
-      server:
-        chroot: /solr
-        host: 'localhost:2181'
-        password: SolrRocks
-        user-name: indexer
-    spell-check:
-      config:
-        PRODUCT:
-          autoCorrectQuery: true
-          showSuggestionQueryHitCount: true
-          spellCheckEnabled: true
-          spellCheckQuery: true
-          suggestedQueryCount: 1
-          suggestionCount: 1
-          suggestionQueryCollationTries: 1
+    jpa:
+      hibernate:
+        ddl-auto: create
+    datasource:
+      initialization-mode: always
+      platform: postgres
+      url: jdbc:postgresql://localhost:5432/broadleaf
+      username: broadleaf
+      password: demo
+      data:
+        - 'classpath:/scheduled-job-data-jpa.sql'
+#  search:
+#    catalog:
+#      primaryAlias: catalog_alias_1
+#      secondaryAlias: catalog_alias_2
+#    customer:
+#      primaryAlias: customer_alias_1
+#      secondaryAlias: customer_alias_2
+#    mongodb:
+#      init:
+#        files:
+#          - 'classpath:/search-data-jpa.sql'
+#          - 'classpath:/search-catalog-data-jpa.sql'
+#          - 'classpath:/search-customer-data-jpa.sql'
+#    solr:
+#      boost:
+#        phraseBoost: 3
+#        phraseExactBoost: 4
+#        phraseSlop: 2
+#        wordBoost: 2
+#      server:
+#        chroot: /solr
+#        host: 'localhost:2181'
+#        password: SolrRocks
+#        user-name: indexer
+#    spell-check:
+#      config:
+#        PRODUCT:
+#          autoCorrectQuery: true
+#          showSuggestionQueryHitCount: true
+#          spellCheckEnabled: true
+#          spellCheckQuery: true
+#          suggestedQueryCount: 1
+#          suggestionCount: 1
+#          suggestionQueryCollationTries: 1
   tenant:
-    mongodb:
-      init:
-        files:
-          - 'classpath:/tenant-data-mongo.js'
-        initialize: true
-      uri: 'mongodb://localhost:27017/tenant'
+    jpa:
+      hibernate:
+        ddl-auto: create
+    datasource:
+      initialization-mode: always
+      platform: postgres
+      url: jdbc:postgresql://localhost:5432/broadleaf
+      username: broadleaf
+      password: demo
+      data:
+        - 'classpath:/tenant-data-jpa.sql'
     site:
       global:
         allowed-locales:
@@ -226,6 +302,8 @@ server:
     key-store: 'classpath:local.keystore'
     key-store-password: storepass
 spring:
+  liquibase:
+    enabled: false
   cloud:
     bus:
       enabled: false

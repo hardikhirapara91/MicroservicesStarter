@@ -4,16 +4,22 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.broadleafcommerce.microservices</groupId>
-        <artifactId>broadleaf-microservices-build-parent</artifactId>
-        <version>1.0.0-GA</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <!-- IMPORTANT -->
+        <!-- When updating Spring Boot versions ensure that the version here matches the property for
+            spring.boot.version -->
+        <!-- IMPORTANT - READ THE NOTE ^^^ -->
+        <version>2.2.1.RELEASE</version> <!-- IMPORTANT - READ THE NOTE ^^^ -->
+        <!-- IMPORTANT -->
         <relativePath />
     </parent>
 
-    <artifactId>ms-tutorial-getting-started</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>ms-tutorial-getting-started</name>
-    <description>Getting Started Tutorial for Broadleaf Microservices</description>
+    <groupId>com.broadleafcommerce.microservices</groupId>
+    <artifactId>ms-starter</artifactId>
+    <version>0.0.2-SNAPSHOT</version>
+    <name>ms-starter</name>
+    <description>Starter for Broadleaf Microservices</description>
     <distributionManagement>
         <repository>
             <id>broadleaf-microservices</id>
@@ -119,67 +125,67 @@
     </profiles>
 
     <properties>
-        <blc.common.dependencies>0.10.0-SNAPSHOT</blc.common.dependencies>
-        <blc.data.tracking.dependencies>0.10.0-SNAPSHOT</blc.data.tracking.dependencies>
-        <blc.config.server.metadata>0.10.0-SNAPSHOT</blc.config.server.metadata>
+        <blc.common.dependencies>1.0.2-SNAPSHOT</blc.common.dependencies>
+        <blc.data.tracking.dependencies>0.11.0-SNAPSHOT</blc.data.tracking.dependencies>
+        <blc.config.server.metadata>0.11.0-SNAPSHOT</blc.config.server.metadata>
 
-        <blc.admin.navigation.services>0.10.0-SNAPSHOT</blc.admin.navigation.services>
-        <blc.admin.navigation.metadata>0.10.0-SNAPSHOT</blc.admin.navigation.metadata>
-        <blc.admin.user.services>0.10.0-SNAPSHOT</blc.admin.user.services>
-        <blc.admin.user.metadata>0.10.0-SNAPSHOT</blc.admin.user.metadata>
-        <blc.asset.services>0.10.0-SNAPSHOT</blc.asset.services>
-        <blc.asset.metadata>0.10.0-SNAPSHOT</blc.asset.metadata>
-        <blc.authentication.services>0.10.0-SNAPSHOT</blc.authentication.services>
-        <blc.authentication.metadata>0.10.0-SNAPSHOT</blc.authentication.metadata>
-        <blc.billing.services>0.10.0-SNAPSHOT</blc.billing.services>
-        <blc.billing.metadata>0.10.0-SNAPSHOT</blc.billing.metadata>
-        <blc.campaign.services>0.10.0-SNAPSHOT</blc.campaign.services>
-        <blc.campaign.metadata>0.10.0-SNAPSHOT</blc.campaign.metadata>
-        <blc.cart.services>0.10.0-SNAPSHOT</blc.cart.services>
-        <blc.cart.metadata>0.10.0-SNAPSHOT</blc.cart.metadata>
-        <blc.cartops.services>0.10.0-SNAPSHOT</blc.cartops.services>
-        <blc.cartops.metadata>0.10.0-SNAPSHOT</blc.cartops.metadata>
-        <blc.catalog.services>0.10.0-SNAPSHOT</blc.catalog.services>
-        <blc.catalog.metadata>0.10.0-SNAPSHOT</blc.catalog.metadata>
-        <blc.catalogbrowse.services>0.10.0-SNAPSHOT</blc.catalogbrowse.services>
-        <blc.catalogbrowse.metadata>0.10.0-SNAPSHOT</blc.catalogbrowse.metadata>
-        <blc.customer.services>0.10.0-SNAPSHOT</blc.customer.services>
-        <blc.customer.metadata>0.10.0-SNAPSHOT</blc.customer.metadata>
-        <blc.entitlement.services>0.10.0-SNAPSHOT</blc.entitlement.services>
-        <blc.entitlement.metadata>0.10.0-SNAPSHOT</blc.entitlement.metadata>
-        <blc.import.services>0.10.0-SNAPSHOT</blc.import.services>
-        <blc.import.metadata>0.10.0-SNAPSHOT</blc.import.metadata>
-        <blc.indexer.services>0.10.0-SNAPSHOT</blc.indexer.services>
-        <blc.indexer.metadata>0.10.0-SNAPSHOT</blc.indexer.metadata>
-        <blc.menu.services>0.10.0-SNAPSHOT</blc.menu.services>
-        <blc.menu.metadata>0.10.0-SNAPSHOT</blc.menu.metadata>
-        <blc.metadata.services>0.10.0-SNAPSHOT</blc.metadata.services>
-        <blc.offer.services>0.10.0-SNAPSHOT</blc.offer.services>
-        <blc.offer.metadata>0.10.0-SNAPSHOT</blc.offer.metadata>
+        <blc.admin.navigation.services>0.11.0-SNAPSHOT</blc.admin.navigation.services>
+        <blc.admin.navigation.metadata>0.11.0-SNAPSHOT</blc.admin.navigation.metadata>
+        <blc.admin.user.services>0.11.0-SNAPSHOT</blc.admin.user.services>
+        <blc.admin.user.metadata>0.11.0-SNAPSHOT</blc.admin.user.metadata>
+        <blc.asset.services>0.11.0-SNAPSHOT</blc.asset.services>
+        <blc.asset.metadata>0.11.0-SNAPSHOT</blc.asset.metadata>
+        <blc.authentication.services>0.11.0-SNAPSHOT</blc.authentication.services>
+        <blc.authentication.metadata>0.11.0-SNAPSHOT</blc.authentication.metadata>
+        <blc.billing.services>0.11.0-SNAPSHOT</blc.billing.services>
+        <blc.billing.metadata>0.11.0-SNAPSHOT</blc.billing.metadata>
+        <blc.campaign.services>0.11.0-SNAPSHOT</blc.campaign.services>
+        <blc.campaign.metadata>0.11.0-SNAPSHOT</blc.campaign.metadata>
+        <blc.cart.services>0.11.0-SNAPSHOT</blc.cart.services>
+        <blc.cart.metadata>0.11.0-SNAPSHOT</blc.cart.metadata>
+        <blc.cartops.services>0.11.0-SNAPSHOT</blc.cartops.services>
+        <blc.cartops.metadata>0.11.0-SNAPSHOT</blc.cartops.metadata>
+        <blc.catalog.services>0.11.0-SNAPSHOT</blc.catalog.services>
+        <blc.catalog.metadata>0.11.0-SNAPSHOT</blc.catalog.metadata>
+        <blc.catalogbrowse.services>0.11.0-SNAPSHOT</blc.catalogbrowse.services>
+        <blc.catalogbrowse.metadata>0.11.0-SNAPSHOT</blc.catalogbrowse.metadata>
+        <blc.customer.services>0.11.0-SNAPSHOT</blc.customer.services>
+        <blc.customer.metadata>0.11.0-SNAPSHOT</blc.customer.metadata>
+        <blc.entitlement.services>0.11.0-SNAPSHOT</blc.entitlement.services>
+        <blc.entitlement.metadata>0.11.0-SNAPSHOT</blc.entitlement.metadata>
+        <blc.import.services>0.11.0-SNAPSHOT</blc.import.services>
+        <blc.import.metadata>0.11.0-SNAPSHOT</blc.import.metadata>
+        <blc.indexer.services>0.11.0-SNAPSHOT</blc.indexer.services>
+        <blc.indexer.metadata>0.11.0-SNAPSHOT</blc.indexer.metadata>
+        <blc.menu.services>0.11.0-SNAPSHOT</blc.menu.services>
+        <blc.menu.metadata>0.11.0-SNAPSHOT</blc.menu.metadata>
+        <blc.metadata.services>0.11.0-SNAPSHOT</blc.metadata.services>
+        <blc.offer.services>0.11.0-SNAPSHOT</blc.offer.services>
+        <blc.offer.metadata>0.11.0-SNAPSHOT</blc.offer.metadata>
         <blc.payment.services>1.0.0-SNAPSHOT</blc.payment.services>
         <blc.payment.metadata>1.0.0-SNAPSHOT</blc.payment.metadata>
-        <blc.personalization.services>0.10.0-SNAPSHOT</blc.personalization.services>
-        <blc.personalization.metadata>0.10.0-SNAPSHOT</blc.personalization.metadata>
-        <blc.pricing.services>0.10.0-SNAPSHOT</blc.pricing.services>
-        <blc.pricing.metadata>0.10.0-SNAPSHOT</blc.pricing.metadata>
-        <blc.sandbox.services>0.10.0-SNAPSHOT</blc.sandbox.services>
-        <blc.sandbox.metadata>0.10.0-SNAPSHOT</blc.sandbox.metadata>
-        <blc.scheduled.job.services>0.10.0-SNAPSHOT</blc.scheduled.job.services>
-        <blc.scheduled.job.metadata>0.10.0-SNAPSHOT</blc.scheduled.job.metadata>
-        <blc.search.services>0.10.0-SNAPSHOT</blc.search.services>
-        <blc.search.metadata>0.10.0-SNAPSHOT</blc.search.metadata>
-        <blc.tenant.services>0.10.0-SNAPSHOT</blc.tenant.services>
-        <blc.tenant.metadata>0.10.0-SNAPSHOT</blc.tenant.metadata>
+        <blc.personalization.services>0.11.0-SNAPSHOT</blc.personalization.services>
+        <blc.personalization.metadata>0.11.0-SNAPSHOT</blc.personalization.metadata>
+        <blc.pricing.services>0.11.0-SNAPSHOT</blc.pricing.services>
+        <blc.pricing.metadata>0.11.0-SNAPSHOT</blc.pricing.metadata>
+        <blc.sandbox.services>0.11.0-SNAPSHOT</blc.sandbox.services>
+        <blc.sandbox.metadata>0.11.0-SNAPSHOT</blc.sandbox.metadata>
+        <blc.scheduled.job.services>0.11.0-SNAPSHOT</blc.scheduled.job.services>
+        <blc.scheduled.job.metadata>0.11.0-SNAPSHOT</blc.scheduled.job.metadata>
+        <blc.search.services>0.11.0-SNAPSHOT</blc.search.services>
+        <blc.search.metadata>0.11.0-SNAPSHOT</blc.search.metadata>
+        <blc.tenant.services>0.11.0-SNAPSHOT</blc.tenant.services>
+        <blc.tenant.metadata>0.11.0-SNAPSHOT</blc.tenant.metadata>
 
-        <blc.paypal>0.10.0-SNAPSHOT</blc.paypal>
-        <blc.stripe>0.10.0-SNAPSHOT</blc.stripe>
+        <blc.paypal>0.11.0-SNAPSHOT</blc.paypal>
+        <blc.stripe>0.11.0-SNAPSHOT</blc.stripe>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>com.broadleafcommerce.microservices</groupId>
-                <artifactId>broadleaf-common-dependencies</artifactId>
+                <artifactId>broadleaf-microservices-dependencies</artifactId>
                 <version>${blc.common.dependencies}</version>
                 <type>pom</type>
                 <scope>import</scope>
@@ -197,17 +203,17 @@
         <!-- Services -->
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-admin-navigation-services-starter</artifactId>
+            <artifactId>broadleaf-admin-navigation-services</artifactId>
             <version>${blc.admin.navigation.services}</version>
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-asset-services-starter</artifactId>
+            <artifactId>broadleaf-asset-services</artifactId>
             <version>${blc.asset.services}</version>
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-campaign-services-starter</artifactId>
+            <artifactId>broadleaf-campaign-services</artifactId>
             <version>${blc.campaign.services}</version>
         </dependency>
         <dependency>
@@ -217,27 +223,33 @@
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-cart-operation-services-starter</artifactId>
+            <artifactId>broadleaf-cart-operation-services</artifactId>
             <version>${blc.cartops.services}</version>
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-catalog-services-starter</artifactId>
+            <artifactId>broadleaf-common-shipping</artifactId>
+            <version>0.9.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-catalog-services</artifactId>
             <version>${blc.catalog.services}</version>
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-catalog-browse-services-starter</artifactId>
+            <artifactId>broadleaf-catalog-browse-services</artifactId>
             <version>${blc.catalogbrowse.services}</version>
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-customer-services-starter</artifactId>
+            <artifactId>broadleaf-customer-services</artifactId>
             <version>${blc.customer.services}</version>
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-import-services-starter</artifactId>
+            <artifactId>broadleaf-import-services</artifactId>
             <version>${blc.import.services}</version>
         </dependency>
         <dependency>
@@ -247,32 +259,32 @@
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-menu-services-starter</artifactId>
+            <artifactId>broadleaf-menu-services</artifactId>
             <version>${blc.menu.services}</version>
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-metadata-services-starter</artifactId>
+            <artifactId>broadleaf-metadata-services</artifactId>
             <version>${blc.metadata.services}</version>
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-offer-services-starter</artifactId>
+            <artifactId>broadleaf-offer-services</artifactId>
             <version>${blc.offer.services}</version>
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-personalization-services-starter</artifactId>
+            <artifactId>broadleaf-personalization-services</artifactId>
             <version>${blc.personalization.services}</version>
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-pricing-services-starter</artifactId>
+            <artifactId>broadleaf-pricing-services</artifactId>
             <version>${blc.pricing.services}</version>
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-sandbox-services-starter</artifactId>
+            <artifactId>broadleaf-sandbox-services</artifactId>
             <version>${blc.sandbox.services}</version>
         </dependency>
         <dependency>
@@ -282,12 +294,12 @@
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-scheduled-job-services-starter</artifactId>
+            <artifactId>broadleaf-scheduled-job-services</artifactId>
             <version>${blc.scheduled.job.services}</version>
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-tenant-services-starter</artifactId>
+            <artifactId>broadleaf-tenant-services</artifactId>
             <version>${blc.tenant.services}</version>
         </dependency>
 
@@ -357,15 +369,16 @@
             <artifactId>broadleaf-tenant-services-metadata</artifactId>
             <version>${blc.tenant.metadata}</version>
         </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-jpa-dependencies</artifactId>
+            <version>1.0.2-SNAPSHOT</version>
+        </dependency>
 
         <!-- Misc -->
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
             <artifactId>broadleaf-oauth2-resource-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-common-mongodb</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -404,6 +417,10 @@
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-jdbc</artifactId>
+        </dependency>
 
         <!-- Non-transitive (optional/provided/runtime) -->
         <dependency>
@@ -414,11 +431,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -441,11 +453,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-stream-test-support</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>de.flapdoodle.embed</groupId>
-            <artifactId>de.flapdoodle.embed.mongo</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

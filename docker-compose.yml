@@ -172,17 +172,17 @@ services:
   config:
     depends_on:
       - localkafka
-      - mongo
+      - postgres
     env_file:
       - common-environment.env
     environment:
       DEBUG_PORT: 8006
-      SPRING_DATA_MONGODB_URI: 'mongodb://mongo:27017/configserver'
+      SPRING_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=configserver'
     image: repository.broadleafcommerce.com:5001/broadleaf/configserver:latest-snapshot
     networks:
       - kafkanet
       - backend
-      - mongonet
+      - postgresnet
     ports:
       - '8888:8888'
       - '8006:8006'
@@ -224,14 +224,6 @@ services:
     ports:
       - '8983:8983'
     tty: true
-  mongo:
-    image: mongo:3.6.5-jessie
-    networks:
-      - mongonet
-    ports:
-      - '27017:27017'
-    restart: always
-    tty: true
   postgres:
     environment:
       POSTGRES_DB: broadleaf
@@ -258,6 +250,5 @@ services:
 networks:
   backend:
   kafkanet:
-  mongonet:
   postgresnet:
   solrnet:
