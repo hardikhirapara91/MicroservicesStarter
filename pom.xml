@@ -16,10 +16,10 @@
     </parent>
 
     <groupId>com.broadleafcommerce.microservices</groupId>
-    <artifactId>ms-starter</artifactId>
+    <artifactId>ms-tutorial-getting-started</artifactId>
     <version>0.0.2-SNAPSHOT</version>
-    <name>ms-starter</name>
-    <description>Starter for Broadleaf Microservices</description>
+    <name>ms-tutorial-getting-started</name>
+    <description>Getting Started Tutorial for Broadleaf Microservices</description>
     <distributionManagement>
         <repository>
             <id>broadleaf-microservices</id>
