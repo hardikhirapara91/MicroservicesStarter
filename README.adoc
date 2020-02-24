@@ -90,7 +90,7 @@ More info about authenticating with private repositories can be found
 https://maven.apache.org/settings.html#Servers[here]
 ====
 
-=== Running the Project
+== Running the Project
 
 Now that all of the pre-requisites are installed, let's run the project!
 
