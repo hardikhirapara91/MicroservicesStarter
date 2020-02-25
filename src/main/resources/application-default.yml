@@ -1,4 +1,3 @@
-debug: true
 broadleaf:
   database:
     provider: jpa
@@ -9,13 +8,16 @@ broadleaf:
     datasource:
       initialization-mode: always
       platform: postgres
-      url: jdbc:postgresql://localhost:5432/broadleaf
+      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=adminnavigation'
       username: broadleaf
       password: demo
+      hikari:
+        maximumPoolSize: 2
       data:
         - 'classpath:/admin-navigation-data-jpa.sql'
     liquibase:
-      enabled: false
+      change-log: 'classpath:/db/changelog/admin-navigation.db.changelog-master.yaml'
+      liquibase-schema: public
   asset:
     data:
       load-on-startup: true
@@ -26,15 +28,16 @@ broadleaf:
     datasource:
       initialization-mode: always
       platform: postgres
-      url: jdbc:postgresql://localhost:5432/broadleaf
+      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=asset'
       username: broadleaf
       password: demo
-      data:
-        - 'classpath:/asset-data-jpa.sql'
+      hikari:
+        maximumPoolSize: 2
     provider:
       contentUrlPrefix: 'https://localhost:8447/content'
     liquibase:
-      enabled: false
+      change-log: 'classpath:/db/changelog/asset.db.changelog-master.yaml'
+      liquibase-schema: public
   campaign:
     jpa:
       hibernate:
@@ -42,19 +45,24 @@ broadleaf:
     datasource:
       initialization-mode: always
       platform: postgres
-      url: jdbc:postgresql://localhost:5432/broadleaf
+      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=campaign'
       username: broadleaf
       password: demo
+      hikari:
+        maximumPoolSize: 2
       data:
         - 'classpath:/campaign-data-jpa.sql'
     liquibase:
-      enabled: false
+      change-log: 'classpath:/db/changelog/campaign.db.changelog-master.yaml'
+      liquibase-schema: public
   cart:
     datasource:
       initialization-mode: always
       password: demo
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=cart'
       username: broadleaf
+      hikari:
+        maximumPoolSize: 2
     jpa:
       hibernate:
         ddl-auto: create
@@ -89,13 +97,16 @@ broadleaf:
     datasource:
       initialization-mode: always
       platform: postgres
-      url: jdbc:postgresql://localhost:5432/broadleaf
+      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=catalog'
       username: broadleaf
       password: demo
+      hikari:
+        maximumPoolSize: 2
       data:
         - 'classpath:/catalog-data-jpa.sql'
     liquibase:
-      enabled: false
+      change-log: 'classpath:/db/changelog/catalog.db.changelog-master.yaml'
+      liquibase-schema: public
   catalogbrowse:
     catalogprovider:
       url: 'https://localhost:8447'
@@ -115,13 +126,16 @@ broadleaf:
     datasource:
       initialization-mode: always
       platform: postgres
-      url: jdbc:postgresql://localhost:5432/broadleaf
+      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=customer'
       username: broadleaf
       password: demo
+      hikari:
+        maximumPoolSize: 2
       data:
         - 'classpath:/customer-data-jpa.sql'
     liquibase:
-      enabled: false
+      change-log: 'classpath:/db/changelog/customer.db.changelog-master.yaml'
+      liquibase-schema: public
   dataimport:
     jpa:
       hibernate:
@@ -129,13 +143,14 @@ broadleaf:
     datasource:
       initialization-mode: always
       platform: postgres
-      url: jdbc:postgresql://localhost:5432/broadleaf
+      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=import'
       username: broadleaf
       password: demo
-      data:
-        - 'classpath:/dataimport-data-jpa.sql'
+      hikari:
+        maximumPoolSize: 2
     liquibase:
-      enabled: false
+      change-log: 'classpath:/db/changelog/import.db.changelog-master.yaml'
+      liquibase-schema: public
   image:
     availableEffects: 'crop, resize, scale, thumbnail, unsharp'
 #  indexer:
@@ -161,13 +176,16 @@ broadleaf:
     datasource:
       initialization-mode: always
       platform: postgres
-      url: jdbc:postgresql://localhost:5432/broadleaf
+      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=menu'
       username: broadleaf
       password: demo
+      hikari:
+        maximumPoolSize: 2
       data:
         - 'classpath:/menu-data-jpa.sql'
     liquibase:
-      enabled: false
+      change-log: 'classpath:/db/changelog/menu.db.changelog-master.yaml'
+      liquibase-schema: public
   metadata:
     jpa:
       hibernate:
@@ -175,11 +193,14 @@ broadleaf:
     datasource:
       initialization-mode: always
       platform: postgres
-      url: jdbc:postgresql://localhost:5432/broadleaf
+      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=metadata'
       username: broadleaf
       password: demo
+      hikari:
+        maximumPoolSize: 2
     liquibase:
-      enabled: false
+      change-log: 'classpath:/db/changelog/metadata.db.changelog-master.yaml'
+      liquibase-schema: public
   offer:
     jpa:
       hibernate:
@@ -187,13 +208,16 @@ broadleaf:
     datasource:
       initialization-mode: always
       platform: postgres
-      url: jdbc:postgresql://localhost:5432/broadleaf
+      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=offer'
       username: broadleaf
       password: demo
+      hikari:
+        maximumPoolSize: 2
       data:
         - 'classpath:/offer-data-jpa.sql'
     liquibase:
-      enabled: false
+      change-log: 'classpath:/db/changelog/offer.db.changelog-master.yaml'
+      liquibase-schema: public
   payment:
     gateway:
       passthrough-transactions:
@@ -208,13 +232,16 @@ broadleaf:
     datasource:
       initialization-mode: always
       platform: postgres
-      url: jdbc:postgresql://localhost:5432/broadleaf
+      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=personalization'
       username: broadleaf
       password: demo
+      hikari:
+        maximumPoolSize: 2
       data:
         - 'classpath:/personalization-data-jpa.sql'
     liquibase:
-      enabled: false
+      change-log: 'classpath:/db/changelog/personalization.db.changelog-master.yaml'
+      liquibase-schema: public
   pricing:
     jpa:
       hibernate:
@@ -222,13 +249,16 @@ broadleaf:
     datasource:
       initialization-mode: always
       platform: postgres
-      url: jdbc:postgresql://localhost:5432/broadleaf
+      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=pricing'
       username: broadleaf
       password: demo
+      hikari:
+        maximumPoolSize: 2
       data:
         - 'classpath:/pricing-data-jpa.sql'
     liquibase:
-      enabled: false
+      change-log: 'classpath:/db/changelog/pricing.db.changelog-master.yaml'
+      liquibase-schema: public
   resource:
     security:
       oauth2:
@@ -240,13 +270,16 @@ broadleaf:
     datasource:
       initialization-mode: always
       platform: postgres
-      url: jdbc:postgresql://localhost:5432/broadleaf
+      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=sandbox'
       username: broadleaf
       password: demo
+      hikari:
+        maximumPoolSize: 2
       data:
         - 'classpath:/sandbox-data-jpa.sql'
     liquibase:
-      enabled: false
+      change-log: 'classpath:/db/changelog/sandbox.db.changelog-master.yaml'
+      liquibase-schema: public
   scheduledjob:
     jpa:
       hibernate:
@@ -254,13 +287,16 @@ broadleaf:
     datasource:
       initialization-mode: always
       platform: postgres
-      url: jdbc:postgresql://localhost:5432/broadleaf
+      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=scheduledjob'
       username: broadleaf
       password: demo
+      hikari:
+        maximumPoolSize: 2
       data:
         - 'classpath:/scheduled-job-data-jpa.sql'
     liquibase:
-      enabled: false
+      change-log: 'classpath:/db/changelog/scheduled-job.db.changelog-master.yaml'
+      liquibase-schema: public
 #  search:
 #    catalog:
 #      primaryAlias: catalog_alias_1
@@ -302,13 +338,16 @@ broadleaf:
     datasource:
       initialization-mode: always
       platform: postgres
-      url: jdbc:postgresql://localhost:5432/broadleaf
+      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=tenant'
       username: broadleaf
       password: demo
+      hikari:
+        maximumPoolSize: 2
       data:
         - 'classpath:/tenant-data-jpa.sql'
     liquibase:
-      enabled: false
+      change-log: 'classpath:/db/changelog/tenant.db.changelog-master.yaml'
+      liquibase-schema: public
     site:
       global:
         allowed-locales:
