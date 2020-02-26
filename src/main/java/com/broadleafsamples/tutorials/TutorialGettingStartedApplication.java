@@ -19,6 +19,14 @@ public class TutorialGettingStartedApplication {
         };
     }
 
+    @Bean
+    SecurityEnhancer tenantAnonymous() {
+        return http -> {
+            http.authorizeRequests().antMatchers("/resolver/**").permitAll();
+            http.authorizeRequests().antMatchers("/url-resolver/**").permitAll();
+        };
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(TutorialGettingStartedApplication.class, args);
     }
