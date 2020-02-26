@@ -377,6 +377,9 @@ broadleaf:
           - fr
           - fr_FR
         default-locale: en_US
+    urlresolver:
+      application:
+        port: 8456
 server:
   port: 8447
   servlet:
