@@ -110,7 +110,12 @@ and started from the command line by navigating to the root of this project and 
 docker-compose up -d
 ----
 +
-//TODO - example docker dashboard image nice to have
+image::docs/images/MS_Docker_Dashboard.png[]
++
+[TIP]
+====
+The above screenshot shows an example Docker Dashboard that has all the supporting services running and started
+====
 +
 3. Next, you will want to start up the core backend commerce APIs by running the following command:
 +
@@ -120,12 +125,25 @@ mvn spring-boot:run -Dspring-boot.run.jvmArguments="-DzkACLProvider=org.apache.s
 ----
 +
 4. That's it! Once you've verified that the supporting services and backend APIs are running, you can visit
-the administration console and the consumer storefront from a browser:
+the administration console and the consumer storefronts from a browser:
 +
-- Admin Console: https://localhost:8446/?site=global
+- Admin Console: https://localhost:8446
 * Username: `master@test.com`
 * Password: `Pass1word!`
-- Storefront: https://localhost:8456/?site=heatclinic.com  
+- Storefront 1: https://heatclinic.localhost:8456
+- Storefront 2: https://aaahotsauces.localhost:8456
+
+[IMPORTANT]
+====
+If you are having issues visiting the storefront links, you will either need to set up DNSMasq
+in order to map URLs to `localhost` or set up `/etc/hosts` with the `heatclinic` and `aaahotsauces`
+subdomains. If you are using a later version of Chrome, these should be handled automatically.
+====
+
+[NOTE]
+====
+Remember to shutdown your docker services when finished in order to free up resources i.e. `docker-compose down`
+====
 
 === Testing Endpoints Directly
 
@@ -140,9 +158,12 @@ worry about getting a valid JWT authentication token every time:
 mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dbroadleaf.resource.security.oauth2.defaultAllowAllAnonymous=true -Dbroadleaf.common.policy.validation.enforce=false -DzkACLProvider=org.apache.solr.common.cloud.VMParamsAllAndReadonlyDigestZkACLProvider -DzkCredentialsProvider=org.apache.solr.common.cloud.VMParamsSingleSetCredentialsDigestZkCredentialsProvider -DzkDigestUsername=readonly-user -DzkDigestPassword=CHANGEME-READONLY-PASSWORD"
 ----
 
-Once you have the services running, you should be able to issue a request like:
+Once you have the services running, you should be able to issue a `cURL` request like:
 
-//TODO Insert Example cURL to an endpoint here 
+[source,shell script]
+----
+curl --insecure -X GET "https://localhost:8447/catalog/products?offset=0&forward=true&pageSize=50" -H "accept: application/json" -H "X-Context-Request: {\"tenantId\":\"5DF1363059675161A85F576D\",\"catalogId\":\"3\"}"
+----
 
 == Project Structure Overview
 
@@ -174,13 +195,21 @@ for this guide (e.g. catalog, pricing, offers, etc...)
 property configurations for the backend commerce services including database configuration and
 initialization parameters
 
+== Things to Try
+Once you've started up both the admin and the storefront. Here are a couple things you may
+want to try:
+
+//TODO Finalize
+- Modify an existing product, promote changes, and deploy changes to production
+- Create a new offer
+
+
 == What's Next?
 Now that you have the project running and have a high level understanding of how to build
 and use it, the next step would be to walk through some typical customizations. See the following
 for more details:
 
 - https://github.com/BroadleafCommerce/MicroservicesStarter/tree/master/docs/tutorials[Customization & Extension Guide]
-
 
 == FAQ
 
@@ -227,8 +256,6 @@ description of their purpose.
   - `admingateway` - this is a lightweight API Gateway built on top of 
   https://spring.io/projects/spring-cloud-gateway[Spring Cloud Gateway] to facilitate routing
   for the admin console
-  - `adminuser` - this is a small service that holds a set of
-  demo admin user data with different roles and permissions
   - `adminweb` - this is a reference image of our React Microservices Admin SPA 
   - `auth` - this is a lightweight OAuth2 authorization server used to generate the necessary JWT 
   tokens for authentication
@@ -236,9 +263,6 @@ description of their purpose.
   https://spring.io/projects/spring-cloud-gateway[Spring Cloud Gateway] to facilitate routing
   for the admin console
   - `commerceweb` - this is a reference image of our React Commerce Storefront SPA
-  - `config` - this is a lightweight config server built on top of 
-  https://cloud.spring.io/spring-cloud-config/reference/html/[Spring Cloud Config] to support
-  externalized configuration cross-services  
   - `localkafka` - Official Confluent https://hub.docker.com/r/confluentinc/cp-kafka[Docker Image]
   for Kafka (Community Version) 
   - `localsolr` - Broadleaf-flavored image based on Solr's official 8.2 distro

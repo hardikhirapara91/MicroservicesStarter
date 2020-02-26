@@ -125,8 +125,8 @@
     </profiles>
 
     <properties>
-        <blc.common.dependencies>1.0.2-SNAPSHOT</blc.common.dependencies>
-        <blc.data.tracking.dependencies>0.11.0-SNAPSHOT</blc.data.tracking.dependencies>
+        <blc.microservices.dependencies>1.0.2-SNAPSHOT</blc.microservices.dependencies>
+        <blc.jpa.dependencies>1.0.2-SNAPSHOT</blc.jpa.dependencies>
         <blc.config.server.metadata>0.11.0-SNAPSHOT</blc.config.server.metadata>
 
         <blc.admin.navigation.services>0.11.0-SNAPSHOT</blc.admin.navigation.services>
@@ -176,9 +176,6 @@
         <blc.search.metadata>0.11.0-SNAPSHOT</blc.search.metadata>
         <blc.tenant.services>0.11.0-SNAPSHOT</blc.tenant.services>
         <blc.tenant.metadata>0.11.0-SNAPSHOT</blc.tenant.metadata>
-
-        <blc.paypal>0.11.0-SNAPSHOT</blc.paypal>
-        <blc.stripe>0.11.0-SNAPSHOT</blc.stripe>
     </properties>
 
     <dependencyManagement>
@@ -186,14 +183,7 @@
             <dependency>
                 <groupId>com.broadleafcommerce.microservices</groupId>
                 <artifactId>broadleaf-microservices-dependencies</artifactId>
-                <version>${blc.common.dependencies}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.broadleafcommerce.microservices</groupId>
-                <artifactId>broadleaf-data-tracking-dependencies</artifactId>
-                <version>${blc.data.tracking.dependencies}</version>
+                <version>${blc.microservices.dependencies}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -230,12 +220,6 @@
             <groupId>com.broadleafcommerce.microservices</groupId>
             <artifactId>broadleaf-cart-operation-services</artifactId>
             <version>${blc.cartops.services}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-common-shipping</artifactId>
-            <version>0.9.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
@@ -377,7 +361,7 @@
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
             <artifactId>broadleaf-jpa-dependencies</artifactId>
-            <version>1.0.2-SNAPSHOT</version>
+            <version>${blc.jpa.dependencies}</version>
         </dependency>
 
         <!-- Misc -->

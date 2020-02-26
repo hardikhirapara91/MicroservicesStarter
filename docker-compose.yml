@@ -51,26 +51,6 @@ services:
       - '8446:8446'
       - '8001:8001'
     tty: true
-  adminuser:
-    depends_on:
-      - localkafka
-      - postgres
-    env_file:
-      - common-environment.env
-    environment:
-      DEBUG_PORT: 8022
-      SPRING_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=adminuser'
-    image: repository.broadleafcommerce.com:5001/broadleaf/adminuserservice:latest-0.10-snapshot
-    networks:
-      - kafkanet
-      - postgresnet
-      - backend
-    ports:
-      - '8464:8464'
-      - '8022:8022'
-      - '9002:9002'
-    tmpfs: /tmp
-    tty: true
   adminweb:
     depends_on:
       - admingateway
@@ -95,7 +75,7 @@ services:
       BROADLEAF_AUTH_SECURITY_OAUTH2_AUTOAPPROVEDCLIENTREGISTEREDREDIRECTS: 'https://localhost:8446/silent-callback.html,https://localhost:8446/callback'
       DEBUG_PORT: 8000
       SPRING_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=auth'
-    image: repository.broadleafcommerce.com:5001/broadleaf/authenticationservice-kafka-configserver:latest-snapshot
+    image: repository.broadleafcommerce.com:5001/broadleaf-demo/authenticationservice-kafka-configserver:microservices-starter
     networks:
       - kafkanet
       - postgresnet
