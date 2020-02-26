@@ -208,6 +208,11 @@
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-admin-user-services</artifactId>
+            <version>${blc.admin.user.services}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
             <artifactId>broadleaf-asset-services</artifactId>
             <version>${blc.asset.services}</version>
         </dependency>

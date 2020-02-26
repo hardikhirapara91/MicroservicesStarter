@@ -18,6 +18,23 @@ broadleaf:
     liquibase:
       change-log: 'classpath:/db/changelog/admin-navigation.db.changelog-master.yaml'
       liquibase-schema: public
+  adminuser:
+    jpa:
+      hibernate:
+        ddl-auto: create
+    datasource:
+      initialization-mode: always
+      platform: postgres
+      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=adminuser'
+      username: broadleaf
+      password: demo
+      hikari:
+        maximumPoolSize: 2
+      data:
+        - 'classpath:/admin-user-sample-data.sql'
+    liquibase:
+      change-log: 'classpath:/db/changelog/admin-user.db.changelog-master.yaml'
+      liquibase-schema: public
   asset:
     data:
       load-on-startup: true
