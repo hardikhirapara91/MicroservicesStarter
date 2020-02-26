@@ -170,22 +170,30 @@ broadleaf:
       liquibase-schema: public
   image:
     availableEffects: 'crop, resize, scale, thumbnail, unsharp'
-#  indexer:
-#    catalog:
-#      service:
-#        endpoint: 'https://localhost:8447'
-#    customer:
-#      service:
-#        endpoint: 'https://localhost:8447'
-#    mongodb:
-#      init:
-#        files:
-#          - 'classpath:/indexer-data-jpa.sql'
-#        initialize: true
-#      uri: 'mongodb://localhost:27017/indexer'
-#    search:
-#      service:
-#        endpoint: 'https://localhost:8447'
+  indexer:
+    jpa:
+      hibernate:
+        ddl-auto: create
+    datasource:
+      initialization-mode: always
+      platform: postgres
+      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=indexer'
+      username: broadleaf
+      password: demo
+      hikari:
+        maximumPoolSize: 2
+    liquibase:
+      change-log: 'classpath:/db/changelog/search.db.changelog-master.yaml'
+      liquibase-schema: public
+    catalog:
+      service:
+        endpoint: 'https://localhost:8447'
+    customer:
+      service:
+        endpoint: 'https://localhost:8447'
+    search:
+      service:
+        endpoint: 'https://localhost:8447'
   menu:
     jpa:
       hibernate:
@@ -314,40 +322,51 @@ broadleaf:
     liquibase:
       change-log: 'classpath:/db/changelog/scheduled-job.db.changelog-master.yaml'
       liquibase-schema: public
-#  search:
-#    catalog:
-#      primaryAlias: catalog_alias_1
-#      secondaryAlias: catalog_alias_2
-#    customer:
-#      primaryAlias: customer_alias_1
-#      secondaryAlias: customer_alias_2
-#    mongodb:
-#      init:
-#        files:
-#          - 'classpath:/search-data-jpa.sql'
-#          - 'classpath:/search-catalog-data-jpa.sql'
-#          - 'classpath:/search-customer-data-jpa.sql'
-#    solr:
-#      boost:
-#        phraseBoost: 3
-#        phraseExactBoost: 4
-#        phraseSlop: 2
-#        wordBoost: 2
-#      server:
-#        chroot: /solr
-#        host: 'localhost:2181'
-#        password: SolrRocks
-#        user-name: indexer
-#    spell-check:
-#      config:
-#        PRODUCT:
-#          autoCorrectQuery: true
-#          showSuggestionQueryHitCount: true
-#          spellCheckEnabled: true
-#          spellCheckQuery: true
-#          suggestedQueryCount: 1
-#          suggestionCount: 1
-#          suggestionQueryCollationTries: 1
+  search:
+    catalog:
+      primaryAlias: catalog_alias_1
+      secondaryAlias: catalog_alias_2
+    customer:
+      primaryAlias: customer_alias_1
+      secondaryAlias: customer_alias_2
+    jpa:
+      hibernate:
+        ddl-auto: create
+    datasource:
+      initialization-mode: always
+      platform: postgres
+      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=search'
+      username: broadleaf
+      password: demo
+      hikari:
+        maximumPoolSize: 2
+      data:
+        - 'classpath:/search-catalog-data-jpa.sql'
+        - 'classpath:/search-customer-data-jpa.sql'
+    liquibase:
+      change-log: 'classpath:/db/changelog/search.db.changelog-master.yaml'
+      liquibase-schema: public
+    solr:
+      boost:
+        phraseBoost: 3
+        phraseExactBoost: 4
+        phraseSlop: 2
+        wordBoost: 2
+      server:
+        chroot: /solr
+        host: 'localhost:2181'
+        password: SolrRocks
+        user-name: indexer
+    spell-check:
+      config:
+        PRODUCT:
+          autoCorrectQuery: true
+          showSuggestionQueryHitCount: true
+          spellCheckEnabled: true
+          spellCheckQuery: true
+          suggestedQueryCount: 1
+          suggestionCount: 1
+          suggestionQueryCollationTries: 1
   tenant:
     jpa:
       hibernate:
