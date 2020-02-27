@@ -183,7 +183,7 @@ broadleaf:
       hikari:
         maximumPoolSize: 2
     liquibase:
-      change-log: 'classpath:/db/changelog/search.db.changelog-master.yaml'
+      change-log: 'classpath:/db/changelog/indexer.db.changelog-master.yaml'
       liquibase-schema: public
     catalog:
       service:
