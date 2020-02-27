@@ -134,8 +134,9 @@ services:
     depends_on:
       - commercegateway
     environment:
-      ENABLE_DEV_SETTINGS: 'true'
-      NODE_ENV: development
+      REACT_APP_ENABLE_DEV_SETTINGS: 'true'
+      NODE_ENV: development,
+      REACT_APP_ASSET_BASE_URL: https://localhost:8447/content/
     image: repository.broadleafcommerce.com:5001/broadleaf/commerceweb:latest-0.11-snapshot
     networks:
       - backend
