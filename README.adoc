@@ -110,11 +110,31 @@ and started from the command line by navigating to the root of this project and 
 docker-compose up -d
 ----
 +
+and you should see the following output in your console:
++
+[source,shell script]
+----
+Creating network "microservicesstarter_postgresnet" with the default driver
+Creating network "microservicesstarter_kafkanet" with the default driver
+Creating network "microservicesstarter_solrnet" with the default driver
+Creating network "microservicesstarter_backend" with the default driver
+Creating microservicesstarter_zk_1       ... done
+Creating microservicesstarter_postgres_1 ... done
+Creating microservicesstarter_localkafka_1 ... done
+Creating microservicesstarter_localsolr_1       ... done
+Creating microservicesstarter_commercegateway_1 ... done
+Creating microservicesstarter_admingateway_1    ... done
+Creating microservicesstarter_auth_1            ... done
+Creating microservicesstarter_adminweb_1        ... done
+Creating microservicesstarter_commerceweb_1     ... done
+----
++
 image::docs/images/MS_Docker_Dashboard.png[]
 +
 [TIP]
 ====
-The above screenshot shows an example Docker Dashboard that has all the supporting services running and started
+If you are using one of the latest versions of Docker Dashboard, you can
+verify that has all the supporting services are running and have started up completely
 ====
 +
 3. Next, you will want to start up the core backend commerce APIs by running the following command:
@@ -200,6 +220,9 @@ Once you've started up both the admin and the storefront. Here are a couple thin
 want to try:
 
 //TODO Finalize
+- Try logging in as a different admin user to view the experience for someone with limited roles and permission:
+* Username: `readonly@test.com`
+* Password: `Pass1word!`
 - Modify an existing product, promote changes, and deploy changes to production
 - Create a new offer
 
@@ -253,20 +276,93 @@ experience needed for this overview project and tutorial, such as an `authentica
 a couple API gateways. A majority of these images should be considered for reference purposes only
 and **NOT FOR PRODUCTION USE**. The following is a list of all the supporting services with a brief
 description of their purpose.
-  - `admingateway` - this is a lightweight API Gateway built on top of 
+
+.Non-Production Supporting Services Directory
+|===
+|Service |Description
+
+|`admingateway`
+|this is a lightweight API Gateway built on top of
   https://spring.io/projects/spring-cloud-gateway[Spring Cloud Gateway] to facilitate routing
-  for the admin console
-  - `adminweb` - this is a reference image of our React Microservices Admin SPA 
-  - `auth` - this is a lightweight OAuth2 authorization server used to generate the necessary JWT 
-  tokens for authentication
-  - `commercegateway` - this is a lightweight API Gateway built on top of 
+for the admin console
+
+|`adminweb`
+|this is a reference image of our React Microservices Admin SPA
+
+|`auth`
+|this is a lightweight OAuth2 authorization server used to generate the necessary JWT
+tokens for authentication
+
+|`commercegateway`
+|this is a lightweight API Gateway built on top of
   https://spring.io/projects/spring-cloud-gateway[Spring Cloud Gateway] to facilitate routing
-  for the admin console
-  - `commerceweb` - this is a reference image of our React Commerce Storefront SPA
-  - `localkafka` - Official Confluent https://hub.docker.com/r/confluentinc/cp-kafka[Docker Image]
-  for Kafka (Community Version) 
-  - `localsolr` - Broadleaf-flavored image based on Solr's official 8.2 distro
-  - `postgres` - Official Postgres 11.2 https://hub.docker.com/_/postgres[Docker Image]
-  - `zk` - Official Confluent https://hub.docker.com/r/confluentinc/cp-zookeeper[Docker Image]
-  for Zookeeper
-  
+for the admin console
+
+|`commerceweb`
+|this is a reference image of our React Commerce Storefront SPA
+
+|`localkafka`
+|Official Confluent https://hub.docker.com/r/confluentinc/cp-kafka[Docker Image]
+for Kafka (Community Version)
+
+|`localsolr`
+|Broadleaf-flavored image based on Solr's official 8.2 distro
+
+|`postgres`
+|Official Postgres 11.2 https://hub.docker.com/_/postgres[Docker Image]
+
+|`zk`
+|Official Confluent https://hub.docker.com/r/confluentinc/cp-zookeeper[Docker Image]
+for Zookeeper
+|===
+
+[[faq-ports-used]]
+=== What open ports do I need for this example project?
+This project will attempt to utilize the following ports:
+
+.Reference Project Default Ports
+|===
+|Service |Port(s)
+
+|`zk`
+| 2181
+
+|`adminweb`
+| 3000
+
+|`commerceweb`
+| 4000
+
+|`postgres`
+| 5432
+
+|`localkafka`
+| 7777, 9092
+
+|`auth`
+| 8000, 8443, 8080, 9001
+
+|`admingateway`
+| 8001, 8446
+
+|`commercegateway`
+| 8014, 8456
+
+|`localsolr`
+| 8983
+
+|`backend commerce api`
+| 8447
+
+|===
+
+
+[[faq-how-to-debug]]
+=== How can I debug these services?
+You can easily attach a remote debugger by specifying debug params on start up. You can add
+something like the following to the JVM args you specify in your `mvn spring-boot:run`:
+
+[source]
+----
+-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8004
+----

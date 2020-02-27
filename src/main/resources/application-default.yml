@@ -38,7 +38,10 @@ broadleaf:
   asset:
     data:
       load-on-startup: true
-      path: 'classpath:__initial-data.zip'
+      files:
+        - path: classpath:__initial-data.zip
+          context:
+            tenant-id: 5DF1363059675161A85F576D
     jpa:
       hibernate:
         ddl-auto: create
