@@ -182,7 +182,7 @@ Once you have the services running, you should be able to issue a `cURL` request
 
 [source,shell script]
 ----
-curl --insecure -X GET "https://localhost:8447/catalog/products?offset=0&forward=true&pageSize=50" -H "accept: application/json" -H "X-Context-Request: {\"tenantId\":\"5DF1363059675161A85F576D\",\"catalogId\":\"3\"}"
+curl --insecure -X GET "https://localhost:8447/products?offset=0&forward=true&pageSize=50" -H "accept: application/json" -H "X-Context-Request: {\"tenantId\":\"5DF1363059675161A85F576D\",\"catalogId\":\"3\"}"
 ----
 
 == Project Structure Overview
