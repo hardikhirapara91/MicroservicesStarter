@@ -268,14 +268,23 @@ broadleaf:
 contained within each of the individual services dependency `.jar` and are loaded via a property
 configured in `application-default.yml`
 
+[source,yaml]
+----
+broadleaf:
+  service_abc:
+    datasource:
+      data:
+        - 'classpath:/service-abc-data-jpa.sql'
+----
+
 [[faq-supporting-services]]
 === What is the purpose for all of these supporting docker services?
 
 - the `docker-compose` file defines various services that aid in facilitating a full commerce 
-experience needed for this overview project and tutorial, such as an `authentication` service and 
-a couple API gateways. A majority of these images should be considered for reference purposes only
+experience needed for this overview project and tutorial, such as an `auth` service and
+a couple API gateways. A majority of these images should be considered for example purposes only
 and **NOT FOR PRODUCTION USE**. The following is a list of all the supporting services with a brief
-description of their purpose.
+description of their intent.
 
 .Non-Production Supporting Services Directory
 |===
@@ -337,16 +346,16 @@ This project will attempt to utilize the following ports:
 | 5432
 
 |`localkafka`
-| 7777, 9092
+| 9092, 7777 [JMX]
 
 |`auth`
-| 8000, 8443, 8080, 9001
+| 8443, 8000 [Debug]
 
 |`admingateway`
-| 8001, 8446
+| 8446, 8001 [Debug]
 
 |`commercegateway`
-| 8014, 8456
+| 8456, 8014 [Debug]
 
 |`localsolr`
 | 8983
@@ -358,7 +367,7 @@ This project will attempt to utilize the following ports:
 
 
 [[faq-how-to-debug]]
-=== How can I debug these services?
+=== How can I debug the backend commerce services?
 You can easily attach a remote debugger by specifying debug params on start up. You can add
 something like the following to the JVM args you specify in your `mvn spring-boot:run`:
 

@@ -81,10 +81,8 @@ services:
       - postgresnet
       - backend
     ports:
-      - '8080:8080'
       - '8443:8443'
       - '8000:8000'
-      - '9001:9001'
     tmpfs: /tmp
     tty: true
   commercegateway:
