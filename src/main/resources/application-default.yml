@@ -93,7 +93,7 @@ broadleaf:
       liquibase-schema: public
   cartoperation:
     anonymouscart:
-      site-id-included-in-cookie-name: true
+      application-id-included-in-cookie-name: true
     campaignprovider:
       url: 'https://localhost:8447'
     cartprovider:
