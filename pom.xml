@@ -218,6 +218,11 @@
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-cart-services-client</artifactId>
+            <version>${blc.cart.services}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
             <artifactId>broadleaf-cart-operation-services</artifactId>
             <version>${blc.cartops.services}</version>
         </dependency>

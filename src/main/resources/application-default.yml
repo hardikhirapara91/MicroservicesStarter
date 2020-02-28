@@ -78,26 +78,22 @@ broadleaf:
   cart:
     datasource:
       initialization-mode: always
-      password: demo
+      platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=cart'
       username: broadleaf
+      password: demo
       hikari:
         maximumPoolSize: 2
     jpa:
       hibernate:
         ddl-auto: create
       open-in-view: false
-      properties:
-        hibernate:
-          jdbc:
-            lob:
-              non_contextual_creation: true
     liquibase:
       change-log: 'classpath:/db/changelog/cart.db.changelog-master.yaml'
       liquibase-schema: public
   cartoperation:
     anonymouscart:
-      application-id-included-in-cookie-name: true
+      site-id-included-in-cookie-name: true
     campaignprovider:
       url: 'https://localhost:8447'
     cartprovider:
