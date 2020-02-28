@@ -129,7 +129,7 @@ Creating microservicesstarter_adminweb_1        ... done
 Creating microservicesstarter_commerceweb_1     ... done
 ----
 +
-image::docs/images/MS_Docker_Dashboard.png[]
+image::images/MS_Docker_Dashboard.png[]
 +
 [TIP]
 ====
@@ -195,7 +195,7 @@ Specifically, the structure intends to demonstrate the framework's flexible comp
 have the ability to selectively compose multiple services into a single deployment or deploy them 
 independently.
 
-image::docs/images/MS_Custom_Deployment_Options.png[]
+image::images/MS_Custom_Deployment_Options.png[]
 
 [NOTE]
 ====
@@ -233,10 +233,17 @@ that change into production.
 
 == What's Next?
 Now that you have the project running and have a high level understanding of how to build
-and use it, the next step would be to walk through some typical customizations. See the following
-for more details:
+and use it, the next step would be to walk through some typical customizations.
 
-- https://github.com/BroadleafCommerce/MicroservicesStarter/tree/master/docs/tutorials[Customization & Extension Guide]
+You can reference the following tutorial project and guide as you apply the same customization steps
+to this project.
+
+- https://github.com/BroadleafCommerce/MicroservicesTutorial/tree/master/ms-tutorial-extension-complete[Customization & Extension Guide]
+
+[TIP]
+====
+When you finish, you can check your results against the code in `MicroservicesTutorial/ms-tutorial-extension-complete`.
+====
 
 == FAQ
 
