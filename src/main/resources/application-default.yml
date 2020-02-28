@@ -383,18 +383,16 @@ broadleaf:
     liquibase:
       change-log: 'classpath:/db/changelog/tenant.db.changelog-master.yaml'
       liquibase-schema: public
-    site:
-      global:
-        allowed-locales:
-          - en_US
-          - en
-          - en_GB
-          - es
-          - es_ES
-          - es_MX
-          - fr
-          - fr_FR
-        default-locale: en_US
+    global:
+      allowed-locales:
+        - en_US
+        - en
+        - en_GB
+        - es
+        - es_ES
+        - es_MX
+        - fr
+        - fr_FR
     urlresolver:
       application:
         port: 8456
