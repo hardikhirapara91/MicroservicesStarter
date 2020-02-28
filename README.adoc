@@ -219,12 +219,16 @@ initialization parameters
 Once you've started up both the admin and the storefront. Here are a couple things you may
 want to try:
 
-//TODO Finalize
+
+- As the "Master" admin user, try switching between different applications using the site selector
+in the left hand navigation. Once you are working in a particular context (e.g. Heat Clinic), you
+can start modifying and editing items which you can then deploy to the corresponding storefront.
+- Modifing an existing product in the admin, saving those changes, and then promoting and deploying
+that change into production.
+- Creating a new offer that targets a specific SKU or Variant
 - Try logging in as a different admin user to view the experience for someone with limited roles and permission:
 * Username: `readonly@test.com`
 * Password: `Pass1word!`
-- Modify an existing product, promote changes, and deploy changes to production
-- Create a new offer
 
 
 == What's Next?
