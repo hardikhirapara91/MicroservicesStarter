@@ -292,7 +292,7 @@ broadleaf:
 === What core commerce services are utilized in this reference project?
 
 See this page for a listing of the services used in this project, along with a link to their JavaDoc:
-https://github.com/BroadleafCommerce/MicroservicesStarter/tree/master/docs/Service_Director.adoc[Service Directory]
+https://github.com/BroadleafCommerce/MicroservicesStarter/tree/master/docs/Service_Directory.adoc[Service Directory]
 
 
 [[faq-supporting-services]]
