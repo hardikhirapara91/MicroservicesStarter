@@ -1,0 +1,87 @@
+.Core Commerce Services Directory
+|===
+|Service | Description | Documentation
+
+| Admin Navigation
+| enables creation, management, and retrieval of well-defined hierarchical menu structures specifically for use in the Broadleaf Admin
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-admin-navigation-services/{blc_ms_version}/[JavaDoc]
+
+| Admin User
+| resource tier for handling admin users
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-admin-user-services/{blc_ms_version}/[JavaDoc]
+
+| Asset
+| provides for the management of digital content, its metadata, and its relationships with Catalog and CMS entities
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-asset-services/{blc_ms_version}/[JavaDoc]
+
+| Campaign
+| provides management of campaigns and offer code generation
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-campaign-services/{blc_ms_version}/[JavaDoc]
+
+| Cart
+| enables creation, management, and retrieval of well-defined hierarchical cart structures
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-cart-services/{blc_ms_version}/[JavaDoc]
+
+| Cart Operations
+| compositional and experience level APIs that enable workflows involving typical cart operations
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-cart-operation-services/{blc_ms_version}/[JavaDoc]
+
+| Catalog
+| enables the creation and management of hierarchical catalogs, products, variants, and options etc...
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-catalog-services/{blc_ms_version}/[JavaDoc]
+
+| Catalog Browse
+| compositional and experience level APIs that enable typical storefront flows like product detail page and browsing use cases
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-catalog-browse-services/{blc_ms_version}/[JavaDoc]
+
+| Customer
+| customer profile management APIs and customer segmentation maintenance
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-customer-services/{blc_ms_version}/[JavaDoc]
+
+| Import
+| enable support for flatfile imports and statuses that works across microservices
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-import-services/{blc_ms_version}/[JavaDoc]
+
+| Menu
+| data-driven menus used to drive customer facing layout and hierarchies
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-menu-services/{blc_ms_version}/[JavaDoc]
+
+| Metadata
+| cross-cutting metadata service that drives the dynamic nature of the Broadleaf Admin
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-metadata-services/{blc_ms_version}/[JavaDoc]
+
+| Offer
+| management of offers and offer discount calculations
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-offer-services/{blc_ms_version}/[JavaDoc]
+
+| Personalization
+| content and content item management with various targeting capabilities
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-personalization-services/{blc_ms_version}/[JavaDoc]
+
+| Pricing
+| advanced pricing concepts that support things like price lists, contract prices, and sales
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-pricing-services/{blc_ms_version}/[JavaDoc]
+
+| Sandbox
+| Sandboxes are the primary concept used to identify a temporary space where user changes are explored and vetted before final application to production
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-sandbox-services/{blc_ms_version}/[JavaDoc]
+
+| Search
+| performs two functions: managing the metadata used for indexing and searching (fields, facets, etc.), and actually taking in search requests and performing those queries against the index
+| - Solr Catalog Search: http://javadocs.microservices.broadleafcommerce.com/broadleaf-solr-catalog-search/{blc_ms_version}/[JavaDoc]
+- Solr Customer Search http://javadocs.microservices.broadleafcommerce.com/broadleaf-solr-customer-search/{blc_ms_version}/[JavaDoc]
+
+| Indexer
+| application which can both fully reindex data sets and also consume events to incrementally index changes to particular documents
+| - Solr Catalog Indexer: http://javadocs.microservices.broadleafcommerce.com/broadleaf-solr-catalog-indexer/{blc_ms_version}/[JavaDoc]
+-  Solr Customer Indexer: http://javadocs.microservices.broadleafcommerce.com/broadleaf-solr-customer-indexer/{blc_ms_version}/[JavaDoc]
+
+| Scheduled Job
+| management of scheduled jobs
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-scheduled-job-services/{blc_ms_version}/[JavaDoc]
+
+| Tenant
+| the primary goal of the tenant service is to manage the creation and upkeep of Tenant and Application domain
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-tenant-services/{blc_ms_version}/[JavaDoc]
+
+|===

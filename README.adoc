@@ -1,4 +1,4 @@
-:blc_ms_version: 0.11.0-RC1
+:blc_ms_version: 0.11.0-SNAPSHOT
 :toc:
 :icons: font
 :source-highlighter: prettify
@@ -287,6 +287,13 @@ broadleaf:
       data:
         - 'classpath:/service-abc-data-jpa.sql'
 ----
+
+[[faq-javadocs]]
+=== What core commerce services are utilized in this reference project?
+
+See this page for a listing of the services used in this project, along with a link to their JavaDoc:
+https://github.com/BroadleafCommerce/MicroservicesStarter/tree/master/docs/Service_Director.adoc[Service Directory]
+
 
 [[faq-supporting-services]]
 === What is the purpose for all of these supporting docker services?
