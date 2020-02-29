@@ -14,9 +14,13 @@ endif::[]
 
 = Getting Started with Broadleaf Microservices
 
-This project provides a reference of how Broadleaf core libraries can help accelerate your
-microservice-based application development and is intended to give you a hands on look at core 
-Broadleaf concepts and extension patterns.  
+This project provides a reference of how to utilize the
+https://www.broadleafcommerce.com/microservices[Broadleaf Microservices Framework]
+to help accelerate your application development.
+
+It is intended to give you a hands on look at core concepts and extension patterns as well
+as providing an overview of the key commerce and PIM features provided
+with our libraries.
 
 == Project Goals
 The guides and tutorials in this project will walk you through:
@@ -25,7 +29,17 @@ The guides and tutorials in this project will walk you through:
 - running a reference implementation of Broadleaf's unified microservices admin which can manage 
 data across the various microservices
 - running a reference implementation of a consumer-facing storefront application
-- concepts around extending and customizing the framework       
+- concepts around extending and customizing the framework
+
+++++
+<p align="center">
+  <img src="images/Admin_Example.gif" alt="Microservices Admin Example" width="738">
+</p>
+
+<p align="center">
+  <img src="images/Storefront_Example.gif" alt="Microservices Admin Example" width="738">
+</p>
+++++
 
 == What Do I Need?
 In order to get this reference project running locally, you will want to obtain and install 
@@ -112,6 +126,10 @@ docker-compose up -d
 +
 and you should see the following output in your console:
 +
+++++
+<img src="images/MS_Docker_Dashboard.png" alt="Docker Dashboard Example" width="350" align="right">
+++++
++
 [source,shell script]
 ----
 Creating network "microservicesstarter_postgresnet" with the default driver
@@ -128,8 +146,6 @@ Creating microservicesstarter_auth_1            ... done
 Creating microservicesstarter_adminweb_1        ... done
 Creating microservicesstarter_commerceweb_1     ... done
 ----
-+
-image::images/MS_Docker_Dashboard.png[]
 +
 [TIP]
 ====
