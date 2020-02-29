@@ -1,5 +1,6 @@
 :blc_ms_version: 0.11.0-SNAPSHOT
 :toc:
+:toc-placement!:
 :icons: font
 :source-highlighter: prettify
 :project_id: ms-starter
@@ -12,15 +13,24 @@ ifdef::env-github[]
 :warning-caption: :warning:
 endif::[]
 
+
+++++
+<img src="https://www.broadleafcommerce.com/cmsstatic/grey%20microservices%20logo.png" align="right" />
+++++
+
 = Getting Started with Broadleaf Microservices
 
-This project provides a reference of how to utilize the
+The
 https://www.broadleafcommerce.com/microservices[Broadleaf Microservices Framework]
-to help accelerate your application development.
+is a collection of enterprise components and libraries to help accelerate your application
+development. The framework includes commerce service components built on Java and Spring as well as
+a centralized metadata-driven admin built in React.
 
-It is intended to give you a hands on look at core concepts and extension patterns as well
+This project is intended to give you a hands on look at core concepts and extension patterns as well
 as providing an overview of the key commerce and PIM features provided
-with our libraries.
+with the framework.
+
+toc::[]
 
 == Project Goals
 The guides and tutorials in this project will walk you through:
@@ -31,11 +41,15 @@ data across the various microservices
 - running a reference implementation of a consumer-facing storefront application
 - concepts around extending and customizing the framework
 
+==== Example Admin
 ++++
 <p align="center">
   <img src="images/Admin_Example.gif" alt="Microservices Admin Example" width="738">
 </p>
+++++
 
+==== Example Storefront
+++++
 <p align="center">
   <img src="images/Storefront_Example.gif" alt="Microservices Admin Example" width="738">
 </p>
