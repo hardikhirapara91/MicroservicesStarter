@@ -1,0 +1,52 @@
+version: '3'
+services:
+  adminweb:
+    depends_on:
+      - admingateway
+      - tutorialgettingstarted
+  localsolr:
+    environment:
+      SOLR_HOST: 'localsolr:8983'
+  tutorialgettingstarted:
+    depends_on:
+      - postgres
+      - localkafka
+      - admingateway
+      - localsolr
+    env_file:
+      - common-environment.env
+    environment:
+      BROADLEAF_ADMINNAVIGATION_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=adminnavigation'
+      BROADLEAF_ADMINUSER_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=adminuser'
+      BROADLEAF_ASSET_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=asset'
+      BROADLEAF_CAMPAIGN_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=campaign'
+      BROADLEAF_CART_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=cart'
+      BROADLEAF_CATALOG_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=catalog'
+      BROADLEAF_CUSTOMER_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=customer'
+      BROADLEAF_DATAIMPORT_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=import'
+      BROADLEAF_INDEXER_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=indexer'
+      BROADLEAF_MENU_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=menu'
+      BROADLEAF_METADATA_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=metadata'
+      BROADLEAF_OFFER_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=offer'
+      BROADLEAF_PERSONALIZATION_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=personalization'
+      BROADLEAF_PRICING_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=pricing'
+      BROADLEAF_SANDBOX_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=sandbox'
+      BROADLEAF_SCHEDULEDJOB_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=scheduledjob'
+      BROADLEAF_SEARCH_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=search'
+      BROADLEAF_TENANT_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=tenant'
+      SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_CATALOG_TOKEN-URI: 'https://auth:8443/auth/oauth/token'
+      SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_CUSTOMER_TOKEN-URI: 'https://auth:8443/auth/oauth/token'
+      SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_SEARCH_TOKEN-URI: 'https://auth:8443/auth/oauth/token'
+      BROADLEAF_SEARCH_SOLR_SERVER_HOST: 'zk:2181'
+      DEBUG_PORT: 8004
+      JAVA_OPTS: '-Xmx1536m -DzkACLProvider=org.apache.solr.common.cloud.VMParamsAllAndReadonlyDigestZkACLProvider -DzkCredentialsProvider=org.apache.solr.common.cloud.VMParamsSingleSetCredentialsDigestZkCredentialsProvider -DzkDigestUsername=readonly-user -DzkDigestPassword=CHANGEME-READONLY-PASSWORD'
+    image: repository.broadleafcommerce.com:5001/broadleaf-evaluation/tutorial-getting-started:latest-snapshot
+    networks:
+      - kafkanet
+      - backend
+      - solrnet
+      - postgresnet
+    ports:
+      - '8447:8447'
+      - '8004:8004'
+    tty: true

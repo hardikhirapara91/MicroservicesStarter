@@ -75,7 +75,7 @@
                         <groupId>com.spotify</groupId>
                         <artifactId>dockerfile-maven-plugin</artifactId>
                         <configuration>
-                            <repository>repository.broadleafcommerce.com:5001/broadleaf/tutorial-getting-started</repository>
+                            <repository>repository.broadleafcommerce.com:5001/broadleaf-evaluation/tutorial-getting-started</repository>
                             <buildArgs>
                                 <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
                             </buildArgs>

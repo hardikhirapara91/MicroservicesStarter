@@ -13,9 +13,9 @@ ifdef::env-github[]
 :warning-caption: :warning:
 endif::[]
 
-
 ++++
-<img src="https://www.broadleafcommerce.com/cmsstatic/grey%20microservices%20logo.png" align="right" />
+<img src="https://www.broadleafcommerce.com/cmsstatic/grey%20microservices%20logo.png"
+align="right" height="100px"/>
 ++++
 
 = Getting Started with Broadleaf Microservices
@@ -30,7 +30,9 @@ This project is intended to give you a hands on look at core concepts and extens
 as providing an overview of the key commerce and PIM features provided
 with the framework.
 
+---
 toc::[]
+---
 
 == Project Goals
 The guides and tutorials in this project will walk you through:
@@ -195,7 +197,7 @@ subdomains. If you are using a later version of Chrome, these should be handled 
 Remember to shutdown your docker services when finished in order to free up resources i.e. `docker-compose down`
 ====
 
-=== Testing Endpoints Directly
+=== Testing Endpoints Directly `[Alternative]`
 
 During local development or evaluation, you may find it beneficial to hit the API
 endpoints directly either via `cURL` or utilizing a tool like https://www.postman.com/[POSTMAN].
@@ -213,6 +215,34 @@ Once you have the services running, you should be able to issue a `cURL` request
 [source,shell script]
 ----
 curl --insecure -X GET "https://localhost:8447/products?offset=0&forward=true&pageSize=50" -H "accept: application/json" -H "X-Context-Request: {\"tenantId\":\"5DF1363059675161A85F576D\",\"catalogId\":\"3\"}"
+----
+
+=== Containerize Backend Services `[Alternative]`
+
+Instead of running the backend APIs using `mvn spring-boot:run` you may wish to manage and run
+everything via containers. In this case, we've provided several config files to help facilitate
+this setup.
+
+1. You'll first want to build the project and then create the docker image
++
+[source, shell script]
+----
+mvn clean install
+----
++
+[source, shell script]
+----
+mvn clean package -am -pl . -Pdocker -Ddockerfile.tag=latest-snapshot
+----
++
+2. The above commands will produce a docker image with the name
+`repository.broadleafcommerce.com:5001/broadleaf-evaluation/tutorial-getting-started:latest-snapshot`
++
+3. You can now start up the whole project using the following `docker-compose` files
++
+[source, shell script]
+----
+docker-compose -f docker-compose.yml -f docker-compose.tgs.yml up -d
 ----
 
 == Project Structure Overview
