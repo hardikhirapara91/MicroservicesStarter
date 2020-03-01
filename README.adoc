@@ -131,6 +131,11 @@ Now that all of the pre-requisites are installed, let's run the project!
 mvn clean install
 ----
 +
+[TIP]
+====
+You can disable running the example tests in this project by running `mvn clean install -DskipTests`
+====
++
 2. Before you start up all the APIs, you'll need to first start up a few supporting services
 that are required for this example. These services are provided via docker images and can be run
 and started from the command line by navigating to the root of this project and running:
@@ -141,10 +146,6 @@ docker-compose up -d
 ----
 +
 and you should see the following output in your console:
-+
-++++
-<img src="images/MS_Docker_Dashboard.png" alt="Docker Dashboard Example" width="350" align="right">
-++++
 +
 [source,shell script]
 ----
@@ -162,6 +163,12 @@ Creating microservicesstarter_auth_1            ... done
 Creating microservicesstarter_adminweb_1        ... done
 Creating microservicesstarter_commerceweb_1     ... done
 ----
++
+++++
+<p align="center">
+    <img src="images/MS_Docker_Dashboard.png" alt="Docker Dashboard Example" width="350">
+</p>
+++++
 +
 [TIP]
 ====
