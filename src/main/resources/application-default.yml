@@ -126,6 +126,8 @@ broadleaf:
     liquibase:
       change-log: 'classpath:/db/changelog/catalog.db.changelog-master.yaml'
       liquibase-schema: public
+    reindex:
+      startup: true
   catalogbrowse:
     catalogprovider:
       url: 'https://localhost:8447'
@@ -155,6 +157,8 @@ broadleaf:
     liquibase:
       change-log: 'classpath:/db/changelog/customer.db.changelog-master.yaml'
       liquibase-schema: public
+    reindex:
+      startup: true
   dataimport:
     jpa:
       hibernate:
