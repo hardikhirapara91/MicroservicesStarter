@@ -36,6 +36,9 @@ broadleaf:
       change-log: 'classpath:/db/changelog/admin-user.db.changelog-master.yaml'
       liquibase-schema: public
   asset:
+    internal:
+      content-provider-url-prefix: 'https://localhost:8447/'
+      prepend-request-context-path: false
     data:
       load-on-startup: true
       files:
