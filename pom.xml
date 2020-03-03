@@ -315,6 +315,11 @@
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-authentication-services-metadata</artifactId>
+            <version>${blc.authentication.metadata}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
             <artifactId>broadleaf-campaign-services-metadata</artifactId>
             <version>${blc.campaign.metadata}</version>
         </dependency>
