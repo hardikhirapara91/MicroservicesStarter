@@ -71,11 +71,12 @@ services:
       - common-environment.env
     environment:
       BROADLEAF_AUTH_REDIRECT_DEFAULTHOMEPAGEREDIRECTURL: 'https://localhost:8446'
-      BROADLEAF_AUTH_SECURITY_LOGINPATHORURL: 'https://localhost:8443/auth/login'
+      BROADLEAF_AUTH_SECURITY_LOGINPATHORURL: '/login'
       BROADLEAF_AUTH_SECURITY_OAUTH2_AUTOAPPROVEDCLIENTREGISTEREDREDIRECTS: 'https://localhost:8446/silent-callback.html,https://localhost:8446/callback'
+      BROADLEAF_AUTH_SECURITY_USEREDIRECTURIHOST: 'true'
       DEBUG_PORT: 8000
       SPRING_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=auth'
-    image: repository.broadleafcommerce.com:5001/broadleaf-demo/authenticationservice-kafka-configserver:microservices-starter
+    image: repository.broadleafcommerce.com:5001/broadleaf-evaluation/authenticationservice-kafka-configserver:microservices-starter
     networks:
       - kafkanet
       - postgresnet
