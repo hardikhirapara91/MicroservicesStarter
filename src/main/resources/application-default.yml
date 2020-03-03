@@ -159,6 +159,7 @@ broadleaf:
       liquibase-schema: public
     reindex:
       startup: true
+    useFullName: true
   dataimport:
     jpa:
       hibernate:
