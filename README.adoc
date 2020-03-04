@@ -100,6 +100,10 @@ docker login repository.broadleafcommerce.com:5001
 
 When prompted, type in the username and password you received above.
 
+You'll also want to configure Docker settings to use appropriate resources.
+A good rule of thumb is to allow Docker to consume around 3/4 of your system resources
+if necessary. 
+
 === Maven
 You'll need to have Maven installed locally as well. 
 https://maven.apache.org/download.cgi[Maven 3.5 or later] is recommended.
