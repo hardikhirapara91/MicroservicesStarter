@@ -40,6 +40,9 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <attach>false</attach>
+                    <jvmArguments>
+                        -DzkACLProvider=org.apache.solr.common.cloud.VMParamsAllAndReadonlyDigestZkACLProvider -DzkCredentialsProvider=org.apache.solr.common.cloud.VMParamsSingleSetCredentialsDigestZkCredentialsProvider -DzkDigestUsername=readonly-user -DzkDigestPassword=CHANGEME-READONLY-PASSWORD -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8004
+                    </jvmArguments>
                 </configuration>
             </plugin>
             <plugin>
@@ -67,6 +70,23 @@
         </pluginManagement>
     </build>
     <profiles>
+        <profile>
+            <id>nosec</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                        <configuration>
+                            <attach>false</attach>
+                            <jvmArguments>
+                                -Dbroadleaf.resource.security.oauth2.defaultAllowAllAnonymous=true -Dbroadleaf.common.policy.validation.enforce=false -DzkACLProvider=org.apache.solr.common.cloud.VMParamsAllAndReadonlyDigestZkACLProvider -DzkCredentialsProvider=org.apache.solr.common.cloud.VMParamsSingleSetCredentialsDigestZkCredentialsProvider -DzkDigestUsername=readonly-user -DzkDigestPassword=CHANGEME-READONLY-PASSWORD -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8004
+                            </jvmArguments>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
         <profile>
             <id>docker</id>
             <build>

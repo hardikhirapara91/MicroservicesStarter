@@ -124,7 +124,13 @@ https://maven.apache.org/settings.html#Servers[here]
 
 Now that all of the pre-requisites are installed, let's run the project!
 
-1. First, let's build the project using Maven
+1. First, we'll need to download or clone this project so that we can run
+everything locally on your own machine. You can utilize the `Clone or Download` button at
+the top right of this page.
++
+2. Once you have the project downloaded, let's go ahead and build it using Maven. You're going to
+navigate to the root folder (i.e. the folder that contains the main `pom.xml` file) of where you
+downloaded/un-zipped or cloned the project. In the root of this project run the following to build:
 +
 [source,shell script]
 ----
@@ -136,7 +142,7 @@ mvn clean install
 You can disable running the example tests in this project by running `mvn clean install -DskipTests`
 ====
 +
-2. Before you start up all the APIs, you'll need to first start up a few supporting services
+3. Before you start up all the APIs, you'll need to first start up a few supporting services
 that are required for this example. These services are provided via docker images and can be run
 and started from the command line by navigating to the root of this project and running:
 +
@@ -176,14 +182,14 @@ If you are using one of the latest versions of Docker Dashboard, you can
 verify that has all the supporting services are running and have started up completely
 ====
 +
-3. Next, you will want to start up the core backend commerce APIs by running the following command:
+4. Next, you will want to start up the core backend commerce APIs by running the following command:
 +
 [source,shell script]
 ----
-mvn spring-boot:run -Dspring-boot.run.jvmArguments="-DzkACLProvider=org.apache.solr.common.cloud.VMParamsAllAndReadonlyDigestZkACLProvider -DzkCredentialsProvider=org.apache.solr.common.cloud.VMParamsSingleSetCredentialsDigestZkCredentialsProvider -DzkDigestUsername=readonly-user -DzkDigestPassword=CHANGEME-READONLY-PASSWORD"
+mvn spring-boot:run
 ----
 +
-4. That's it! Once you've verified that the supporting services and backend APIs are running, you can visit
+5. That's it! Once you've verified that the supporting services and backend APIs are running, you can visit
 the administration console and the consumer storefronts from a browser:
 +
 - Admin Console: https://localhost:8446
@@ -214,7 +220,7 @@ worry about getting a valid JWT authentication token every time:
 
 [source,shell script]
 ----
-mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dbroadleaf.resource.security.oauth2.defaultAllowAllAnonymous=true -Dbroadleaf.common.policy.validation.enforce=false -DzkACLProvider=org.apache.solr.common.cloud.VMParamsAllAndReadonlyDigestZkACLProvider -DzkCredentialsProvider=org.apache.solr.common.cloud.VMParamsSingleSetCredentialsDigestZkCredentialsProvider -DzkDigestUsername=readonly-user -DzkDigestPassword=CHANGEME-READONLY-PASSWORD"
+mvn spring-boot:run -Pnosec
 ----
 
 Once you have the services running, you should be able to issue a `cURL` request like:
@@ -451,20 +457,10 @@ This project will attempt to utilize the following ports:
 | 8983
 
 |`backend commerce api`
-| 8447
+| 8447, 8004 [Debug]
 
 |===
 
-
-[[faq-how-to-debug]]
-=== How can I debug the backend commerce services?
-You can easily attach a remote debugger by specifying debug params on start up. You can add
-something like the following to the JVM args you specify in your `mvn spring-boot:run`:
-
-[source]
-----
--Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8004
-----
 
 [[faq-how-to-create-application]]
 === How do I create a new Application in the Admin?
