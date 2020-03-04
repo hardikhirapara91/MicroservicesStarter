@@ -74,8 +74,10 @@ Contact `info@broadleafcommerce.com` for information on how to receive these cre
 ====
 
 === Java
-You will need https://www.oracle.com/java/technologies/javase-downloads.html[JDK 1.8] or later
-installed on your machine.  
+You will need Java 8 or 11 installed on your machine.
+
+* https://openjdk.java.net/projects/jdk/11/[Open JDK]
+* https://www.oracle.com/java/technologies/javase-jdk11-downloads.html[Oracle JDK]
 
 === Docker
 You will need to have https://docs.docker.com/install/[Docker Engine & Docker Compose] installed
