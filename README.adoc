@@ -102,22 +102,34 @@ When prompted, type in the username and password you received above.
 You'll need to have Maven installed locally as well. 
 https://maven.apache.org/download.cgi[Maven 3.5 or later] is recommended.
 
-Once you have maven installed, add the following to your `~/.m2/settings.xml` making sure to 
+Once you have maven installed, another step you need to do before you can
+build the project is to configure the authentication. Maven requires it to be specified in a
+file called `settings.xml` that has to be in the `.m2` subdirectory in a user’s home directory.
+
+1. Create a folder called `.m2` in your home directory
+2. Create a file called `settings.xml` in the `.m2` folder
+3. Copy the following contents to your `~/.m2/settings.xml` making sure to
 replace the credentials with the ones you received above:
 
 [source,xml]
 ----
-<server>
-    <id>broadleaf-microservices</id>
-    <username>username_here</username>
-    <password>password_here</password>
-</server>
+<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd"
+    xmlns="http://maven.apache.org/SETTINGS/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <servers>
+    <server>
+      <id>broadleaf-microservices</id>
+      <username>username_here</username>
+      <password>password_here</password>
+    </server>
+  </servers>
+</settings>
 ----
 
 [TIP]
 ====
 More info about authenticating with private repositories can be found
-https://maven.apache.org/settings.html#Servers[here]
+https://maven.apache.org/settings.html#Servers[here] and
+https://maven.apache.org/ref/3.6.3/maven-settings/settings.html[here]
 ====
 
 == Running the Project
