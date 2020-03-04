@@ -296,6 +296,11 @@ that change into production.
 - Try logging in as a different admin user to view the experience for someone with limited roles and permission:
 * Username: `readonly@test.com`
 * Password: `Pass1word!`
+- Try logging into the `Heat Clinic` storefront as the below user. Notice that when adding items to
+your cart, this customer automatically qualifies for "10% Off Order" based on a promotion that
+has been set up.
+* User: `heatcliniccustomer@customer.com`
+* Password: `Pass1word!`
 
 
 == What's Next?
@@ -460,3 +465,9 @@ something like the following to the JVM args you specify in your `mvn spring-boo
 ----
 -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8004
 ----
+
+[[faq-how-to-create-application]]
+=== How do I create a new Application in the Admin?
+
+See the steps outlined here for
+https://github.com/BroadleafCommerce/MicroservicesStarter/tree/master/docs/Application_Provisioning.adoc[Creating an Application]

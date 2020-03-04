@@ -1,0 +1,50 @@
+= Creating a New Application in the Admin
+
+There are currently a few steps you will need to follow in order to create a new
+Application via the Admin. This guide will walk you through the process of creating a
+new Application called `My New Site` which will inherit catalog and products from a
+master catalog.
+
+== Steps
+
+1. Navigate to the Tenant Admin > `Application Management` > `Applications`
+2. Click on the `Create Application` button on the right
+3. Specify the following:
+- `Application Name`: My New Site
+- `Application Identifier`: mynewsite.localhost
+- `Application Identifier Type`: Domain
+- `Default Locale`: English (US)
+- `Allowed Locales`: English (US)
+- `Related Catalogs`: add a `CUSTOMIZABLE` reference to the `HEAT_CLINIC_MASTER_CATALOG` and save
+4. Click `Create Application` to save the configuration
+5. Next, we'll need to create an Authorization Server for this application
+6. In the Tenant Admin, navigate to `Security` > `Authorization Servers`
+7. Click on the `Create Server` button on the right
+8. Specify the following:
+- `Name`: mynewsite
+- `Friendly Name`: My New Site Authorization Server
+- `Enable SSO`: Yes
+- `Inactivity Timeout`: 21600
+- `Require Login Timeout`: 86400
+- `Default User Roles`: `ROLE_CUSTOMER_USER`
+9. Click `Create Server` to save the configuration
+10. Navigate to the `Authorized Clients` tab and click `Create Authorized Client`
+11. Specify the following:
+- `Friendly Name`: My New Site Client
+- `Client ID`: mynewsite.localhost
+- `Token Timeout`: 300
+- `Use Client for Admin`: No
+- `Use Client for Customers`: My New Site
+- `Redirect URIs`: https://mynewsite.localhost:8456/silent-callback.html,
+https://mynewsite.localhost:8456/callback, https://mynewsite.locahost:8456
+12. Click Save to finalize the provisioning
+
+== Overview
+
+Now that you've created an application called "My New Site", you can:
+
+* In the Admin, navigate to the new Application under the `Choose Application` dropdown.
+In here, you'll be able to manage the inherited catalog from the Heat Clinic Master Catalog and
+manage any overrides specific for this site as well as add any new products
+* Navigate to the storefront https://mynewsite.localhost:8456/ that automatically get's
+provisioned as well
