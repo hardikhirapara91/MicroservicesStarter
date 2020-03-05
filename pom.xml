@@ -153,8 +153,8 @@
         <blc.admin.user.metadata>1.0.0.1-RC1</blc.admin.user.metadata>
         <blc.asset.services>1.0.0.1-RC1</blc.asset.services>
         <blc.asset.metadata>1.0.0.1-RC1</blc.asset.metadata>
-        <blc.authentication.services>0.11.0-SNAPSHOT</blc.authentication.services>
-        <blc.authentication.metadata>0.11.0-SNAPSHOT</blc.authentication.metadata>
+        <blc.authentication.services>1.0.0.1-RC1</blc.authentication.services>
+        <blc.authentication.metadata>1.0.0.1-RC1</blc.authentication.metadata>
         <blc.billing.services>1.0.0.1-RC1</blc.billing.services>
         <blc.billing.metadata>1.0.0.1-RC1</blc.billing.metadata>
         <blc.campaign.services>1.0.0.1-RC1</blc.campaign.services>
