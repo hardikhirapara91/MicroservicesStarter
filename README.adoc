@@ -100,9 +100,18 @@ docker login repository.broadleafcommerce.com:5001
 
 When prompted, type in the username and password you received above.
 
+[IMPORTANT]
+====
 You'll also want to configure Docker settings to use appropriate resources.
 A good rule of thumb is to allow Docker to consume around 3/4 of your system resources
-if necessary. 
+as necessary.
+
+At a minimum, you will want to allocate at least 2 CPUs and 4 GB Memory
+(2 Memory/2 Swap).
+
+Ideally for a developer machine, you will want to allocate something like:
+6 CPUs, 8 GB Memory, 4 GB Swap.
+====
 
 === Maven
 You'll need to have Maven installed locally as well. 
@@ -220,7 +229,10 @@ the administration console and the consumer storefronts from a browser:
 ====
 If you are having issues visiting the storefront links, you will either need to set up DNSMasq
 in order to map URLs to `localhost` or set up `/etc/hosts` with the `heatclinic` and `aaahotsauces`
-subdomains. If you are using a later version of Chrome, these should be handled automatically.
+subdomains.
+
+We recommend using Chrome, since the above should be handled automatically.
+You'll also want to enable insecure localhost by visiting: chrome://flags/#allow-insecure-localhost
 ====
 
 [NOTE]
