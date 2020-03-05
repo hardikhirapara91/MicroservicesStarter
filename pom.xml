@@ -180,8 +180,6 @@
         <blc.metadata.services>1.0.0.1-RC1</blc.metadata.services>
         <blc.offer.services>1.0.0.1-RC1</blc.offer.services>
         <blc.offer.metadata>1.0.0.1-RC1</blc.offer.metadata>
-        <blc.payment.services>1.0.0-SNAPSHOT</blc.payment.services>
-        <blc.payment.metadata>1.0.0-SNAPSHOT</blc.payment.metadata>
         <blc.personalization.services>1.0.0.1-RC1</blc.personalization.services>
         <blc.personalization.metadata>1.0.0.1-RC1</blc.personalization.metadata>
         <blc.pricing.services>1.0.0.1-RC1</blc.pricing.services>
