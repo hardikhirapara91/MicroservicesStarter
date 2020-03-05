@@ -526,9 +526,17 @@ This project will attempt to utilize the following ports:
 
 |===
 
-
 [[faq-how-to-create-application]]
 === How do I create a new Application in the Admin?
 
 See the steps outlined here for
 https://github.com/BroadleafCommerce/MicroservicesStarter/tree/master/docs/Application_Provisioning.adoc[Creating an Application]
+
+[[faq-why-no-images]]
+=== Why are images broken on the commerce storefront?
+
+Images are being served on a different port, so you may need to accept the self-signed localhost
+SSL cert first.
+e.g. https://localhost:8447/content/default-hero.jpg?contextRequest=%7B%22forceCatalogForFetch%22:false,%22applicationId%22:%222%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D
+
+Once you've accepted the cert, try refreshing the page and the browser should proceed to load the images.
