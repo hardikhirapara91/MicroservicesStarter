@@ -164,9 +164,15 @@ downloaded/un-zipped or cloned the project. In the root of this project run the 
 mvn clean install
 ----
 +
+[NOTE]
+====
+It may take some time during the initial installation as the process needs to download all required
+dependencies. All subsequent builds should go much faster.
+====
++
 [TIP]
 ====
-You can disable running the example tests in this project by running `mvn clean install -DskipTests`
+You can enable running the example tests in this project by running `mvn clean install -DskipTests=false`
 ====
 +
 3. Before you start up all the APIs, you'll need to first start up a few supporting services
@@ -205,8 +211,11 @@ Creating microservicesstarter_commerceweb_1     ... done
 +
 [TIP]
 ====
-If you are using one of the latest versions of Docker Dashboard, you can
-verify that has all the supporting services are running and have started up completely
+If you are using one of the latest versions of *Docker Dashboard*, you can
+verify that all the supporting services are running and have started up completely as the image
+shown above.
+
+You can also run `docker ps` from the command line.
 ====
 +
 4. Next, you will want to start up the core backend commerce APIs by running the following command:
@@ -215,6 +224,21 @@ verify that has all the supporting services are running and have started up comp
 ----
 mvn spring-boot:run
 ----
++
+[NOTE]
+====
+Depending on your configured system resources, this may take some time to fully start up.
+
+In general, the sequence of events that you will encounter include:
+
+1. Tomcat initialization
+2. SQL changelog execution
+3. SOLR and Zookeeper connection initialization
+4. Spring bean initialization
+5. Kafka Pub/Sub messaging channel and consumer initialization
+6. Tomcat started on port(s): 8447 (https) with context path ''
+7. Started TutorialGettingStartedApplication
+====
 +
 5. That's it! Once you've verified that the supporting services and backend APIs are running, you can visit
 the administration console and the consumer storefronts from a browser:
@@ -231,7 +255,7 @@ If you are having issues visiting the storefront links, you will either need to 
 in order to map URLs to `localhost` or set up `/etc/hosts` with the `heatclinic` and `aaahotsauces`
 subdomains.
 
-We recommend using Chrome, since the above should be handled automatically.
+We recommend using Chrome since the above should be handled automatically.
 You'll also want to enable insecure localhost by visiting: chrome://flags/#allow-insecure-localhost
 ====
 
