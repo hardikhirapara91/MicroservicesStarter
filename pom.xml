@@ -77,7 +77,7 @@
                         <configuration>
                             <attach>false</attach>
                             <jvmArguments>
-                                -Dbroadleaf.resource.security.oauth2.defaultAllowAllAnonymous=true -Dbroadleaf.common.policy.validation.enforce=false -DzkACLProvider=org.apache.solr.common.cloud.VMParamsAllAndReadonlyDigestZkACLProvider -DzkCredentialsProvider=org.apache.solr.common.cloud.VMParamsSingleSetCredentialsDigestZkCredentialsProvider -DzkDigestUsername=readonly-user -DzkDigestPassword=CHANGEME-READONLY-PASSWORD -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8004
+                                -Dtutorial.cors.filter.enabled=true -Dbroadleaf.resource.security.oauth2.defaultAllowAllAnonymous=true -Dbroadleaf.common.policy.validation.enforce=false -DzkACLProvider=org.apache.solr.common.cloud.VMParamsAllAndReadonlyDigestZkACLProvider -DzkCredentialsProvider=org.apache.solr.common.cloud.VMParamsSingleSetCredentialsDigestZkCredentialsProvider -DzkDigestUsername=readonly-user -DzkDigestPassword=CHANGEME-READONLY-PASSWORD -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8004
                             </jvmArguments>
                         </configuration>
                     </plugin>
