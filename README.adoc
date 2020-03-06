@@ -381,7 +381,7 @@ and use it, the next step would be to walk through some typical customizations.
 You can reference the following tutorial project and guide as you apply the same customization steps
 to this project.
 
-- https://github.com/BroadleafCommerce/MicroservicesTutorial/tree/master/ms-tutorial-extension-complete[Customization & Extension Guide]
+- https://github.com/BroadleafCommerce/MicroservicesTutorial/tree/develop/ms-tutorial-extension-complete[Customization & Extension Guide]
 
 [TIP]
 ====
@@ -435,7 +435,7 @@ broadleaf:
 === What core commerce services are utilized in this reference project?
 
 See this page for a listing of the services used in this project, along with a link to their JavaDoc:
-https://github.com/BroadleafCommerce/MicroservicesStarter/tree/master/docs/Service_Directory.adoc[Service Directory]
+https://github.com/BroadleafCommerce/MicroservicesStarter/tree/develop/docs/Service_Directory.adoc[Service Directory]
 
 
 [[faq-supporting-services]]
@@ -530,7 +530,7 @@ This project will attempt to utilize the following ports:
 === How do I create a new Application in the Admin?
 
 See the steps outlined here for
-https://github.com/BroadleafCommerce/MicroservicesStarter/tree/master/docs/Application_Provisioning.adoc[Creating an Application]
+https://github.com/BroadleafCommerce/MicroservicesStarter/tree/develop/docs/Application_Provisioning.adoc[Creating an Application]
 
 [[faq-why-no-images]]
 === Why are images broken on the commerce storefront?
