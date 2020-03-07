@@ -106,8 +106,7 @@ You'll also want to configure Docker settings to use appropriate resources.
 A good rule of thumb is to allow Docker to consume around 3/4 of your system resources
 as necessary.
 
-At a minimum, you will want to allocate at least 2 CPUs and 4 GB Memory
-(2 Memory/2 Swap).
+At a minimum, you will want to allocate at least 2 CPUs and 4-6 GB Memory
 
 Ideally for a developer machine, you will want to allocate something like:
 6 CPUs, 8 GB Memory, 4 GB Swap.
@@ -217,7 +216,9 @@ If you are using one of the latest versions of *Docker Dashboard*, you can
 verify that all the supporting services are running and have started up completely as the image
 shown above.
 
-You can also run `docker ps` from the command line.
+You can also run `docker ps` from the command line to view running processes. It's also useful to
+tail the logs e.g. `docker-compose logs -f auth` to verify that the startup process has completed
+for the relevant service
 ====
 
 === Running Backend APIs
@@ -228,7 +229,8 @@ Next, you will want to start up the core backend commerce APIs by running the fo
 [IMPORTANT]
 ====
 You'll want to make sure that all your docker images have started up successfully
-before running this command.
+before running this command, otherwise you may get startup errors trying to connect to a service
+that may not have finished completing.
 ====
 
 [source,shell script]
@@ -536,7 +538,15 @@ https://github.com/BroadleafCommerce/MicroservicesStarter/tree/develop/docs/Appl
 === Why are images broken on the commerce storefront?
 
 Images are being served on a different port, so you may need to accept the self-signed localhost
-SSL cert first.
-e.g. https://localhost:8447/content/default-hero.jpg?contextRequest=%7B%22forceCatalogForFetch%22:false,%22applicationId%22:%222%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D
+SSL cert first. Try visiting an image directly
+https://localhost:8447/content/default-hero.jpg?contextRequest=%7B%22forceCatalogForFetch%22:false,%22applicationId%22:%222%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D[here]
 
-Once you've accepted the cert, try refreshing the page and the browser should proceed to load the images.
+Once you've informed your browser it is safe to proceed, try refreshing the page and the browser should proceed to load the images.
+
+[[faq-docker-linux-host-issue]]
+=== I'm running in a linux environment and getting "Unable to connect to host.docker.internal" errors?
+
+"host.docker.internal" doesn't currently resolve properly using Docker for linux as it does
+for Docker Desktop for Mac or Windows. As a workaround, you can change the references in the
+`.env` file in this project to use the `docker0` interface ip instead (typically `172.17.0.1`)
+which you can verify by running the following: `ip route | grep docker0 | awk '{print $9}'`
