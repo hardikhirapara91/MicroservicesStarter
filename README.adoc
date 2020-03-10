@@ -390,6 +390,17 @@ to this project.
 When you finish, you can check your results against the code in `MicroservicesTutorial/ms-tutorial-extension-complete`.
 ====
 
+Once you're done with the extensions tutorial, you can move on to
+learning how to create new domains, services, and endpoints on top of the existing
+core `Catalog` Microservice.
+
+- https://github.com/BroadleafCommerce/MicroservicesTutorial/tree/develop/ms-tutorial-new-entity-complete[New Catalog Domain, Service, and Endpoint Guide]
+
+[TIP]
+====
+When you finish, you can check your results against the code in `MicroservicesTutorial/ms-tutorial-new-entity-complete`.
+====
+
 == FAQ
 
 [[faq-where-data-stored]]
