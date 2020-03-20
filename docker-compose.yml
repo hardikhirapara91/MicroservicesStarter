@@ -181,6 +181,16 @@ services:
     ports:
       - '8983:8983'
     tty: true
+  openapi-ui:
+    environment:
+      NODE_ENV: 'production'
+    # TODO replace with broadleaf-evaluation image
+    image: repository.broadleafcommerce.com:5001/broadleaf/openapi-ui:0.1.0-p1.0
+    networks:
+      - backend
+    ports:
+      - '3003:3003'
+    tty: true
   postgres:
     environment:
       POSTGRES_DB: broadleaf
