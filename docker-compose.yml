@@ -184,8 +184,8 @@ services:
   openapi-ui:
     environment:
       NODE_ENV: 'production'
-    # TODO replace with broadleaf-evaluation image
-    image: repository.broadleafcommerce.com:5001/broadleaf/openapi-ui:0.1.0-p1.0
+    # TODO replace with broadleaf-evaluation image, OR 1.0.0-rc2.0
+    image: repository.broadleafcommerce.com:5001/broadleaf/openapi-ui:latest-snapshot
     networks:
       - backend
     ports:
