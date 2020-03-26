@@ -7,6 +7,7 @@ services:
       - common-environment.env
     environment:
       BROADLEAF_GATEWAY_FILTERS_ADMINNAVIGATION: '${BROADLEAF_GATEWAY_FILTERS_ADMINNAVIGATION}'
+      BROADLEAF_GATEWAY_FILTERS_ADMINUSER: '${BROADLEAF_GATEWAY_FILTERS_ADMINUSER}'
       BROADLEAF_GATEWAY_FILTERS_ASSET: '${BROADLEAF_GATEWAY_FILTERS_ASSET}'
       BROADLEAF_GATEWAY_FILTERS_CAMPAIGN: '${BROADLEAF_GATEWAY_FILTERS_CAMPAIGN}'
       BROADLEAF_GATEWAY_FILTERS_CATALOG: '${BROADLEAF_GATEWAY_FILTERS_CATALOG}'
@@ -42,8 +43,9 @@ services:
       BROADLEAF_GATEWAY_PROXYURLS_SCHEDULEDJOB: '${BROADLEAF_GATEWAY_PROXYURLS_SCHEDULEDJOB}'
       BROADLEAF_GATEWAY_PROXYURLS_SEARCH: '${BROADLEAF_GATEWAY_PROXYURLS_SEARCH}'
       BROADLEAF_GATEWAY_PROXYURLS_TENANT: '${BROADLEAF_GATEWAY_PROXYURLS_TENANT}'
+      BROADLEAF_GATEWAY_PROXYURLS_OPENAPI: '${BROADLEAF_GATEWAY_PROXYURLS_OPENAPI}'
       DEBUG_PORT: 8001
-    image: repository.broadleafcommerce.com:5001/broadleaf-evaluation/admingateway:microservices-starter
+    image: repository.broadleafcommerce.com:5001/broadleaf-evaluation/admingateway:microservices-starter-rc2
     networks:
       - kafkanet
       - backend
@@ -57,7 +59,7 @@ services:
     environment:
       NODE_ENV: development
       REACT_APP_ENABLE_DEV_SETTINGS: 'true'
-    image: repository.broadleafcommerce.com:5001/broadleaf-evaluation/adminweb:microservices-starter
+    image: repository.broadleafcommerce.com:5001/broadleaf-evaluation/adminweb:microservices-starter-rc2
     networks:
       - backend
     ports:
@@ -76,7 +78,7 @@ services:
       BROADLEAF_AUTH_SECURITY_USEREDIRECTURIHOST: 'true'
       DEBUG_PORT: 8000
       SPRING_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=auth'
-    image: repository.broadleafcommerce.com:5001/broadleaf-evaluation/authenticationservice-kafka-configserver:microservices-starter
+    image: repository.broadleafcommerce.com:5001/broadleaf-evaluation/authenticationservice-kafka-configserver:microservices-starter-rc2
     networks:
       - kafkanet
       - postgresnet
@@ -122,7 +124,7 @@ services:
       BROADLEAF_GATEWAY_PROXYURLS_SEARCH: '${BROADLEAF_GATEWAY_PROXYURLS_SEARCH}'
       BROADLEAF_GATEWAY_PROXYURLS_TENANT: '${BROADLEAF_GATEWAY_PROXYURLS_TENANT}'
       DEBUG_PORT: 8014
-    image: repository.broadleafcommerce.com:5001/broadleaf-evaluation/commercegateway:microservices-starter
+    image: repository.broadleafcommerce.com:5001/broadleaf-evaluation/commercegateway:microservices-starter-rc2
     networks:
       - kafkanet
       - backend
@@ -138,7 +140,7 @@ services:
       REACT_APP_ENABLE_DEV_SETTINGS: 'true'
       NODE_ENV: development,
       REACT_APP_ASSET_BASE_URL: https://localhost:8447/content/
-    image: repository.broadleafcommerce.com:5001/broadleaf-evaluation/commerceweb:microservices-starter
+    image: repository.broadleafcommerce.com:5001/broadleaf-evaluation/commerceweb:microservices-starter-rc2
     networks:
       - backend
     ports:
@@ -174,12 +176,23 @@ services:
       SOLR_HOST: 'localhost:8983'
       ZK_CHROOT: /solr
       ZK_HOST: 'zk:2181'
-    image: repository.broadleafcommerce.com:5001/broadleaf-evaluation/docker-solr:microservices-starter
+    image: repository.broadleafcommerce.com:5001/broadleaf-evaluation/docker-solr:microservices-starter-rc2
     networks:
       - solrnet
       - backend
     ports:
       - '8983:8983'
+    tty: true
+  openapi-ui:
+    depends_on:
+      - admingateway
+    environment:
+      NODE_ENV: 'production'
+    image: repository.broadleafcommerce.com:5001/broadleaf-evaluation/openapi-ui:microservices-starter-rc2
+    networks:
+      - backend
+    ports:
+      - '3003:3003'
     tty: true
   postgres:
     environment:
