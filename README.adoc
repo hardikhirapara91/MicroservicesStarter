@@ -206,7 +206,7 @@ Creating microservicesstarter_commerceweb_1     ... done
 +
 ++++
 <p align="center">
-    <img src="images/MS_Docker_Dashboard.png" alt="Docker Dashboard Example" width="350">
+    <img src="images/MS_Docker_Dashboard.png" alt="Docker Dashboard Example" width="738">
 </p>
 ++++
 +
