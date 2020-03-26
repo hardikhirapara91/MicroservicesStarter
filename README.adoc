@@ -277,13 +277,53 @@ You'll also want to enable insecure localhost by visiting: chrome://flags/#allow
 Remember to shutdown your docker services when finished in order to free up resources i.e. `docker-compose down`
 ====
 
-==== Testing Endpoints Directly `[Alternative]`
+==== Viewing OpenAPI Specs & Testing Endpoints `[Alternative]`
 
-During local development or evaluation, you may find it beneficial to hit the API
+During local development or evaluation, you may find it beneficial to view API documentation
+around exposed services within the project. To facilitate this, we've provided a supporting
+docker image that will run in the background that includes our Open API specs for some of the
+core framework services along with a Swagger UI that allows users to "Try Out" various endpoints.
+
+To access this, you'll want to start up the backend services using the
+following command (instead of the simple `mvn spring-boot:run` command outlined above)
+so that you don't have to worry about getting a valid JWT authentication token every time:
+
+[source,shell script]
+----
+mvn spring-boot:run -Pnosec
+----
+
+Next, you can visit the Open API UI by visiting:
+
+- https://localhost:8446/api/docs
+
+[NOTE]
+====
+make sure you have the supporting docker container `openapi-ui` running
+====
+
+You should be able to see an interface that allows you to navigate and try out various
+APIs provided by some core Broadleaf services.
+
+++++
+<p align="center">
+    <img src="images/OpenAPI.png" alt="Open API UI" width="350">
+</p>
+++++
+
+[TIP]
+====
+Be sure to "Try Out" a few endpoints as the specs do define example payloads that should return
+valid data given the test seed data loaded for this project
+====
+
+==== Testing Endpoints Directly using cURL `[Alternative]`
+
+Another alternative evaluation flow or local development flow may include being able to easily hit
 endpoints directly either via `cURL` or utilizing a tool like https://www.postman.com/[POSTMAN].
 In this case, you can disable security when starting up the backend services using the
-following command (instead of the command outlined in step 2 above) so that you don't have to 
-worry about getting a valid JWT authentication token every time:
+following command (instead of the simple `mvn spring-boot:run` command outlined above)
+so that you don't have to worry about getting a valid JWT authentication token every time:
 
 [source,shell script]
 ----
@@ -491,6 +531,9 @@ for Kafka (Community Version)
 |`localsolr`
 |Broadleaf-flavored image based on Solr's official 8.2 distro
 
+|`openapi-ui`
+|Broadleaf Open API Specs and Swagger UI
+
 |`postgres`
 |Official Postgres 11.2 https://hub.docker.com/_/postgres[Docker Image]
 
@@ -512,6 +555,9 @@ This project will attempt to utilize the following ports:
 
 |`adminweb`
 | 3000
+
+|`open api ui`
+| 3003
 
 |`commerceweb`
 | 4000
