@@ -152,7 +152,8 @@
 
     <properties>
         <skipTests>true</skipTests>
-        <blc.microservices.dependencies>1.0.2.1-RC2</blc.microservices.dependencies>
+        <blc.microservices.dependencies>1.0.2.2-RC2</blc.microservices.dependencies>
+        <blc.data.tracking.dependencies>1.0.0.2-RC2</blc.data.tracking.dependencies>
         <blc.jpa.dependencies>1.0.2.1-RC2</blc.jpa.dependencies>
         <blc.config.server.metadata>1.0.0.1-RC2</blc.config.server.metadata>
 
@@ -209,6 +210,13 @@
                 <groupId>com.broadleafcommerce.microservices</groupId>
                 <artifactId>broadleaf-microservices-dependencies</artifactId>
                 <version>${blc.microservices.dependencies}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.broadleafcommerce.microservices</groupId>
+                <artifactId>broadleaf-data-tracking-dependencies</artifactId>
+                <version>${blc.data.tracking.dependencies}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
