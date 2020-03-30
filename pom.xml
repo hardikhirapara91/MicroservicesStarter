@@ -161,8 +161,8 @@
         <blc.admin.navigation.metadata>1.0.0.2-RC2</blc.admin.navigation.metadata>
         <blc.admin.user.services>1.0.0.2-RC2</blc.admin.user.services>
         <blc.admin.user.metadata>1.0.0.2-RC2</blc.admin.user.metadata>
-        <blc.asset.services>1.0.0.1-RC2</blc.asset.services>
-        <blc.asset.metadata>1.0.0.1-RC2</blc.asset.metadata>
+        <blc.asset.services>1.0.0.2-RC2</blc.asset.services>
+        <blc.asset.metadata>1.0.0.2-RC2</blc.asset.metadata>
         <blc.authentication.services>1.0.0.1-RC2</blc.authentication.services>
         <blc.authentication.metadata>1.0.0.1-RC2</blc.authentication.metadata>
         <blc.billing.services>1.0.0.1-RC2</blc.billing.services>
