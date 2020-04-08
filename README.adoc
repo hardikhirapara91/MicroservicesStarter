@@ -223,8 +223,8 @@ for the relevant service
 
 === Running Backend APIs
 
-==== spring-boot:run
-Next, you will want to start up the core backend commerce APIs by running the following command:
+==== Starting the Spring Boot Application
+Next, you will want to start up the core backend commerce APIs.
 
 [IMPORTANT]
 ====
@@ -233,10 +233,21 @@ before running this command, otherwise you may get startup errors trying to conn
 that may not have finished completing.
 ====
 
+You can start the APIs using the maven spring boot plugin using this command:
 [source,shell script]
 ----
 mvn spring-boot:run
 ----
+
+[NOTE]
+====
+If you are running into issues running via the maven spring-boot plugin on Windows due to "large classpath/filename too long" errors. You can also start the application as an executable jar.
+
+[source,shell script]
+----
+java -jar -DzkACLProvider=org.apache.solr.common.cloud.VMParamsAllAndReadonlyDigestZkACLProvider -DzkCredentialsProvider=org.apache.solr.common.cloud.VMParamsSingleSetCredentialsDigestZkCredentialsProvider -DzkDigestUsername=readonly-user -DzkDigestPassword=CHANGEME-READONLY-PASSWORD -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8004 target/ms-tutorial-getting-started.jar
+----
+====
 
 [NOTE]
 ====
