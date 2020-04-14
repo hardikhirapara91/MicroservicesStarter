@@ -15,7 +15,6 @@ import com.broadleafcommerce.data.tracking.core.Trackable;
 import com.broadleafcommerce.data.tracking.core.TrackableBehaviorUtil;
 import com.broadleafcommerce.data.tracking.core.context.ContextInfo;
 import com.broadleafcommerce.data.tracking.core.mapping.ContextStateBuilder;
-import com.broadleafcommerce.resource.security.SecurityEnhancer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Collections;
@@ -23,24 +22,6 @@ import lombok.extern.apachecommons.CommonsLog;
 
 @SpringBootApplication
 public class TutorialGettingStartedApplication {
-
-    @Bean
-    SecurityEnhancer cartAnonymous() {
-        return http -> {
-            http.authorizeRequests().antMatchers("/carts").permitAll();
-            http.authorizeRequests().antMatchers("/carts/**").permitAll();
-            http.authorizeRequests().antMatchers("/cart-items").permitAll();
-            http.authorizeRequests().antMatchers("/cart-items/**").permitAll();
-        };
-    }
-
-    @Bean
-    SecurityEnhancer tenantAnonymous() {
-        return http -> {
-            http.authorizeRequests().antMatchers("/resolver/**").permitAll();
-            http.authorizeRequests().antMatchers("/url-resolver/**").permitAll();
-        };
-    }
 
     @Bean
     @ConditionalOnProperty("tutorial.cors.filter.enabled")
