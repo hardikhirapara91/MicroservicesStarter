@@ -272,9 +272,6 @@ broadleaf:
       password: demo
       hikari:
         maximumPoolSize: 2
-      data:
-        - 'classpath:/search-catalog-data-jpa.sql'
-        - 'classpath:/search-customer-data-jpa.sql'
     liquibase:
       change-log: 'classpath:/db/changelog/search.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
