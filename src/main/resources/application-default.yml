@@ -2,39 +2,29 @@ broadleaf:
   database:
     provider: jpa
   adminnavigation:
-    jpa:
-      hibernate:
-        ddl-auto: create
     datasource:
-      initialization-mode: always
       platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=adminnavigation'
       username: broadleaf
       password: demo
       hikari:
         maximumPoolSize: 2
-      data:
-        - 'classpath:/admin-navigation-data-jpa.sql'
     liquibase:
-      change-log: 'classpath:/db/changelog/admin-navigation.db.changelog-master.yaml'
+      change-log: 'classpath:/db/changelog/adminnavigation.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
+      default-schema: adminnavigation
   adminuser:
-    jpa:
-      hibernate:
-        ddl-auto: create
     datasource:
-      initialization-mode: always
       platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=adminuser'
       username: broadleaf
       password: demo
       hikari:
         maximumPoolSize: 2
-      data:
-        - 'classpath:/admin-user-sample-data.sql'
     liquibase:
-      change-log: 'classpath:/db/changelog/admin-user.db.changelog-master.yaml'
+      change-log: 'classpath:/db/changelog/adminuser.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
+      default-schema: adminuser
   asset:
     internal:
       content-provider-url-prefix: 'https://localhost:8447/'
@@ -45,11 +35,7 @@ broadleaf:
         - path: classpath:__initial-data.zip
           context:
             tenant-id: 5DF1363059675161A85F576D
-    jpa:
-      hibernate:
-        ddl-auto: create
     datasource:
-      initialization-mode: always
       platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=asset'
       username: broadleaf
@@ -59,41 +45,33 @@ broadleaf:
     provider:
       contentUrlPrefix: 'https://localhost:8447/content'
     liquibase:
-      change-log: 'classpath:/db/changelog/asset.db.changelog-master.yaml'
+      change-log: 'classpath:/db/changelog/asset.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
+      default-schema: asset
   campaign:
-    jpa:
-      hibernate:
-        ddl-auto: create
     datasource:
-      initialization-mode: always
       platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=campaign'
       username: broadleaf
       password: demo
       hikari:
         maximumPoolSize: 2
-      data:
-        - 'classpath:/campaign-data-jpa.sql'
     liquibase:
-      change-log: 'classpath:/db/changelog/campaign.db.changelog-master.yaml'
+      change-log: 'classpath:/db/changelog/campaign.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
+      default-schema: campaign
   cart:
     datasource:
-      initialization-mode: always
       platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=cart'
       username: broadleaf
       password: demo
       hikari:
         maximumPoolSize: 2
-    jpa:
-      hibernate:
-        ddl-auto: create
-      open-in-view: false
     liquibase:
-      change-log: 'classpath:/db/changelog/cart.db.changelog-master.yaml'
+      change-log: 'classpath:/db/changelog/cart.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
+      default-schema: cart
   cartoperation:
     anonymouscart:
       application-id-included-in-cookie-name: true
@@ -110,22 +88,17 @@ broadleaf:
     walletprovider:
       url: 'https://localhost:8447'
   catalog:
-    jpa:
-      hibernate:
-        ddl-auto: create
     datasource:
-      initialization-mode: always
       platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=catalog'
       username: broadleaf
       password: demo
       hikari:
         maximumPoolSize: 2
-      data:
-        - 'classpath:/catalog-data-jpa.sql'
     liquibase:
-      change-log: 'classpath:/db/changelog/catalog.db.changelog-master.yaml'
+      change-log: 'classpath:/db/changelog/catalog.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
+      default-schema: catalog
     reindex:
       startup: true
   catalogbrowse:
@@ -141,31 +114,22 @@ broadleaf:
       validation:
         enforce: true
   customer:
-    jpa:
-      hibernate:
-        ddl-auto: create
     datasource:
-      initialization-mode: always
       platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=customer'
       username: broadleaf
       password: demo
       hikari:
         maximumPoolSize: 2
-      data:
-        - 'classpath:/customer-data-jpa.sql'
     liquibase:
-      change-log: 'classpath:/db/changelog/customer.db.changelog-master.yaml'
+      change-log: 'classpath:/db/changelog/customer.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
+      default-schema: customer
     reindex:
       startup: true
     useFullName: true
   dataimport:
-    jpa:
-      hibernate:
-        ddl-auto: create
     datasource:
-      initialization-mode: always
       platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=import'
       username: broadleaf
@@ -173,16 +137,13 @@ broadleaf:
       hikari:
         maximumPoolSize: 2
     liquibase:
-      change-log: 'classpath:/db/changelog/import.db.changelog-master.yaml'
+      change-log: 'classpath:/db/changelog/import.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
+      default-schema: import
   image:
     availableEffects: 'crop, resize, scale, thumbnail, unsharp'
   indexer:
-    jpa:
-      hibernate:
-        ddl-auto: create
     datasource:
-      initialization-mode: always
       platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=indexer'
       username: broadleaf
@@ -190,8 +151,9 @@ broadleaf:
       hikari:
         maximumPoolSize: 2
     liquibase:
-      change-log: 'classpath:/db/changelog/indexer.db.changelog-master.yaml'
+      change-log: 'classpath:/db/changelog/indexer.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
+      default-schema: indexer
     catalog:
       service:
         endpoint: 'https://localhost:8447'
@@ -202,28 +164,19 @@ broadleaf:
       service:
         endpoint: 'https://localhost:8447'
   menu:
-    jpa:
-      hibernate:
-        ddl-auto: create
     datasource:
-      initialization-mode: always
       platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=menu'
       username: broadleaf
       password: demo
       hikari:
         maximumPoolSize: 2
-      data:
-        - 'classpath:/menu-data-jpa.sql'
     liquibase:
-      change-log: 'classpath:/db/changelog/menu.db.changelog-master.yaml'
+      change-log: 'classpath:/db/changelog/menu.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
+      default-schema: menu
   metadata:
-    jpa:
-      hibernate:
-        ddl-auto: create
     datasource:
-      initialization-mode: always
       platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=metadata'
       username: broadleaf
@@ -231,25 +184,21 @@ broadleaf:
       hikari:
         maximumPoolSize: 2
     liquibase:
-      change-log: 'classpath:/db/changelog/metadata.db.changelog-master.yaml'
+      change-log: 'classpath:/db/changelog/metadata.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
+      default-schema: metadata
   offer:
-    jpa:
-      hibernate:
-        ddl-auto: create
     datasource:
-      initialization-mode: always
       platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=offer'
       username: broadleaf
       password: demo
       hikari:
         maximumPoolSize: 2
-      data:
-        - 'classpath:/offer-data-jpa.sql'
     liquibase:
-      change-log: 'classpath:/db/changelog/offer.db.changelog-master.yaml'
+      change-log: 'classpath:/db/changelog/offer.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
+      default-schema: offer
   payment:
     gateway:
       passthrough-transactions:
@@ -258,77 +207,57 @@ broadleaf:
     retry:
       developerMode: true
   personalization:
-    jpa:
-      hibernate:
-        ddl-auto: create
     datasource:
-      initialization-mode: always
       platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=personalization'
       username: broadleaf
       password: demo
       hikari:
         maximumPoolSize: 2
-      data:
-        - 'classpath:/personalization-data-jpa.sql'
     liquibase:
-      change-log: 'classpath:/db/changelog/personalization.db.changelog-master.yaml'
+      change-log: 'classpath:/db/changelog/personalization.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
+      default-schema: personalization
   pricing:
-    jpa:
-      hibernate:
-        ddl-auto: create
     datasource:
-      initialization-mode: always
       platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=pricing'
       username: broadleaf
       password: demo
       hikari:
         maximumPoolSize: 2
-      data:
-        - 'classpath:/pricing-data-jpa.sql'
     liquibase:
-      change-log: 'classpath:/db/changelog/pricing.db.changelog-master.yaml'
+      change-log: 'classpath:/db/changelog/pricing.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
+      default-schema: pricing
   resource:
     security:
       oauth2:
         defaultAllowAllAnonymous: false
   sandbox:
-    jpa:
-      hibernate:
-        ddl-auto: create
     datasource:
-      initialization-mode: always
       platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=sandbox'
       username: broadleaf
       password: demo
       hikari:
         maximumPoolSize: 2
-      data:
-        - 'classpath:/sandbox-data-jpa.sql'
     liquibase:
-      change-log: 'classpath:/db/changelog/sandbox.db.changelog-master.yaml'
+      change-log: 'classpath:/db/changelog/sandbox.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
+      default-schema: sandbox
   scheduledjob:
-    jpa:
-      hibernate:
-        ddl-auto: create
     datasource:
-      initialization-mode: always
       platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=scheduledjob'
       username: broadleaf
       password: demo
       hikari:
         maximumPoolSize: 2
-      data:
-        - 'classpath:/scheduled-job-data-jpa.sql'
     liquibase:
-      change-log: 'classpath:/db/changelog/scheduled-job.db.changelog-master.yaml'
+      change-log: 'classpath:/db/changelog/scheduledjob.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
+      default-schema: scheduledjob
   search:
     catalog:
       primaryAlias: catalog_alias_1
@@ -336,11 +265,7 @@ broadleaf:
     customer:
       primaryAlias: customer_alias_1
       secondaryAlias: customer_alias_2
-    jpa:
-      hibernate:
-        ddl-auto: create
     datasource:
-      initialization-mode: always
       platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=search'
       username: broadleaf
@@ -351,8 +276,9 @@ broadleaf:
         - 'classpath:/search-catalog-data-jpa.sql'
         - 'classpath:/search-customer-data-jpa.sql'
     liquibase:
-      change-log: 'classpath:/db/changelog/search.db.changelog-master.yaml'
+      change-log: 'classpath:/db/changelog/search.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
+      default-schema: search
     solr:
       boost:
         phraseBoost: 3
@@ -375,22 +301,17 @@ broadleaf:
           suggestionCount: 1
           suggestionQueryCollationTries: 1
   tenant:
-    jpa:
-      hibernate:
-        ddl-auto: create
     datasource:
-      initialization-mode: always
       platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=tenant'
       username: broadleaf
       password: demo
       hikari:
         maximumPoolSize: 2
-      data:
-        - 'classpath:/tenant-data-jpa.sql'
     liquibase:
-      change-log: 'classpath:/db/changelog/tenant.db.changelog-master.yaml'
+      change-log: 'classpath:/db/changelog/tenant.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
+      default-schema: tenant
     global:
       allowed-locales:
         - en_US

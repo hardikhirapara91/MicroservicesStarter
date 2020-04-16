@@ -152,56 +152,56 @@
 
     <properties>
         <skipTests>true</skipTests>
-        <blc.microservices.dependencies>1.0.2.5-RC2</blc.microservices.dependencies>
+        <blc.microservices.dependencies>1.0.2.2-RC2</blc.microservices.dependencies>
         <blc.data.tracking.dependencies>1.0.0.2-RC2</blc.data.tracking.dependencies>
         <blc.jpa.dependencies>1.0.2.1-RC2</blc.jpa.dependencies>
         <blc.config.server.metadata>1.0.0.1-RC2</blc.config.server.metadata>
 
-        <blc.admin.navigation.services>1.0.0.2-RC2</blc.admin.navigation.services>
-        <blc.admin.navigation.metadata>1.0.0.2-RC2</blc.admin.navigation.metadata>
-        <blc.admin.user.services>1.0.0.2-RC2</blc.admin.user.services>
-        <blc.admin.user.metadata>1.0.0.2-RC2</blc.admin.user.metadata>
-        <blc.asset.services>1.0.0.2-RC2</blc.asset.services>
-        <blc.asset.metadata>1.0.0.2-RC2</blc.asset.metadata>
-        <blc.authentication.services>1.0.0.1-RC2</blc.authentication.services>
-        <blc.authentication.metadata>1.0.0.1-RC2</blc.authentication.metadata>
-        <blc.billing.services>1.0.0.1-RC2</blc.billing.services>
-        <blc.billing.metadata>1.0.0.1-RC2</blc.billing.metadata>
-        <blc.campaign.services>1.0.0.1-RC2</blc.campaign.services>
-        <blc.campaign.metadata>1.0.0.1-RC2</blc.campaign.metadata>
-        <blc.cart.services>1.0.0.1-RC2</blc.cart.services>
-        <blc.cart.metadata>1.0.0.1-RC2</blc.cart.metadata>
-        <blc.cartops.services>1.0.0.1-RC2</blc.cartops.services>
-        <blc.cartops.metadata>1.0.0.1-RC2</blc.cartops.metadata>
-        <blc.catalog.services>1.0.0.2-RC2</blc.catalog.services>
-        <blc.catalog.metadata>1.0.0.2-RC2</blc.catalog.metadata>
-        <blc.catalogbrowse.services>1.0.0.1-RC2</blc.catalogbrowse.services>
-        <blc.catalogbrowse.metadata>1.0.0.1-RC2</blc.catalogbrowse.metadata>
-        <blc.customer.services>1.0.0.1-RC2</blc.customer.services>
-        <blc.customer.metadata>1.0.0.1-RC2</blc.customer.metadata>
-        <blc.entitlement.services>1.0.0.1-RC2</blc.entitlement.services>
-        <blc.entitlement.metadata>1.0.0.1-RC2</blc.entitlement.metadata>
-        <blc.import.services>1.0.0.1-RC2</blc.import.services>
-        <blc.import.metadata>1.0.0.1-RC2</blc.import.metadata>
-        <blc.indexer.services>1.0.0.1-RC2</blc.indexer.services>
-        <blc.indexer.metadata>1.0.0.1-RC2</blc.indexer.metadata>
-        <blc.menu.services>1.0.0.1-RC2</blc.menu.services>
-        <blc.menu.metadata>1.0.0.1-RC2</blc.menu.metadata>
-        <blc.metadata.services>1.0.0.2-RC2</blc.metadata.services>
-        <blc.offer.services>1.0.0.1-RC2</blc.offer.services>
-        <blc.offer.metadata>1.0.0.1-RC2</blc.offer.metadata>
-        <blc.personalization.services>1.0.0.1-RC2</blc.personalization.services>
-        <blc.personalization.metadata>1.0.0.1-RC2</blc.personalization.metadata>
-        <blc.pricing.services>1.0.0.1-RC2</blc.pricing.services>
-        <blc.pricing.metadata>1.0.0.1-RC2</blc.pricing.metadata>
-        <blc.sandbox.services>1.0.0.1-RC2</blc.sandbox.services>
-        <blc.sandbox.metadata>1.0.0.1-RC2</blc.sandbox.metadata>
-        <blc.scheduled.job.services>1.0.0.1-RC2</blc.scheduled.job.services>
-        <blc.scheduled.job.metadata>1.0.0.1-RC2</blc.scheduled.job.metadata>
-        <blc.search.services>1.0.0.1-RC2</blc.search.services>
-        <blc.search.metadata>1.0.0.1-RC2</blc.search.metadata>
-        <blc.tenant.services>1.0.0.1-RC2</blc.tenant.services>
-        <blc.tenant.metadata>1.0.0.1-RC2</blc.tenant.metadata>
+        <blc.admin.navigation.services>1.0.0-SNAPSHOT</blc.admin.navigation.services>
+        <blc.admin.navigation.metadata>1.0.0-SNAPSHOT</blc.admin.navigation.metadata>
+        <blc.admin.user.services>1.0.0-SNAPSHOT</blc.admin.user.services>
+        <blc.admin.user.metadata>1.0.0-SNAPSHOT</blc.admin.user.metadata>
+        <blc.asset.services>1.0.0-SNAPSHOT</blc.asset.services>
+        <blc.asset.metadata>1.0.0-SNAPSHOT</blc.asset.metadata>
+        <blc.authentication.services>1.0.0-SNAPSHOT</blc.authentication.services>
+        <blc.authentication.metadata>1.0.0-SNAPSHOT</blc.authentication.metadata>
+        <blc.billing.services>1.0.0-SNAPSHOT</blc.billing.services>
+        <blc.billing.metadata>1.0.0-SNAPSHOT</blc.billing.metadata>
+        <blc.campaign.services>1.0.0-SNAPSHOT</blc.campaign.services>
+        <blc.campaign.metadata>1.0.0-SNAPSHOT</blc.campaign.metadata>
+        <blc.cart.services>1.0.0-SNAPSHOT</blc.cart.services>
+        <blc.cart.metadata>1.0.0-SNAPSHOT</blc.cart.metadata>
+        <blc.cartops.services>1.0.0-SNAPSHOT</blc.cartops.services>
+        <blc.cartops.metadata>1.0.0-SNAPSHOT</blc.cartops.metadata>
+        <blc.catalog.services>1.0.0-SNAPSHOT</blc.catalog.services>
+        <blc.catalog.metadata>1.0.0-SNAPSHOT</blc.catalog.metadata>
+        <blc.catalogbrowse.services>1.0.0-SNAPSHOT</blc.catalogbrowse.services>
+        <blc.catalogbrowse.metadata>1.0.0-SNAPSHOT</blc.catalogbrowse.metadata>
+        <blc.customer.services>1.0.0-SNAPSHOT</blc.customer.services>
+        <blc.customer.metadata>1.0.0-SNAPSHOT</blc.customer.metadata>
+        <blc.entitlement.services>1.0.0-SNAPSHOT</blc.entitlement.services>
+        <blc.entitlement.metadata>1.0.0-SNAPSHOT</blc.entitlement.metadata>
+        <blc.import.services>1.0.0-SNAPSHOT</blc.import.services>
+        <blc.import.metadata>1.0.0-SNAPSHOT</blc.import.metadata>
+        <blc.indexer.services>1.0.0-SNAPSHOT</blc.indexer.services>
+        <blc.indexer.metadata>1.0.0-SNAPSHOT</blc.indexer.metadata>
+        <blc.menu.services>1.0.0-SNAPSHOT</blc.menu.services>
+        <blc.menu.metadata>1.0.0-SNAPSHOT</blc.menu.metadata>
+        <blc.metadata.services>1.0.0-SNAPSHOT</blc.metadata.services>
+        <blc.offer.services>1.0.0-SNAPSHOT</blc.offer.services>
+        <blc.offer.metadata>1.0.0-SNAPSHOT</blc.offer.metadata>
+        <blc.personalization.services>1.0.0-SNAPSHOT</blc.personalization.services>
+        <blc.personalization.metadata>1.0.0-SNAPSHOT</blc.personalization.metadata>
+        <blc.pricing.services>1.0.0-SNAPSHOT</blc.pricing.services>
+        <blc.pricing.metadata>1.0.0-SNAPSHOT</blc.pricing.metadata>
+        <blc.sandbox.services>1.0.0-SNAPSHOT</blc.sandbox.services>
+        <blc.sandbox.metadata>1.0.0-SNAPSHOT</blc.sandbox.metadata>
+        <blc.scheduled.job.services>1.0.0-SNAPSHOT</blc.scheduled.job.services>
+        <blc.scheduled.job.metadata>1.0.0-SNAPSHOT</blc.scheduled.job.metadata>
+        <blc.search.services>1.0.0-SNAPSHOT</blc.search.services>
+        <blc.search.metadata>1.0.0-SNAPSHOT</blc.search.metadata>
+        <blc.tenant.services>1.0.0-SNAPSHOT</blc.tenant.services>
+        <blc.tenant.metadata>1.0.0-SNAPSHOT</blc.tenant.metadata>
     </properties>
 
     <dependencyManagement>
