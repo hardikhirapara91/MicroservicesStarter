@@ -76,9 +76,11 @@ services:
       BROADLEAF_AUTH_SECURITY_LOGINPATHORURL: '/login'
       BROADLEAF_AUTH_SECURITY_OAUTH2_AUTOAPPROVEDCLIENTREGISTEREDREDIRECTS: 'https://localhost:8446/silent-callback.html,https://localhost:8446/callback'
       BROADLEAF_AUTH_SECURITY_USEREDIRECTURIHOST: 'true'
+      BROADLEAF_AUTH_DATA_LOAD_REGISTERPREDEFINEDOPENAPICLIENT: 'true'
       DEBUG_PORT: 8000
       SPRING_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=auth'
-    image: repository.broadleafcommerce.com:5001/broadleaf-evaluation/authenticationservice-kafka-configserver:branch-feature-liquibase-micropm1548-latest-snapshot
+    # TODO adjust this to point to a broadleaf-evaluation RC3 image before cutting that release
+    image: repository.broadleafcommerce.com:5001/broadleaf-demo/demo-authenticationservice-kafka-configserver:latest-snapshot
     networks:
       - kafkanet
       - postgresnet
@@ -188,7 +190,8 @@ services:
       - admingateway
     environment:
       NODE_ENV: 'production'
-    image: repository.broadleafcommerce.com:5001/broadleaf-evaluation/openapi-ui:microservices-starter-rc2
+    # TODO adjust this to point to a broadleaf-evaluation RC3 image before cutting that release
+    image: repository.broadleafcommerce.com:5001/broadleaf/openapi-ui:latest-snapshot
     networks:
       - backend
     ports:
