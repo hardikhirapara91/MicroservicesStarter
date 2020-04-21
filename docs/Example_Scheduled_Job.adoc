@@ -1,0 +1,213 @@
+= Example Scheduled Data Purge Job
+
+This section discusses the method by which a user could establish a scheduled job to periodically delete data in one or more microservices based upon arbitrary criteria.
+
+== Steps with an Example
+
+This will be a guide using the example scenario of wanting to delete records that were previously marked for deletion via some `markedForDeletion` flag on each entity.
+
+. Introduce the method on your target repository that will actually perform the deletion based upon your desired criteria.
++
+TIP: If your data purge will apply to a particular repository (or a select few repositories), manually add your method to these repositories.
+Alternatively, if your data purge will apply to a large number of repositories, consider creating a `RepositoryFragment` containing the necessary logic that each of them can use.
++
+TIP: If it is desirable to have customizable criteria for purge jobs, then have your repository extend from `TrackableRsqlFilterExecutor` (for `TrackableRepository`) or `MappableRsqlFilterExecutor` (for non-`TrackableRepository`), and add a `Node filters` argument to your purge method.
++
+WARNING: If your purge method will apply to entities that may have outstanding `NotificationStates` (ex: `Trackable` entities), it may compromise the durable messaging support on those entities.
+It is highly recommended to add criteria to prevent deletion of records that have one or more `NotificationStates` that are not `acked` or `stopped`.
+This way, any messages that need to be sent for those entities can be retried as necessary.
+Generally speaking, adding this criteria will require writing a custom repository method implementation.
+
+.. Spring Data examples
+
+... No customizable critieria
++
+[source,java]
+----
+void deleteByMarkedForDeletionTrue();
+----
+... Default criteria with optional additional criteria via RSQL filters
++
+[source,java]
+----
+void deleteByMarkedForDeletionTrue(@NonNull Node filters);
+----
+... Criteria entirely derived via RSQL filters
++
+[source,java]
+----
+void deleteAll(@NonNull Node filters);
+----
+
+. Add a scheduled job with your desired `type` to the ScheduledJobService.
+.. Example Scheduled Job
++
+[source,json]
+----
+{
+  "id":"purgeMarkedForDeletionJobId",
+  "name":"Purge Entities Marked for Deletion",
+  "type":"DELETE_MARKED_FOR_DELETION",
+  "timingType":"CRON",
+  "enabled":true,
+  "executed":false,
+  "cron": "0 0 0 ? * * *",
+  "manageInAdmin":true
+}
+----
+
+. Add a listener/handler (and message bindings) for scheduled job messages of that `type` to the microservice(s) that will need to respond to the scheduled job.
++
+TIP: If these need to be used by many services, it may be wise to put this code and configuration in a separate library that relevant services rely on as a dependency.
+Then, the configuration can be registered in `spring.factories` to load with `org.springframework.boot.autoconfigure.EnableAutoConfiguration`.
+
+.. Add the handler
+... Non-RSQL example
++
+[source,java]
+----
+@RequiredArgsConstructor
+public class DeleteMarkedForDeletionScheduledJobHandler {
+
+    @NonNull
+    @Getter(AccessLevel.PROTECTED)
+    private final List<Repository<?>> repositories; // <1>
+
+    public void handle(ScheduledJobRef deleteMarkedForDeletionJob) {
+        repositories
+                .forEach(repository -> repository.deleteByMarkedForDeletionTrue());
+    }
+}
+----
+<1> Inject the target repository or repositories
+... With RSQL
+.... Create the `Node filters` argument that needs to be supplied to the repository method
+..... If the filters required for the job are the same for all implementations, it may be easiest to simply add the RSQL filter string as a `ScheduledJobDetail` on the `ScheduledJob` that was created in the ScheduledJobService.
+Give that detail a known `name` and set its `value` to the filter string.
+Then, in the handler, simply retrieve that detail and extract its value from the `ScheduledJobRef`.
+..... Convert the filter string to a `Node` by injecting and using the `FilterParser`
+.... Example
++
+.Scheduled Job
+[source,json]
+----
+{
+  "id":"purgeMarkedForDeletionJobId",
+  "name":"Purge Entities Marked for Deletion",
+  "type":"DELETE_MARKED_FOR_DELETION",
+  "timingType":"CRON",
+  "enabled":true,
+  "executed":false,
+  "cron": "0 0 0 ? * * *",
+  "details":[
+    {
+      "name":"ADDITIONAL_FILTER_STRING",
+      "value":"name=eqic='Special Name'"
+    }
+  ],
+  "manageInAdmin":true
+}
+----
++
+.Handler
+[source,java]
+----
+@RequiredArgsConstructor
+public class DeleteMarkedForDeletionScheduledJobHandler {
+
+    @NonNull
+    @Getter(AccessLevel.PROTECTED)
+    private final List<Repository<?>> repositories; // <1>
+
+    @NonNull
+    @Getter(AccessLevel.PROTECTED)
+    private final FilterParser<Node> parser; // <2>
+
+
+    public void handle(ScheduledJobRef deleteMarkedForDeletionJob) {
+        Node additionalFilters = getAdditionalFilters(deleteMarkedForDeletionJob);
+        repositories
+                .forEach(repository -> repository.deleteByMarkedForDeletionTrue(additionalFilters));
+    }
+
+    private Node getAdditionalFilters(ScheduledJobRef scheduledJobRef) {
+        return ListUtils.emptyIfNull(scheduledJobRef.getDetails())
+            .stream()
+            .filter(detail -> StringUtils.equals(detail.getName(), "ADDITIONAL_FILTER_STRING"))
+            .filter(additionalCriteriaDetail -> additionalCriteriaDetail.getValue() instanceof String)
+            .map(additionalCriteriaDetail -> (String) additionalCriteriaDetail.getValue())
+            .filter(StringUtils::isNotBlank)
+            .map(parser::parse)
+            .findFirst()
+            .orElseGet(EmptyNode::new);
+    }
+}
+----
+<1> Inject the target repository or repositories
+<2> Inject the filter parser
+.. Add the listener
+... Example
++
+[source,java]
+----
+public class DeleteMarkedForDeletionScheduledJobListener {
+
+    @NonNull
+    @Getter(AccessLevel.PROTECTED)
+    private final DeleteMarkedForDeletionScheduledJobHandler handler;
+
+    @StreamListener(TriggeredJobEventConsumer.CHANNEL)
+    public void listen(ScheduledJobRef scheduledJobRef) {
+        if (!StringUtils.equals(scheduledJobRef.getType(), "DELETE_MARKED_FOR_DELETION")) {
+            return;
+        }
+
+        try {
+            handler.handle(scheduledJobRef);
+        } catch (Exception e) { // don't want errors to bubble up and cause message retry
+            log.error(String.format("Encountered an unexpected error: %s",
+                    ExceptionUtils.getMessage(e)));
+        }
+    }
+}
+----
+.. Register the listener and handler in the configuration
++
+[source,java]
+----
+@Configuration
+@EnableBinding(TriggeredJobEventConsumer.class)
+public class DeleteMarkedForDeletionAutoConfiguration {
+
+    @Bean
+    @ConditionalOnMissingBean
+    public DeleteMarkedForDeletionScheduledJobListener deleteMarkedForDeletionScheduledJobListener(
+            DeleteMarkedForDeletionScheduledJobHandler deleteMarkedForDeletionScheduledJobHandler) {
+        return new DeleteMarkedForDeletionScheduledJobListener(deleteMarkedForDeletionScheduledJobHandler);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public DeleteMarkedForDeletionScheduledJobHandler deleteMarkedForDeletionScheduledJobHandler(
+                    List<Repository<?>> repositories, // <1>
+                    FilterParser<Node> parser) {
+        return new DeleteMarkedForDeletionScheduledJobHandler(
+                ListUtils.emptyIfNull(repositories),
+                parser);
+    }
+
+}
+----
+<1> Inject the target repository or repositories
+.. Add message channel binding properties to each microservice to receive the messages
++
+[source,yml]
+----
+spring:
+  cloud:
+    stream:
+      bindings:
+        triggeredJobEventInput:
+          group: [your-microservice-name]
+          destination: triggeredJobEvent
+----
