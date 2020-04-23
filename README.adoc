@@ -22,9 +22,8 @@ align="right" height="100px"/>
 
 The
 https://www.broadleafcommerce.com/microservices[Broadleaf Microservices Framework]
-is a collection of enterprise components and libraries to help accelerate your application
-development. The framework includes commerce service components built on Java and Spring as well as
-a centralized metadata-driven admin built in React.
+is a collection of enterprise components and libraries to accelerate your application
+development. The framework includes 30+ microservices containing extensible commerce service components built on Java and Spring as well as a centralized metadata-driven admin built in React.
 
 This project is intended to give you a hands on look at core concepts and extension patterns as well
 as providing an overview of the key commerce and PIM features provided
