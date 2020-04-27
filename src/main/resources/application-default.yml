@@ -32,7 +32,7 @@ broadleaf:
     data:
       load-on-startup: true
       files:
-        - path: classpath:__initial-data.zip
+        - path: 'classpath:__initial-data.zip'
           context:
             tenant-id: 5DF1363059675161A85F576D
     datasource:
@@ -68,6 +68,7 @@ broadleaf:
       password: demo
       hikari:
         maximumPoolSize: 2
+
     liquibase:
       change-log: 'classpath:/db/changelog/cart.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
@@ -103,6 +104,8 @@ broadleaf:
       startup: true
   catalogbrowse:
     catalogprovider:
+      url: 'https://localhost:8447'
+    catalogsearchprovider:
       url: 'https://localhost:8447'
     pricingprovider:
       url: 'https://localhost:8447'
@@ -252,7 +255,6 @@ broadleaf:
         encoded-private-key: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCMQ9Xq3UWtXkMj2M2z9f0Za/HhaBWMpycZ4eRTGAKQH9kMYLm0CiUG/Jm2GKdrGZKBYqI8mXUxK979qCvQuR+xdaAvK02KzyMUWlu9b6ALhrVw3Er/aiZhkxhQE/MIYoW3RBVFt9yuAJqaKJuFEFFSYjLmt2GlfcBt6L1lRcLignfm26Bu7nLhCFC29Y59fIlfe6RpJvok7ppTOvvRCUzODbVNWjeDjQ3jvpra56zJcPW9KNxQggBPVKjuGbR9AOyTsWt3Pt4BvBjdNmieVluz27BoVdMGcju/nEdRhwbikQFp0qeWi0utZbfgM4QdR2XC5rc+7ras/aMkTCtoJmS1AgMBAAECggEAYhOYw3XfH592sN0K0JfjVuA8rFD8KHJEi/uAjH2QZThvqxEDKJmjVGRSEprgjam+4EuYh2kCIdS8Qn9Ry8t2Fr7Zt8G+oZ2+uJ+J4EbqEMUrn3PZ2QhfOAEDkhKw8B77wq6PdUVfwCdZ8wsL25oSUtmpH9wAIhhw8ik4LVT/NSPbTiOaGRPdQE31DCnwLG8chDpkX2VkhQp0ah4+1NwQHyGLkrPY9P6tpcsxCpDK9OcIC8eJW612dMUpTLr1AGvAiuCO/Bhzr1d7HCwBOm95PhJWRi+zLOmWz2K9QWxvqwOsGiNb/23ngFu03tsAGz8yGdKFMRpG0ywLPykZmnEw7QKBgQDbry8lcIRlYSigcPZWo2AHLCOZGxmi9O9dXE/MB5d+Qw4HalHbVxnykwRF0uWobQf99JNSeFqkZy51dGvr55ADaJYuA1Hvr+Yqu63aS2iLbMk+xmBpfLRAmuuCcC0v+WbsNjYz0hdNHf08/sumjM6QoGOGF2PWfddtwJo0847nXwKBgQCjc7Tb3AHlkQR6pfHUwz/7oynI6p0/nw/Q9UXIYXhCYJlrqddz0QMn5LhOILTjJq9dAX7vUNhIIpBBFaVk5voagpnkRbkUG5LHPtm/Wps/Uosdg6WHgB4xWVcE0nWJZWCtwgv60N9T3qU8t3lyQg8BkFyBcJJg9gL2D2BrF6JQawKBgQDCKxurpsCOboqfDFjeiLZGgJ/SIl7NZlnulbm95vPiWFgc+77v9BNuEL1VDauI6x2GO9a+rLvI1Z39mHIO5vOl35nlf2+7Pyhbmth1ufLkULmq72GluuACvirsdkOqRHDQ1LWhpc6MjbYXZEkRoyCsOebdTO0kVsPDMNnbdW5YVwKBgH+K8y64T1aWQVt/D+SI8u1llV5tDIUvlkTkjy5cOF37SNxFLJT4HLFNfS+hv+ScNCyr1SPi/tHS/qN6w5On1LNJA9KnQVNabL9C4OC7T/cqbtl593lzVJwHbaqamxK6Y6VSjMyLniiwzFlDheXNfC4pOrXaZK56aTceKouGZqa/AoGAbPkdybZD/NyJxcQm3sE+ff6v9iHxzhg4aULGWhGeJd38Iq3rSJBo4gCt3Zj7Psq+Jt9s+BY4GbT/5MbfWG2dC1mbexkbdz/cH+ytg55ihD0TJVhGCHz/5o+eYkP26nDIAvnbWcGRA5Vzxg2XB9g/OoPPNhakmhLQXDILu7OJY0k=
       decoder:
         encoded-public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjEPV6t1FrV5DI9jNs/X9GWvx4WgVjKcnGeHkUxgCkB/ZDGC5tAolBvyZthinaxmSgWKiPJl1MSve/agr0LkfsXWgLytNis8jFFpbvW+gC4a1cNxK/2omYZMYUBPzCGKFt0QVRbfcrgCamiibhRBRUmIy5rdhpX3Abei9ZUXC4oJ35tugbu5y4QhQtvWOfXyJX3ukaSb6JO6aUzr70QlMzg21TVo3g40N476a2uesyXD1vSjcUIIAT1So7hm0fQDsk7Frdz7eAbwY3TZonlZbs9uwaFXTBnI7v5xHUYcG4pEBadKnlotLrWW34DOEHUdlwua3Pu62rP2jJEwraCZktQIDAQAB
-
   scheduledjob:
     datasource:
       platform: postgres
