@@ -617,3 +617,15 @@ Once you've informed your browser it is safe to proceed, try refreshing the page
 for Docker Desktop for Mac or Windows. As a workaround, you can change the references in the
 `.env` file in this project to use the `docker0` interface ip instead (typically `172.17.0.1`)
 which you can verify by running the following: `ip route | grep docker0 | awk '{print $9}'`
+
+[[faq-PKIX-path-building-failed]]
+=== I'm unable to build due to a PKIX SunCertPathBuilderException exception
+
+If you're running an older versions of java (e.g. below 1.8u101) you may run into a similar error as below:
+
+[source]
+----
+[ERROR] Non-resolvable import POM: Could not transfer artifact com.broadleafcommerce.microservices:broadleaf-microservices-dependencies:pom:1.0.2.5-RC2 from/to broadleaf-microservices (https://repository.broadleafcommerce.com/repository/microservices/): sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target @ line 209, column 25
+----
+
+This is because the Broadleaf Repository has an SSL cert provided by Let's Encrypt. It's easiest to upgrade your java version to one's that have Let's Encrypt as a certified authority. See here for more details: https://stackoverflow.com/questions/34110426/does-java-support-lets-encrypt-certificates
