@@ -122,6 +122,8 @@ broadleaf:
     policy:
       validation:
         enforce: true
+    ssl-verification:
+      disabled: true
   customer:
     datasource:
       platform: postgres
