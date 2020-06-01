@@ -10,7 +10,9 @@ services:
       BROADLEAF_GATEWAY_FILTERS_ADMINUSER: '${BROADLEAF_GATEWAY_FILTERS_ADMINUSER}'
       BROADLEAF_GATEWAY_FILTERS_ASSET: '${BROADLEAF_GATEWAY_FILTERS_ASSET}'
       BROADLEAF_GATEWAY_FILTERS_CAMPAIGN: '${BROADLEAF_GATEWAY_FILTERS_CAMPAIGN}'
+      BROADLEAF_GATEWAY_FILTERS_CART: '${BROADLEAF_GATEWAY_FILTERS_CART}'
       BROADLEAF_GATEWAY_FILTERS_CATALOG: '${BROADLEAF_GATEWAY_FILTERS_CATALOG}'
+      BROADLEAF_GATEWAY_FILTERS_CONFIG: '${BROADLEAF_GATEWAY_FILTERS_CONFIG}'
       BROADLEAF_GATEWAY_FILTERS_CUSTOMER: '${BROADLEAF_GATEWAY_FILTERS_CUSTOMER}'
       BROADLEAF_GATEWAY_FILTERS_IMPORT: '${BROADLEAF_GATEWAY_FILTERS_IMPORT}'
       BROADLEAF_GATEWAY_FILTERS_INDEXER: '${BROADLEAF_GATEWAY_FILTERS_INDEXER}'
@@ -23,6 +25,10 @@ services:
       BROADLEAF_GATEWAY_FILTERS_SCHEDULEDJOB: '${BROADLEAF_GATEWAY_FILTERS_SCHEDULEDJOB}'
       BROADLEAF_GATEWAY_FILTERS_SEARCH: '${BROADLEAF_GATEWAY_FILTERS_SEARCH}'
       BROADLEAF_GATEWAY_FILTERS_TENANT: '${BROADLEAF_GATEWAY_FILTERS_TENANT}'
+      ### COMMERCE ###
+      BROADLEAF_GATEWAY_FILTERS_CARTOPERATION: '${BROADLEAF_GATEWAY_FILTERS_CARTOPERATION}'
+      BROADLEAF_GATEWAY_FILTERS_CATALOGBROWSE: '${BROADLEAF_GATEWAY_FILTERS_CATALOGBROWSE}'
+      ###
       BROADLEAF_GATEWAY_PROXYURLS_ADMINNAVIGATION: '${BROADLEAF_GATEWAY_PROXYURLS_ADMINNAVIGATION}'
       BROADLEAF_GATEWAY_PROXYURLS_ADMINUSER: '${BROADLEAF_GATEWAY_PROXYURLS_ADMINUSER}'
       BROADLEAF_GATEWAY_PROXYURLS_ADMINWEB: '${BROADLEAF_GATEWAY_PROXYURLS_ADMINWEB}'
@@ -30,7 +36,9 @@ services:
       BROADLEAF_GATEWAY_PROXYURLS_AUTH: '${BROADLEAF_GATEWAY_PROXYURLS_AUTH}'
       BROADLEAF_GATEWAY_PROXYURLS_AUTHAPI: '${BROADLEAF_GATEWAY_PROXYURLS_AUTHAPI}'
       BROADLEAF_GATEWAY_PROXYURLS_CAMPAIGN: '${BROADLEAF_GATEWAY_PROXYURLS_CAMPAIGN}'
+      BROADLEAF_GATEWAY_PROXYURLS_CART: '${BROADLEAF_GATEWAY_PROXYURLS_CART}'
       BROADLEAF_GATEWAY_PROXYURLS_CATALOG: '${BROADLEAF_GATEWAY_PROXYURLS_CATALOG}'
+      BROADLEAF_GATEWAY_PROXYURLS_CONFIG: '${BROADLEAF_GATEWAY_PROXYURLS_CONFIG}'
       BROADLEAF_GATEWAY_PROXYURLS_CUSTOMER: '${BROADLEAF_GATEWAY_PROXYURLS_CUSTOMER}'
       BROADLEAF_GATEWAY_PROXYURLS_IMPORT: '${BROADLEAF_GATEWAY_PROXYURLS_IMPORT}'
       BROADLEAF_GATEWAY_PROXYURLS_INDEXER: '${BROADLEAF_GATEWAY_PROXYURLS_INDEXER}'
@@ -44,8 +52,12 @@ services:
       BROADLEAF_GATEWAY_PROXYURLS_SEARCH: '${BROADLEAF_GATEWAY_PROXYURLS_SEARCH}'
       BROADLEAF_GATEWAY_PROXYURLS_TENANT: '${BROADLEAF_GATEWAY_PROXYURLS_TENANT}'
       BROADLEAF_GATEWAY_PROXYURLS_OPENAPI: '${BROADLEAF_GATEWAY_PROXYURLS_OPENAPI}'
+      ### COMMERCE ###
+      BROADLEAF_GATEWAY_PROXYURLS_CARTOPERATION: '${BROADLEAF_GATEWAY_PROXYURLS_CARTOPERATION}'
+      BROADLEAF_GATEWAY_PROXYURLS_CATALOGBROWSE: '${BROADLEAF_GATEWAY_PROXYURLS_CATALOGBROWSE}'
+      ###
       DEBUG_PORT: 8001
-    image: repository.broadleafcommerce.com:5001/broadleaf/admingateway:latest-snapshot
+    image: repository.broadleafcommerce.com:5001/broadleaf/admingateway:latest
     networks:
       - kafkanet
       - backend
@@ -59,7 +71,7 @@ services:
     environment:
       NODE_ENV: development
       REACT_APP_ENABLE_DEV_SETTINGS: 'true'
-    image: repository.broadleafcommerce.com:5001/broadleaf/adminweb:latest-snapshot
+    image: repository.broadleafcommerce.com:5001/broadleaf/adminweb:1.0.0-rc3.0
     networks:
       - backend
     ports:
@@ -68,22 +80,19 @@ services:
   auth:
     depends_on:
       - localkafka
-      - postgres
+      - database
     env_file:
       - common-environment.env
     environment:
-      BROADLEAF_AUTH_REDIRECT_DEFAULTHOMEPAGEREDIRECTURL: 'https://localhost:8446'
-      BROADLEAF_AUTH_SECURITY_LOGINPATHORURL: '/login'
-      BROADLEAF_AUTH_SECURITY_OAUTH2_AUTOAPPROVEDCLIENTREGISTEREDREDIRECTS: 'https://localhost:8446/silent-callback.html,https://localhost:8446/callback'
       BROADLEAF_AUTH_SECURITY_USEREDIRECTURIHOST: 'true'
       BROADLEAF_AUTH_DATA_LOAD_REGISTERPREDEFINEDOPENAPICLIENT: 'true'
       DEBUG_PORT: 8000
-      SPRING_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/broadleaf?currentSchema=auth'
-    # TODO adjust this to point to a broadleaf-evaluation RC3 image before cutting that release
-    image: repository.broadleafcommerce.com:5001/broadleaf-demo/demo-authenticationservice-kafka-configserver:latest-snapshot
+      SPRING_DATASOURCE_URL: 'jdbc:postgresql://database:5432/broadleaf?currentSchema=auth'
+      SPRING_LIQUIBASE_DROPFIRST: 'true'
+    image: repository.broadleafcommerce.com:5001/broadleaf-demo/authenticationservice:microservices-starter-rc3
     networks:
       - kafkanet
-      - postgresnet
+      - databasenet
       - backend
     ports:
       - '8443:8443'
@@ -107,6 +116,7 @@ services:
       BROADLEAF_GATEWAY_FILTERS_OFFER: '${BROADLEAF_GATEWAY_FILTERS_OFFER}'
       BROADLEAF_GATEWAY_FILTERS_PERSONALIZATION: '${BROADLEAF_GATEWAY_FILTERS_PERSONALIZATION}'
       BROADLEAF_GATEWAY_FILTERS_PRICING: '${BROADLEAF_GATEWAY_FILTERS_PRICING}'
+      BROADLEAF_GATEWAY_FILTERS_SANDBOX: '${BROADLEAF_GATEWAY_FILTERS_SANDBOX}'
       BROADLEAF_GATEWAY_FILTERS_SEARCH: '${BROADLEAF_GATEWAY_FILTERS_SEARCH}'
       BROADLEAF_GATEWAY_FILTERS_TENANT: '${BROADLEAF_GATEWAY_FILTERS_TENANT}'
       BROADLEAF_GATEWAY_PROXYURLS_ASSET: '${BROADLEAF_GATEWAY_PROXYURLS_ASSET}'
@@ -123,10 +133,11 @@ services:
       BROADLEAF_GATEWAY_PROXYURLS_OFFER: '${BROADLEAF_GATEWAY_PROXYURLS_OFFER}'
       BROADLEAF_GATEWAY_PROXYURLS_PERSONALIZATION: '${BROADLEAF_GATEWAY_PROXYURLS_PERSONALIZATION}'
       BROADLEAF_GATEWAY_PROXYURLS_PRICING: '${BROADLEAF_GATEWAY_PROXYURLS_PRICING}'
+      BROADLEAF_GATEWAY_PROXYURLS_SANDBOX: '${BROADLEAF_GATEWAY_PROXYURLS_SANDBOX}'
       BROADLEAF_GATEWAY_PROXYURLS_SEARCH: '${BROADLEAF_GATEWAY_PROXYURLS_SEARCH}'
       BROADLEAF_GATEWAY_PROXYURLS_TENANT: '${BROADLEAF_GATEWAY_PROXYURLS_TENANT}'
       DEBUG_PORT: 8014
-    image: repository.broadleafcommerce.com:5001/broadleaf/commercegateway:latest-snapshot
+    image: repository.broadleafcommerce.com:5001/broadleaf/commercegateway:latest
     networks:
       - kafkanet
       - backend
@@ -142,7 +153,7 @@ services:
       REACT_APP_ENABLE_DEV_SETTINGS: 'true'
       NODE_ENV: development,
       REACT_APP_ASSET_BASE_URL: https://localhost:8447/content/
-    image: repository.broadleafcommerce.com:5001/broadleaf/commerceweb:latest-snapshot
+    image: repository.broadleafcommerce.com:5001/broadleaf/commerceweb:1.0.0-rc3.0
     networks:
       - backend
     ports:
@@ -178,7 +189,7 @@ services:
       SOLR_HOST: 'localhost:8983'
       ZK_CHROOT: /solr
       ZK_HOST: 'zk:2181'
-    image: repository.broadleafcommerce.com:5001/broadleaf-evaluation/docker-solr:microservices-starter-rc2
+    image: repository.broadleafcommerce.com:5001/broadleaf/docker-solr:8.2
     networks:
       - solrnet
       - backend
@@ -190,24 +201,11 @@ services:
       - admingateway
     environment:
       NODE_ENV: 'production'
-    # TODO adjust this to point to a broadleaf-evaluation RC3 image before cutting that release
-    image: repository.broadleafcommerce.com:5001/broadleaf/openapi-ui:latest-snapshot
+    image: repository.broadleafcommerce.com:5001/broadleaf/openapi-ui:0.1.0-rc3.0
     networks:
       - backend
     ports:
       - '3003:3003'
-    tty: true
-  postgres:
-    environment:
-      POSTGRES_DB: broadleaf
-      POSTGRES_PASSWORD: demo
-      POSTGRES_USER: broadleaf
-    image: postgres:11.2
-    networks:
-      - postgresnet
-    ports:
-      - '5432:5432'
-    restart: always
     tty: true
   zk:
     environment:
@@ -223,5 +221,5 @@ services:
 networks:
   backend:
   kafkanet:
-  postgresnet:
+  databasenet:
   solrnet:

@@ -1,0 +1,194 @@
+broadleaf:
+  database:
+    demo:
+      oracle:
+        initialize:
+          schemas: "adminnavigationschema,adminuserschema,assetschema,campaignschema,cartschema,\
+          catalogschema,customerschema,importschema,indexerschema,menuschema,metadataschema,\
+          offerschema,personalizationschema,pricingschema,sandboxschema,scheduledjobschema,\
+          searchschema,tenantschema"
+          sys-password: Oracle18
+          jdbc-url: 'jdbc:oracle:thin:system/Oracle18@localhost:31270:xe'
+  adminnavigation:
+    datasource:
+      url: 'jdbc:oracle:thin:adminnavigationschema/adminnavigationschema@localhost:31270:xe'
+      username: adminnavigationschema
+      password: adminnavigationschema
+    liquibase:
+      change-log: 'classpath:/db/changelog/adminnavigation.demo.oracle.changelog-master.yaml'
+      liquibase-schema: adminnavigationschema
+      default-schema: adminnavigationschema
+      drop-first: 'true'
+  adminuser:
+    datasource:
+      url: 'jdbc:oracle:thin:adminuserschema/adminuserschema@localhost:31270:xe'
+      username: adminuserschema
+      password: adminuserschema
+    liquibase:
+      change-log: 'classpath:/db/changelog/adminuser.demo.oracle.changelog-master.yaml'
+      liquibase-schema: adminuserschema
+      default-schema: adminuserschema
+      drop-first: 'true'
+  asset:
+    datasource:
+      url: 'jdbc:oracle:thin:assetschema/assetschema@localhost:31270:xe'
+      username: assetschema
+      password: assetschema
+    liquibase:
+      change-log: 'classpath:/db/changelog/asset.demo.oracle.changelog-master.yaml'
+      liquibase-schema: assetschema
+      default-schema: assetschema
+      drop-first: 'true'
+  campaign:
+    datasource:
+      url: 'jdbc:oracle:thin:campaignschema/campaignschema@localhost:31270:xe'
+      username: campaignschema
+      password: campaignschema
+    liquibase:
+      change-log: 'classpath:/db/changelog/campaign.demo.oracle.changelog-master.yaml'
+      liquibase-schema: campaignschema
+      default-schema: campaignschema
+      drop-first: 'true'
+  cart:
+    datasource:
+      url: 'jdbc:oracle:thin:cartschema/cartschema@localhost:31270:xe'
+      username: cartschema
+      password: cartschema
+    liquibase:
+      change-log: 'classpath:/db/changelog/cart.demo.oracle.changelog-master.yaml'
+      liquibase-schema: cartschema
+      default-schema: cartschema
+      drop-first: 'true'
+  catalog:
+    datasource:
+      url: 'jdbc:oracle:thin:catalogschema/catalogschema@localhost:31270:xe'
+      username: catalogschema
+      password: catalogschema
+    liquibase:
+      change-log: 'classpath:/db/changelog/catalog.demo.oracle.changelog-master.yaml'
+      liquibase-schema: catalogschema
+      default-schema: catalogschema
+      drop-first: 'true'
+  customer:
+    datasource:
+      url: 'jdbc:oracle:thin:customerschema/customerschema@localhost:31270:xe'
+      username: customerschema
+      password: customerschema
+    liquibase:
+      change-log: 'classpath:/db/changelog/customer.demo.oracle.changelog-master.yaml'
+      liquibase-schema: customerschema
+      default-schema: customerschema
+      drop-first: 'true'
+  dataimport:
+    datasource:
+      url: 'jdbc:oracle:thin:importschema/importschema@localhost:31270:xe'
+      username: importschema
+      password: importschema
+    liquibase:
+      change-log: 'classpath:/db/changelog/import.demo.oracle.changelog-master.yaml'
+      liquibase-schema: importschema
+      default-schema: importschema
+      drop-first: 'true'
+  indexer:
+    datasource:
+      url: 'jdbc:oracle:thin:indexerschema/indexerschema@localhost:31270:xe'
+      username: indexerschema
+      password: indexerschema
+    liquibase:
+      change-log: 'classpath:/db/changelog/indexer.demo.oracle.changelog-master.yaml'
+      liquibase-schema: indexerschema
+      default-schema: indexerschema
+      drop-first: 'true'
+  menu:
+    datasource:
+      url: 'jdbc:oracle:thin:menuschema/menuschema@localhost:31270:xe'
+      username: menuschema
+      password: menuschema
+    liquibase:
+      change-log: 'classpath:/db/changelog/menu.demo.oracle.changelog-master.yaml'
+      liquibase-schema: menuschema
+      default-schema: menuschema
+      drop-first: 'true'
+  metadata:
+    datasource:
+      url: 'jdbc:oracle:thin:metadataschema/metadataschema@localhost:31270:xe'
+      username: metadataschema
+      password: metadataschema
+    liquibase:
+      change-log: 'classpath:/db/changelog/metadata.demo.oracle.changelog-master.yaml'
+      liquibase-schema: metadataschema
+      default-schema: metadataschema
+      drop-first: 'true'
+  offer:
+    datasource:
+      url: 'jdbc:oracle:thin:offerschema/offerschema@localhost:31270:xe'
+      username: offerschema
+      password: offerschema
+    liquibase:
+      change-log: 'classpath:/db/changelog/offer.demo.oracle.changelog-master.yaml'
+      liquibase-schema: offerschema
+      default-schema: offerschema
+      drop-first: 'true'
+  personalization:
+    datasource:
+      url: 'jdbc:oracle:thin:personalizationschema/personalizationschema@localhost:31270:xe'
+      username: personalizationschema
+      password: personalizationschema
+    liquibase:
+      change-log: 'classpath:/db/changelog/personalization.demo.oracle.changelog-master.yaml'
+      liquibase-schema: personalizationschema
+      default-schema: personalizationschema
+      drop-first: 'true'
+  pricing:
+    datasource:
+      url: 'jdbc:oracle:thin:pricingschema/pricingschema@localhost:31270:xe'
+      username: pricingschema
+      password: pricingschema
+    liquibase:
+      change-log: 'classpath:/db/changelog/pricing.demo.oracle.changelog-master.yaml'
+      liquibase-schema: pricingschema
+      default-schema: pricingschema
+      drop-first: 'true'
+  sandbox:
+    datasource:
+      url: 'jdbc:oracle:thin:sandboxschema/sandboxschema@localhost:31270:xe'
+      username: sandboxschema
+      password: sandboxschema
+    liquibase:
+      change-log: 'classpath:/db/changelog/sandbox.demo.oracle.changelog-master.yaml'
+      liquibase-schema: sandboxschema
+      default-schema: sandboxschema
+      drop-first: 'true'
+  scheduledjob:
+    datasource:
+      url: 'jdbc:oracle:thin:scheduledjobschema/scheduledjobschema@localhost:31270:xe'
+      username: scheduledjobschema
+      password: scheduledjobschema
+    liquibase:
+      change-log: 'classpath:/db/changelog/scheduledjob.demo.oracle.changelog-master.yaml'
+      liquibase-schema: scheduledjobschema
+      default-schema: scheduledjobschema
+      drop-first: 'true'
+  search:
+    datasource:
+      url: 'jdbc:oracle:thin:searchschema/searchschema@localhost:31270:xe'
+      username: searchschema
+      password: searchschema
+    liquibase:
+      change-log: 'classpath:/db/changelog/search.demo.oracle.changelog-master.yaml'
+      liquibase-schema: searchschema
+      default-schema: searchschema
+      drop-first: 'true'
+  tenant:
+    datasource:
+      url: 'jdbc:oracle:thin:tenantschema/tenantschema@localhost:31270:xe'
+      username: tenantschema
+      password: tenantschema
+    liquibase:
+      change-log: 'classpath:/db/changelog/tenant.demo.oracle.changelog-master.yaml'
+      liquibase-schema: tenantschema
+      default-schema: tenantschema
+      drop-first: 'true'
+spring:
+  jpa:
+    database: oracle

@@ -1,0 +1,18 @@
+version: '3'
+services:
+  auth:
+    environment:
+      JAVA_OPTS: '-Xmx1536m -Dspring.profiles.active=default,mysql'
+      SPRING_DATASOURCE_URL: 'jdbc:mysql://database:3306/auth?createDatabaseIfNotExist=true'
+  database:
+    image: mysql:8.0.19
+    command: --lower_case_table_names=1 --sql_mode=ANSI
+    environment:
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    networks:
+      - databasenet
+    ports:
+      - '32270:3306'
+    restart: always
+    tty: true

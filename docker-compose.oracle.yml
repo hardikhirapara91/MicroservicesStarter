@@ -1,0 +1,18 @@
+version: '3'
+services:
+  auth:
+    environment:
+      JAVA_OPTS: '-Xmx1536m -Dspring.profiles.active=default,oracle'
+      SPRING_DATASOURCE_URL: 'jdbc:oracle:thin:authschema/authschema@database:1521:xe'
+      BROADLEAF_DATABASE_DEMO_ORACLE_INITIALIZE_JDBC-URL: 'jdbc:oracle:thin:system/Oracle18@database:1521:xe'
+  database:
+    image: kamiljedrzejuk/oracle18c-xe-initialized:latest
+    depends_on:
+      - localsolr
+    networks:
+      - databasenet
+    ports:
+      - '31270:1521'
+      - '31550:5500'
+    restart: always
+    tty: true

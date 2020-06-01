@@ -3,7 +3,6 @@ broadleaf:
     provider: jpa
   adminnavigation:
     datasource:
-      platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=adminnavigation'
       username: broadleaf
       password: demo
@@ -13,9 +12,9 @@ broadleaf:
       change-log: 'classpath:/db/changelog/adminnavigation.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: adminnavigation
+      drop-first: 'true'
   adminuser:
     datasource:
-      platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=adminuser'
       username: broadleaf
       password: demo
@@ -25,6 +24,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/adminuser.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: adminuser
+      drop-first: 'true'
   asset:
     internal:
       content-provider-url-prefix: 'https://localhost:8447/'
@@ -36,7 +36,6 @@ broadleaf:
           context:
             tenant-id: 5DF1363059675161A85F576D
     datasource:
-      platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=asset'
       username: broadleaf
       password: demo
@@ -48,9 +47,9 @@ broadleaf:
       change-log: 'classpath:/db/changelog/asset.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: asset
+      drop-first: 'true'
   campaign:
     datasource:
-      platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=campaign'
       username: broadleaf
       password: demo
@@ -60,19 +59,24 @@ broadleaf:
       change-log: 'classpath:/db/changelog/campaign.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: campaign
+      drop-first: 'true'
   cart:
     datasource:
-      platform: postgres
+      password: demo
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=cart'
       username: broadleaf
-      password: demo
       hikari:
         maximumPoolSize: 2
-
+      properties:
+        hibernate:
+          jdbc:
+            lob:
+              non_contextual_creation: true
     liquibase:
       change-log: 'classpath:/db/changelog/cart.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: cart
+      drop-first: 'true'
   cartoperation:
     anonymouscart:
       application-id-included-in-cookie-name: true
@@ -96,7 +100,6 @@ broadleaf:
         encoded-public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjfueooS8dVb9PV0P3bmZZFIetUXzbPFSj175aVOr+xz6fXH2SI9iG5vFlp+wBJSInGO+YV9hXFEOERwEIZM5LAJwLUPqucK5MsvxDUiO+MZmx8aJIOWCBrke9P9e6S4/cAly848J2f7OtKlyTmQj2rvZQi/6SdwlCFXHqbsO08EqbjReRsN37Lhac7rR+Djfkuhe8CJF5RQXXj+UZQIdUIGGZlgL2dyov+ppEsbOcLuHZPq2UpUHfTlWBIOaHgVAaBOH+XArHfsq4ua8yFumq7j5yy+xns/EBUp8/EL8qsVpC5Bqmkb5K18cL/tbojKt5HrQZsCWapNeBkOH/P7VPQIDAQAB
   catalog:
     datasource:
-      platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=catalog'
       username: broadleaf
       password: demo
@@ -106,6 +109,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/catalog.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: catalog
+      drop-first: 'true'
     reindex:
       startup: true
   catalogbrowse:
@@ -126,7 +130,6 @@ broadleaf:
       disabled: true
   customer:
     datasource:
-      platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=customer'
       username: broadleaf
       password: demo
@@ -136,12 +139,12 @@ broadleaf:
       change-log: 'classpath:/db/changelog/customer.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: customer
+      drop-first: 'true'
     reindex:
       startup: true
     useFullName: true
   dataimport:
     datasource:
-      platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=import'
       username: broadleaf
       password: demo
@@ -151,11 +154,11 @@ broadleaf:
       change-log: 'classpath:/db/changelog/import.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: import
+      drop-first: 'true'
   image:
     availableEffects: 'crop, resize, scale, thumbnail, unsharp'
   indexer:
     datasource:
-      platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=indexer'
       username: broadleaf
       password: demo
@@ -165,6 +168,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/indexer.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: indexer
+      drop-first: 'true'
     catalog:
       service:
         endpoint: 'https://localhost:8447'
@@ -176,7 +180,6 @@ broadleaf:
         endpoint: 'https://localhost:8447'
   menu:
     datasource:
-      platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=menu'
       username: broadleaf
       password: demo
@@ -186,9 +189,9 @@ broadleaf:
       change-log: 'classpath:/db/changelog/menu.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: menu
+      drop-first: 'true'
   metadata:
     datasource:
-      platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=metadata'
       username: broadleaf
       password: demo
@@ -198,9 +201,9 @@ broadleaf:
       change-log: 'classpath:/db/changelog/metadata.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: metadata
+      drop-first: 'true'
   offer:
     datasource:
-      platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=offer'
       username: broadleaf
       password: demo
@@ -210,6 +213,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/offer.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: offer
+      drop-first: 'true'
   payment:
     gateway:
       passthrough-transactions:
@@ -219,7 +223,6 @@ broadleaf:
       developerMode: true
   personalization:
     datasource:
-      platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=personalization'
       username: broadleaf
       password: demo
@@ -229,9 +232,9 @@ broadleaf:
       change-log: 'classpath:/db/changelog/personalization.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: personalization
+      drop-first: 'true'
   pricing:
     datasource:
-      platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=pricing'
       username: broadleaf
       password: demo
@@ -241,13 +244,13 @@ broadleaf:
       change-log: 'classpath:/db/changelog/pricing.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: pricing
+      drop-first: 'true'
   resource:
     security:
       oauth2:
         defaultAllowAllAnonymous: false
   sandbox:
     datasource:
-      platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=sandbox'
       username: broadleaf
       password: demo
@@ -257,6 +260,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/sandbox.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: sandbox
+      drop-first: 'true'
     preview:
       encoder:
         # Generated using KeyGeneratorUtil at 2048-bit strength
@@ -265,7 +269,6 @@ broadleaf:
         encoded-public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjEPV6t1FrV5DI9jNs/X9GWvx4WgVjKcnGeHkUxgCkB/ZDGC5tAolBvyZthinaxmSgWKiPJl1MSve/agr0LkfsXWgLytNis8jFFpbvW+gC4a1cNxK/2omYZMYUBPzCGKFt0QVRbfcrgCamiibhRBRUmIy5rdhpX3Abei9ZUXC4oJ35tugbu5y4QhQtvWOfXyJX3ukaSb6JO6aUzr70QlMzg21TVo3g40N476a2uesyXD1vSjcUIIAT1So7hm0fQDsk7Frdz7eAbwY3TZonlZbs9uwaFXTBnI7v5xHUYcG4pEBadKnlotLrWW34DOEHUdlwua3Pu62rP2jJEwraCZktQIDAQAB
   scheduledjob:
     datasource:
-      platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=scheduledjob'
       username: broadleaf
       password: demo
@@ -275,6 +278,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/scheduledjob.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: scheduledjob
+      drop-first: 'true'
   search:
     catalog:
       primaryAlias: catalog_alias_1
@@ -283,7 +287,6 @@ broadleaf:
       primaryAlias: customer_alias_1
       secondaryAlias: customer_alias_2
     datasource:
-      platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=search'
       username: broadleaf
       password: demo
@@ -293,6 +296,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/search.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: search
+      drop-first: 'true'
     solr:
       boost:
         phraseBoost: 3
@@ -316,7 +320,6 @@ broadleaf:
           suggestionQueryCollationTries: 1
   tenant:
     datasource:
-      platform: postgres
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=tenant'
       username: broadleaf
       password: demo
@@ -326,6 +329,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/tenant.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: tenant
+      drop-first: 'true'
     global:
       allowed-locales:
         - en_US
@@ -358,7 +362,6 @@ spring:
       enabled: false
   datasource:
     initialization-mode: never
-    platform: postgres
   jpa:
     hibernate:
       ddl-auto: none
@@ -380,6 +383,14 @@ spring:
             token-uri: 'https://localhost:8443/auth/oauth/token'
           search:
             token-uri: 'https://localhost:8443/auth/oauth/token'
+          pricing:
+            token-uri: 'https://localhost:8443/auth/oauth/token'
+          offer:
+            token-uri: 'https://localhost:8443/auth/oauth/token'
+          campaign:
+            token-uri: 'https://localhost:8443/auth/oauth/token'
+          cart:
+            token-uri: 'https://localhost:8443/auth/oauth/token'
         registration:
           catalog:
             authorization-grant-type: client_credentials
@@ -393,6 +404,22 @@ spring:
             authorization-grant-type: client_credentials
             client-id: search
             client-secret: search_secret
+          pricing:
+            authorization-grant-type: client_credentials
+            client-id: pricing
+            client-secret: pricing_secret
+          offer:
+            authorization-grant-type: client_credentials
+            client-id: offer
+            client-secret: offer_secret
+          campaign:
+            authorization-grant-type: client_credentials
+            client-id: campaign
+            client-secret: campaign_secret
+          cart:
+            authorization-grant-type: client_credentials
+            client-id: cart
+            client-secret: cart_secret
   servlet:
     multipart:
       max-file-size: 1MB
@@ -400,3 +427,8 @@ spring:
       resolve-lazily: true
   thymeleaf:
     cache: false
+logging:
+  level:
+    org:
+      apache:
+        kafka: WARN
