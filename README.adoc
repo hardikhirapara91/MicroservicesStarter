@@ -184,25 +184,6 @@ and started from the command line by navigating to the root of this project and 
 docker-compose up -d
 ----
 +
-and you should see the following output in your console:
-+
-[source,shell script]
-----
-Creating network "microservicesstarter_postgresnet" with the default driver
-Creating network "microservicesstarter_kafkanet" with the default driver
-Creating network "microservicesstarter_solrnet" with the default driver
-Creating network "microservicesstarter_backend" with the default driver
-Creating microservicesstarter_zk_1       ... done
-Creating microservicesstarter_postgres_1 ... done
-Creating microservicesstarter_localkafka_1 ... done
-Creating microservicesstarter_localsolr_1       ... done
-Creating microservicesstarter_commercegateway_1 ... done
-Creating microservicesstarter_admingateway_1    ... done
-Creating microservicesstarter_auth_1            ... done
-Creating microservicesstarter_adminweb_1        ... done
-Creating microservicesstarter_commerceweb_1     ... done
-----
-+
 The above command starts the creation process of all the supporting services.
 We've also included a script to "tail" all the relevant containers and verify successful startup.
 Execute the following from the command line:
@@ -455,35 +436,7 @@ When you finish, you can check your results against the code in `MicroservicesTu
 - By default, one of the supporting services defined in this project is a Postgres DB.
 For this project, each individual service is configured to point to the same Postgres instance 
 with a unique schema. The default schemas that correspond to each service can be found in 
-`application-default.yml`
-
-[[faq-where-data-go]]
-=== Why did my data get wiped after a restart of the services?
-
-- By default, this project is configured to utilize the spring boot liquibase property `drop-first`
-in order to ease initial evaluation purposes and support rapid evaluation changes.
-
-[TIP]
-====
-More details on `spring.liquibase.drop-first` can be found here: https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#data-migration-properties
-====
-
-The backend API has it defined for each service in `application-default.yml`
-[source,yaml]
-----
-broadleaf:
-  service_abc:
-    liquibase:
-      drop-first: 'true'
-----
-
-The `auth` supporting service docker image passes in the environment property:
-[source,yaml]
-----
-auth:
-  environment:
-    SPRING_LIQUIBASE_DROPFIRST: 'true'
-----
+`application-default.yml` (or the corresponding RDBMS platform config)
 
 
 [[faq-where-data-from]]
@@ -492,7 +445,7 @@ auth:
 - All of the Broadleaf services come with a set of default demo data provided via a
 liquibase demo changelog file. The seed data scripts are
 contained within each of the individual services dependency `.jar` and are loaded via a property
-configured in `application-default.yml`
+configured in `application-default.yml` (or the corresponding RDBMS platform config)
 
 [source,yaml]
 ----

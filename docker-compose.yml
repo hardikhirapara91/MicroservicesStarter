@@ -88,7 +88,6 @@ services:
       BROADLEAF_AUTH_DATA_LOAD_REGISTERPREDEFINEDOPENAPICLIENT: 'true'
       DEBUG_PORT: 8000
       SPRING_DATASOURCE_URL: 'jdbc:postgresql://database:5432/broadleaf?currentSchema=auth'
-      SPRING_LIQUIBASE_DROPFIRST: 'true'
     image: repository.broadleafcommerce.com:5001/broadleaf-demo/authenticationservice:microservices-starter-rc3
     networks:
       - kafkanet

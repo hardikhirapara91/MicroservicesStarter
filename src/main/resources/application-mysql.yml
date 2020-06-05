@@ -8,7 +8,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/adminnavigation.demo.mysql.changelog-master.yaml'
       liquibase-schema: adminnavigation
       default-schema: adminnavigation
-      drop-first: 'true'
+      drop-first: 'false'
   adminuser:
     datasource:
       url: 'jdbc:mysql://localhost:32270/adminuser?createDatabaseIfNotExist=true'
@@ -18,7 +18,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/adminuser.demo.mysql.changelog-master.yaml'
       liquibase-schema: adminuser
       default-schema: adminuser
-      drop-first: 'true'
+      drop-first: 'false'
   asset:
     datasource:
       url: 'jdbc:mysql://localhost:32270/asset?createDatabaseIfNotExist=true'
@@ -28,7 +28,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/asset.demo.mysql.changelog-master.yaml'
       liquibase-schema: asset
       default-schema: asset
-      drop-first: 'true'
+      drop-first: 'false'
   campaign:
     datasource:
       url: 'jdbc:mysql://localhost:32270/campaign?createDatabaseIfNotExist=true'
@@ -38,7 +38,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/campaign.demo.mysql.changelog-master.yaml'
       liquibase-schema: campaign
       default-schema: campaign
-      drop-first: 'true'
+      drop-first: 'false'
   cart:
     datasource:
       url: 'jdbc:mysql://localhost:32270/cart?createDatabaseIfNotExist=true'
@@ -48,7 +48,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/cart.demo.mysql.changelog-master.yaml'
       liquibase-schema: cart
       default-schema: cart
-      drop-first: 'true'
+      drop-first: 'false'
   catalog:
     datasource:
       url: 'jdbc:mysql://localhost:32270/catalog?createDatabaseIfNotExist=true'
@@ -58,7 +58,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/catalog.demo.mysql.changelog-master.yaml'
       liquibase-schema: catalog
       default-schema: catalog
-      drop-first: 'true'
+      drop-first: 'false'
   customer:
     datasource:
       url: 'jdbc:mysql://localhost:32270/customer?createDatabaseIfNotExist=true'
@@ -68,7 +68,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/customer.demo.mysql.changelog-master.yaml'
       liquibase-schema: customer
       default-schema: customer
-      drop-first: 'true'
+      drop-first: 'false'
   dataimport:
     datasource:
       url: 'jdbc:mysql://localhost:32270/import?createDatabaseIfNotExist=true'
@@ -78,7 +78,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/import.demo.mysql.changelog-master.yaml'
       liquibase-schema: import
       default-schema: import
-      drop-first: 'true'
+      drop-first: 'false'
   indexer:
     datasource:
       url: 'jdbc:mysql://localhost:32270/indexer?createDatabaseIfNotExist=true'
@@ -88,7 +88,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/indexer.demo.mysql.changelog-master.yaml'
       liquibase-schema: indexer
       default-schema: indexer
-      drop-first: 'true'
+      drop-first: 'false'
   menu:
     datasource:
       url: 'jdbc:mysql://localhost:32270/menu?createDatabaseIfNotExist=true'
@@ -98,7 +98,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/menu.demo.mysql.changelog-master.yaml'
       liquibase-schema: menu
       default-schema: menu
-      drop-first: 'true'
+      drop-first: 'false'
   metadata:
     datasource:
       url: 'jdbc:mysql://localhost:32270/metadata?createDatabaseIfNotExist=true'
@@ -108,7 +108,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/metadata.demo.mysql.changelog-master.yaml'
       liquibase-schema: metadata
       default-schema: metadata
-      drop-first: 'true'
+      drop-first: 'false'
   offer:
     datasource:
       url: 'jdbc:mysql://localhost:32270/offer?createDatabaseIfNotExist=true'
@@ -118,7 +118,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/offer.demo.mysql.changelog-master.yaml'
       liquibase-schema: offer
       default-schema: offer
-      drop-first: 'true'
+      drop-first: 'false'
   personalization:
     datasource:
       url: 'jdbc:mysql://localhost:32270/personalization?createDatabaseIfNotExist=true'
@@ -128,7 +128,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/personalization.demo.mysql.changelog-master.yaml'
       liquibase-schema: personalization
       default-schema: personalization
-      drop-first: 'true'
+      drop-first: 'false'
   pricing:
     datasource:
       url: 'jdbc:mysql://localhost:32270/pricing?createDatabaseIfNotExist=true'
@@ -138,7 +138,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/pricing.demo.mysql.changelog-master.yaml'
       liquibase-schema: pricing
       default-schema: pricing
-      drop-first: 'true'
+      drop-first: 'false'
   sandbox:
     datasource:
       url: 'jdbc:mysql://localhost:32270/sandbox?createDatabaseIfNotExist=true'
@@ -148,7 +148,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/sandbox.demo.mysql.changelog-master.yaml'
       liquibase-schema: sandbox
       default-schema: sandbox
-      drop-first: 'true'
+      drop-first: 'false'
   scheduledjob:
     datasource:
       url: 'jdbc:mysql://localhost:32270/scheduledjob?createDatabaseIfNotExist=true'
@@ -158,7 +158,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/scheduledjob.demo.mysql.changelog-master.yaml'
       liquibase-schema: scheduledjob
       default-schema: scheduledjob
-      drop-first: 'true'
+      drop-first: 'false'
   search:
     datasource:
       url: 'jdbc:mysql://localhost:32270/search?createDatabaseIfNotExist=true'
@@ -168,7 +168,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/search.demo.mysql.changelog-master.yaml'
       liquibase-schema: search
       default-schema: search
-      drop-first: 'true'
+      drop-first: 'false'
   tenant:
     datasource:
       url: 'jdbc:mysql://localhost:32270/tenant?createDatabaseIfNotExist=true'
@@ -178,7 +178,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/tenant.demo.mysql.changelog-master.yaml'
       liquibase-schema: tenant
       default-schema: tenant
-      drop-first: 'true'
+      drop-first: 'false'
 spring:
   jpa:
     database: mysql

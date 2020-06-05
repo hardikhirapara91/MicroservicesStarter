@@ -12,7 +12,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/adminnavigation.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: adminnavigation
-      drop-first: 'true'
+      drop-first: 'false'
   adminuser:
     datasource:
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=adminuser'
@@ -24,7 +24,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/adminuser.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: adminuser
-      drop-first: 'true'
+      drop-first: 'false'
   asset:
     internal:
       content-provider-url-prefix: 'https://localhost:8447/'
@@ -47,7 +47,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/asset.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: asset
-      drop-first: 'true'
+      drop-first: 'false'
   campaign:
     datasource:
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=campaign'
@@ -59,7 +59,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/campaign.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: campaign
-      drop-first: 'true'
+      drop-first: 'false'
   cart:
     datasource:
       password: demo
@@ -76,7 +76,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/cart.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: cart
-      drop-first: 'true'
+      drop-first: 'false'
   cartoperation:
     anonymouscart:
       application-id-included-in-cookie-name: true
@@ -109,7 +109,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/catalog.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: catalog
-      drop-first: 'true'
+      drop-first: 'false'
     reindex:
       startup: true
   catalogbrowse:
@@ -139,7 +139,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/customer.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: customer
-      drop-first: 'true'
+      drop-first: 'false'
     reindex:
       startup: true
     useFullName: true
@@ -154,7 +154,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/import.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: import
-      drop-first: 'true'
+      drop-first: 'false'
   image:
     availableEffects: 'crop, resize, scale, thumbnail, unsharp'
   indexer:
@@ -168,7 +168,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/indexer.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: indexer
-      drop-first: 'true'
+      drop-first: 'false'
     catalog:
       service:
         endpoint: 'https://localhost:8447'
@@ -189,7 +189,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/menu.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: menu
-      drop-first: 'true'
+      drop-first: 'false'
   metadata:
     datasource:
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=metadata'
@@ -201,7 +201,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/metadata.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: metadata
-      drop-first: 'true'
+      drop-first: 'false'
   offer:
     datasource:
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=offer'
@@ -213,7 +213,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/offer.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: offer
-      drop-first: 'true'
+      drop-first: 'false'
   payment:
     gateway:
       passthrough-transactions:
@@ -232,7 +232,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/personalization.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: personalization
-      drop-first: 'true'
+      drop-first: 'false'
   pricing:
     datasource:
       url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=pricing'
@@ -244,7 +244,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/pricing.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: pricing
-      drop-first: 'true'
+      drop-first: 'false'
   resource:
     security:
       oauth2:
@@ -260,7 +260,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/sandbox.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: sandbox
-      drop-first: 'true'
+      drop-first: 'false'
     preview:
       encoder:
         # Generated using KeyGeneratorUtil at 2048-bit strength
@@ -278,7 +278,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/scheduledjob.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: scheduledjob
-      drop-first: 'true'
+      drop-first: 'false'
   search:
     catalog:
       primaryAlias: catalog_alias_1
@@ -296,7 +296,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/search.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: search
-      drop-first: 'true'
+      drop-first: 'false'
     solr:
       boost:
         phraseBoost: 3
@@ -329,7 +329,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/tenant.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: tenant
-      drop-first: 'true'
+      drop-first: 'false'
     global:
       allowed-locales:
         - en_US

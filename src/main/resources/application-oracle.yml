@@ -18,7 +18,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/adminnavigation.demo.oracle.changelog-master.yaml'
       liquibase-schema: adminnavigationschema
       default-schema: adminnavigationschema
-      drop-first: 'true'
+      drop-first: 'false'
   adminuser:
     datasource:
       url: 'jdbc:oracle:thin:adminuserschema/adminuserschema@localhost:31270:xe'
@@ -28,7 +28,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/adminuser.demo.oracle.changelog-master.yaml'
       liquibase-schema: adminuserschema
       default-schema: adminuserschema
-      drop-first: 'true'
+      drop-first: 'false'
   asset:
     datasource:
       url: 'jdbc:oracle:thin:assetschema/assetschema@localhost:31270:xe'
@@ -38,7 +38,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/asset.demo.oracle.changelog-master.yaml'
       liquibase-schema: assetschema
       default-schema: assetschema
-      drop-first: 'true'
+      drop-first: 'false'
   campaign:
     datasource:
       url: 'jdbc:oracle:thin:campaignschema/campaignschema@localhost:31270:xe'
@@ -48,7 +48,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/campaign.demo.oracle.changelog-master.yaml'
       liquibase-schema: campaignschema
       default-schema: campaignschema
-      drop-first: 'true'
+      drop-first: 'false'
   cart:
     datasource:
       url: 'jdbc:oracle:thin:cartschema/cartschema@localhost:31270:xe'
@@ -58,7 +58,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/cart.demo.oracle.changelog-master.yaml'
       liquibase-schema: cartschema
       default-schema: cartschema
-      drop-first: 'true'
+      drop-first: 'false'
   catalog:
     datasource:
       url: 'jdbc:oracle:thin:catalogschema/catalogschema@localhost:31270:xe'
@@ -68,7 +68,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/catalog.demo.oracle.changelog-master.yaml'
       liquibase-schema: catalogschema
       default-schema: catalogschema
-      drop-first: 'true'
+      drop-first: 'false'
   customer:
     datasource:
       url: 'jdbc:oracle:thin:customerschema/customerschema@localhost:31270:xe'
@@ -78,7 +78,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/customer.demo.oracle.changelog-master.yaml'
       liquibase-schema: customerschema
       default-schema: customerschema
-      drop-first: 'true'
+      drop-first: 'false'
   dataimport:
     datasource:
       url: 'jdbc:oracle:thin:importschema/importschema@localhost:31270:xe'
@@ -88,7 +88,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/import.demo.oracle.changelog-master.yaml'
       liquibase-schema: importschema
       default-schema: importschema
-      drop-first: 'true'
+      drop-first: 'false'
   indexer:
     datasource:
       url: 'jdbc:oracle:thin:indexerschema/indexerschema@localhost:31270:xe'
@@ -98,7 +98,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/indexer.demo.oracle.changelog-master.yaml'
       liquibase-schema: indexerschema
       default-schema: indexerschema
-      drop-first: 'true'
+      drop-first: 'false'
   menu:
     datasource:
       url: 'jdbc:oracle:thin:menuschema/menuschema@localhost:31270:xe'
@@ -108,7 +108,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/menu.demo.oracle.changelog-master.yaml'
       liquibase-schema: menuschema
       default-schema: menuschema
-      drop-first: 'true'
+      drop-first: 'false'
   metadata:
     datasource:
       url: 'jdbc:oracle:thin:metadataschema/metadataschema@localhost:31270:xe'
@@ -118,7 +118,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/metadata.demo.oracle.changelog-master.yaml'
       liquibase-schema: metadataschema
       default-schema: metadataschema
-      drop-first: 'true'
+      drop-first: 'false'
   offer:
     datasource:
       url: 'jdbc:oracle:thin:offerschema/offerschema@localhost:31270:xe'
@@ -128,7 +128,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/offer.demo.oracle.changelog-master.yaml'
       liquibase-schema: offerschema
       default-schema: offerschema
-      drop-first: 'true'
+      drop-first: 'false'
   personalization:
     datasource:
       url: 'jdbc:oracle:thin:personalizationschema/personalizationschema@localhost:31270:xe'
@@ -138,7 +138,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/personalization.demo.oracle.changelog-master.yaml'
       liquibase-schema: personalizationschema
       default-schema: personalizationschema
-      drop-first: 'true'
+      drop-first: 'false'
   pricing:
     datasource:
       url: 'jdbc:oracle:thin:pricingschema/pricingschema@localhost:31270:xe'
@@ -148,7 +148,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/pricing.demo.oracle.changelog-master.yaml'
       liquibase-schema: pricingschema
       default-schema: pricingschema
-      drop-first: 'true'
+      drop-first: 'false'
   sandbox:
     datasource:
       url: 'jdbc:oracle:thin:sandboxschema/sandboxschema@localhost:31270:xe'
@@ -158,7 +158,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/sandbox.demo.oracle.changelog-master.yaml'
       liquibase-schema: sandboxschema
       default-schema: sandboxschema
-      drop-first: 'true'
+      drop-first: 'false'
   scheduledjob:
     datasource:
       url: 'jdbc:oracle:thin:scheduledjobschema/scheduledjobschema@localhost:31270:xe'
@@ -168,7 +168,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/scheduledjob.demo.oracle.changelog-master.yaml'
       liquibase-schema: scheduledjobschema
       default-schema: scheduledjobschema
-      drop-first: 'true'
+      drop-first: 'false'
   search:
     datasource:
       url: 'jdbc:oracle:thin:searchschema/searchschema@localhost:31270:xe'
@@ -178,7 +178,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/search.demo.oracle.changelog-master.yaml'
       liquibase-schema: searchschema
       default-schema: searchschema
-      drop-first: 'true'
+      drop-first: 'false'
   tenant:
     datasource:
       url: 'jdbc:oracle:thin:tenantschema/tenantschema@localhost:31270:xe'
@@ -188,7 +188,7 @@ broadleaf:
       change-log: 'classpath:/db/changelog/tenant.demo.oracle.changelog-master.yaml'
       liquibase-schema: tenantschema
       default-schema: tenantschema
-      drop-first: 'true'
+      drop-first: 'false'
 spring:
   jpa:
     database: oracle
