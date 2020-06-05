@@ -188,7 +188,7 @@ services:
       SOLR_HOST: 'localhost:8983'
       ZK_CHROOT: /solr
       ZK_HOST: 'zk:2181'
-    image: repository.broadleafcommerce.com:5001/broadleaf/docker-solr:8.2
+    image: repository.broadleafcommerce.com:5001/broadleaf-evaluation/docker-solr:microservices-starter-rc3
     networks:
       - solrnet
       - backend
