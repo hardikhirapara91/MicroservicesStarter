@@ -629,3 +629,8 @@ If you're running an older versions of java (e.g. below 1.8u101) you may run int
 ----
 
 This is because the Broadleaf Repository has an SSL cert provided by Let's Encrypt. It's easiest to upgrade your java version to one's that have Let's Encrypt as a certified authority. See here for more details: https://stackoverflow.com/questions/34110426/does-java-support-lets-encrypt-certificates
+
+[[faq-app-failed-to-start]]
+=== I'm unable to start the app due to a Solr or Postgres Connection Failure
+
+Double check you have given Docker enough resources as described in the Docker section above. The supporting services may fail to start up or may fail to connect if not given enough resources.
