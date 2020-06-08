@@ -410,8 +410,7 @@ that change into production.
 Now that you have the project running and have a high level understanding of how to build
 and use it, the next step would be to walk through some typical customizations.
 
-You can reference the following tutorial project and guide as you apply the same customization steps
-to this project.
+You can follow the customization steps outlined in the following tutorial project:
 
 - https://github.com/BroadleafCommerce/MicroservicesTutorial/tree/develop/ms-tutorial-extension-complete[Customization & Extension Guide]
 
@@ -507,7 +506,7 @@ for Kafka (Community Version)
 |`openapi-ui`
 |Broadleaf Open API Specs and Swagger UI
 
-|`postgres`
+|`database` (default Postgres)
 |Official Postgres 11.2 https://hub.docker.com/_/postgres[Docker Image]
 
 |`zk`
@@ -535,8 +534,8 @@ This project will attempt to utilize the following ports:
 |`commerceweb`
 | 4000
 
-|`postgres`
-| 5432
+|`database`
+| 5432 (default postgres)
 
 |`localkafka`
 | 9092, 7777 [JMX]
