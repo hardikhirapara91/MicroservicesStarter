@@ -1,4 +1,4 @@
-FROM repository.broadleafcommerce.com:5001/broadleaf/boot-service-jdk8
+FROM repository.broadleafcommerce.com:5001/broadleaf/boot-service-jdk11
 ARG JAR_FILE
 ADD ${JAR_FILE} app.jar
 

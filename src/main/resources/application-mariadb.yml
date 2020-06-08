@@ -1,0 +1,186 @@
+broadleaf:
+  adminnavigation:
+    datasource:
+      url: 'jdbc:mariadb://localhost:33270/adminnavigation?createDatabaseIfNotExist=true'
+      username: root
+      password:
+    liquibase:
+      change-log: 'classpath:/db/changelog/adminnavigation.demo.mariadb.changelog-master.yaml'
+      liquibase-schema: adminnavigation
+      default-schema: adminnavigation
+      drop-first: 'false'
+  adminuser:
+    datasource:
+      url: 'jdbc:mariadb://localhost:33270/adminuser?createDatabaseIfNotExist=true'
+      username: root
+      password:
+    liquibase:
+      change-log: 'classpath:/db/changelog/adminuser.demo.mariadb.changelog-master.yaml'
+      liquibase-schema: adminuser
+      default-schema: adminuser
+      drop-first: 'false'
+  asset:
+    datasource:
+      url: 'jdbc:mariadb://localhost:33270/asset?createDatabaseIfNotExist=true'
+      username: root
+      password:
+    liquibase:
+      change-log: 'classpath:/db/changelog/asset.demo.mariadb.changelog-master.yaml'
+      liquibase-schema: asset
+      default-schema: asset
+      drop-first: 'false'
+  campaign:
+    datasource:
+      url: 'jdbc:mariadb://localhost:33270/campaign?createDatabaseIfNotExist=true'
+      username: root
+      password:
+    liquibase:
+      change-log: 'classpath:/db/changelog/campaign.demo.mariadb.changelog-master.yaml'
+      liquibase-schema: campaign
+      default-schema: campaign
+      drop-first: 'false'
+  cart:
+    datasource:
+      url: 'jdbc:mariadb://localhost:33270/cart?createDatabaseIfNotExist=true'
+      username: root
+      password:
+    liquibase:
+      change-log: 'classpath:/db/changelog/cart.demo.mariadb.changelog-master.yaml'
+      liquibase-schema: cart
+      default-schema: cart
+      drop-first: 'false'
+  catalog:
+    datasource:
+      url: 'jdbc:mariadb://localhost:33270/catalog?createDatabaseIfNotExist=true'
+      username: root
+      password:
+    liquibase:
+      change-log: 'classpath:/db/changelog/catalog.demo.mariadb.changelog-master.yaml'
+      liquibase-schema: catalog
+      default-schema: catalog
+      drop-first: 'false'
+  customer:
+    datasource:
+      url: 'jdbc:mariadb://localhost:33270/customer?createDatabaseIfNotExist=true'
+      username: root
+      password:
+    liquibase:
+      change-log: 'classpath:/db/changelog/customer.demo.mariadb.changelog-master.yaml'
+      liquibase-schema: customer
+      default-schema: customer
+      drop-first: 'false'
+  dataimport:
+    datasource:
+      url: 'jdbc:mariadb://localhost:33270/import?createDatabaseIfNotExist=true'
+      username: root
+      password:
+    liquibase:
+      change-log: 'classpath:/db/changelog/import.demo.mariadb.changelog-master.yaml'
+      liquibase-schema: import
+      default-schema: import
+      drop-first: 'false'
+  indexer:
+    datasource:
+      url: 'jdbc:mariadb://localhost:33270/indexer?createDatabaseIfNotExist=true'
+      username: root
+      password:
+    liquibase:
+      change-log: 'classpath:/db/changelog/indexer.demo.mariadb.changelog-master.yaml'
+      liquibase-schema: indexer
+      default-schema: indexer
+      drop-first: 'false'
+  menu:
+    datasource:
+      url: 'jdbc:mariadb://localhost:33270/menu?createDatabaseIfNotExist=true'
+      username: root
+      password:
+    liquibase:
+      change-log: 'classpath:/db/changelog/menu.demo.mariadb.changelog-master.yaml'
+      liquibase-schema: menu
+      default-schema: menu
+      drop-first: 'false'
+  metadata:
+    datasource:
+      url: 'jdbc:mariadb://localhost:33270/metadata?createDatabaseIfNotExist=true'
+      username: root
+      password:
+    liquibase:
+      change-log: 'classpath:/db/changelog/metadata.demo.mariadb.changelog-master.yaml'
+      liquibase-schema: metadata
+      default-schema: metadata
+      drop-first: 'false'
+  offer:
+    datasource:
+      url: 'jdbc:mariadb://localhost:33270/offer?createDatabaseIfNotExist=true'
+      username: root
+      password:
+    liquibase:
+      change-log: 'classpath:/db/changelog/offer.demo.mariadb.changelog-master.yaml'
+      liquibase-schema: offer
+      default-schema: offer
+      drop-first: 'false'
+  personalization:
+    datasource:
+      url: 'jdbc:mariadb://localhost:33270/personalization?createDatabaseIfNotExist=true'
+      username: root
+      password:
+    liquibase:
+      change-log: 'classpath:/db/changelog/personalization.demo.mariadb.changelog-master.yaml'
+      liquibase-schema: personalization
+      default-schema: personalization
+      drop-first: 'false'
+  pricing:
+    datasource:
+      url: 'jdbc:mariadb://localhost:33270/pricing?createDatabaseIfNotExist=true'
+      username: root
+      password:
+    liquibase:
+      change-log: 'classpath:/db/changelog/pricing.demo.mariadb.changelog-master.yaml'
+      liquibase-schema: pricing
+      default-schema: pricing
+      drop-first: 'false'
+  sandbox:
+    datasource:
+      url: 'jdbc:mariadb://localhost:33270/sandbox?createDatabaseIfNotExist=true'
+      username: root
+      password:
+    liquibase:
+      change-log: 'classpath:/db/changelog/sandbox.demo.mariadb.changelog-master.yaml'
+      liquibase-schema: sandbox
+      default-schema: sandbox
+      drop-first: 'false'
+  scheduledjob:
+    datasource:
+      url: 'jdbc:mariadb://localhost:33270/scheduledjob?createDatabaseIfNotExist=true'
+      username: root
+      password:
+    liquibase:
+      change-log: 'classpath:/db/changelog/scheduledjob.demo.mariadb.changelog-master.yaml'
+      liquibase-schema: scheduledjob
+      default-schema: scheduledjob
+      drop-first: 'false'
+  search:
+    datasource:
+      url: 'jdbc:mariadb://localhost:33270/search?createDatabaseIfNotExist=true'
+      username: root
+      password:
+    liquibase:
+      change-log: 'classpath:/db/changelog/search.demo.mariadb.changelog-master.yaml'
+      liquibase-schema: search
+      default-schema: search
+      drop-first: 'false'
+  tenant:
+    datasource:
+      url: 'jdbc:mariadb://localhost:33270/tenant?createDatabaseIfNotExist=true'
+      username: root
+      password:
+    liquibase:
+      change-log: 'classpath:/db/changelog/tenant.demo.mariadb.changelog-master.yaml'
+      liquibase-schema: tenant
+      default-schema: tenant
+      drop-first: 'false'
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDB103Dialect

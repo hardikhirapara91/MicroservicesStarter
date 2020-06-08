@@ -1,4 +1,4 @@
-:blc_ms_version: 0.11.0-SNAPSHOT
+:blc_ms_version: 1.0.0-RC3
 :toc:
 :toc-placement!:
 :icons: font
@@ -181,43 +181,44 @@ and started from the command line by navigating to the root of this project and 
 +
 [source,shell script]
 ----
-docker-compose up -d
+docker-compose up -d && ./check-services-status.sh
 ----
 +
-and you should see the following output in your console:
-+
+[NOTE]
+====
+The above command starts the creation process of all the supporting services using `docker-compose`.
+We've also included a script to "tail" all the relevant containers and verify successful startup.
+
 [source,shell script]
 ----
-Creating network "microservicesstarter_postgresnet" with the default driver
-Creating network "microservicesstarter_kafkanet" with the default driver
-Creating network "microservicesstarter_solrnet" with the default driver
-Creating network "microservicesstarter_backend" with the default driver
-Creating microservicesstarter_zk_1       ... done
-Creating microservicesstarter_postgres_1 ... done
-Creating microservicesstarter_localkafka_1 ... done
-Creating microservicesstarter_localsolr_1       ... done
-Creating microservicesstarter_commercegateway_1 ... done
-Creating microservicesstarter_admingateway_1    ... done
-Creating microservicesstarter_auth_1            ... done
-Creating microservicesstarter_adminweb_1        ... done
-Creating microservicesstarter_commerceweb_1     ... done
+./check-services-status.sh
 ----
-+
-++++
-<p align="center">
-    <img src="images/MS_Docker_Dashboard.png" alt="Docker Dashboard Example" width="350">
-</p>
-++++
-+
-[TIP]
-====
-If you are using one of the latest versions of *Docker Dashboard*, you can
-verify that all the supporting services are running and have started up completely as the image
-shown above.
 
-You can also run `docker ps` from the command line to view running processes. It's also useful to
-tail the logs e.g. `docker-compose logs -f auth` to verify that the startup process has completed
-for the relevant service
+This shell script will wait (for a period of time) to verify that all supporting services have
+started up before exiting and should produce something like below when everything is up and running:
+
+[source,shell script]
+----
+zk - Container Started
+openapi-ui - Container Started
+auth - Container Started
+commercegateway - Container Started
+admingateway - Container Started
+commerceweb - Container Started
+adminweb - Container Started
+localsolr - Container Started
+database - Container Started
+localkafka - Container Started
+adminweb - Service Ready
+openapi-ui - Service Ready
+commerceweb - Service Ready
+localsolr - Service Ready
+zk - Service Ready
+auth - Service Ready
+commercegateway - Service Ready
+admingateway - Service Ready
+localkafka - Service Ready
+----
 ====
 
 === Running Backend APIs
@@ -244,7 +245,7 @@ If you are running into issues running via the maven spring-boot plugin on Windo
 
 [source,shell script]
 ----
-java -jar -DzkACLProvider=org.apache.solr.common.cloud.VMParamsAllAndReadonlyDigestZkACLProvider -DzkCredentialsProvider=org.apache.solr.common.cloud.VMParamsSingleSetCredentialsDigestZkCredentialsProvider -DzkDigestUsername=readonly-user -DzkDigestPassword=CHANGEME-READONLY-PASSWORD -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8004 target/ms-tutorial-getting-started.jar
+java -jar -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8004 target/ms-tutorial-getting-started.jar
 ----
 ====
 
@@ -287,21 +288,12 @@ You'll also want to enable insecure localhost by visiting: chrome://flags/#allow
 Remember to shutdown your docker services when finished in order to free up resources i.e. `docker-compose down`
 ====
 
-==== Viewing OpenAPI Specs & Testing Endpoints `[Alternative]`
+===== Viewing OpenAPI Specs & Testing Endpoints
 
 During local development or evaluation, you may find it beneficial to view API documentation
 around exposed services within the project. To facilitate this, we've provided a supporting
 docker image that will run in the background that includes our Open API specs for some of the
 core framework services along with a Swagger UI that allows users to "Try Out" various endpoints.
-
-To access this, you'll want to start up the backend services using the
-following command (instead of the simple `mvn spring-boot:run` command outlined above)
-so that you don't have to worry about getting a valid JWT authentication token every time:
-
-[source,shell script]
-----
-mvn spring-boot:run -Pnosec
-----
 
 Next, you can visit the Open API UI by visiting:
 
@@ -327,6 +319,27 @@ Be sure to "Try Out" a few endpoints as the specs do define example payloads tha
 valid data given the test seed data loaded for this project
 ====
 
+==== Starting Up With Other RDBMS Platforms `[Alternative]`
+By default, the supporting services and demo application startup with support for Postgres. However,
+the demo is designed to also support Oracle, MySql, and MariaDB. To switch to one of the other
+platforms, you should do the following:
+
+1. Instead of the standard docker-compose startup command, use a specialized version that includes
+the compose file targeting your platform
++
+[source,console]
+----
+docker-compose -f docker-compose.yml -f docker-compose.mysql.yml up -d
+----
++
+2. Instead of the standard spring boot run startup command, use a specialized version that includes
+the profile targeting your platform
++
+[source,console]
+----
+mvn spring-boot:run -Dspring.profiles.active=default,mysql
+----
+
 ==== Testing Endpoints Directly using cURL `[Alternative]`
 
 Another alternative evaluation flow or local development flow may include being able to easily hit
@@ -345,34 +358,6 @@ Once you have the services running, you should be able to issue a `cURL` request
 [source,shell script]
 ----
 curl --insecure -X GET "https://localhost:8447/products?offset=0&forward=true&pageSize=50" -H "accept: application/json" -H "X-Context-Request: {\"tenantId\":\"5DF1363059675161A85F576D\",\"catalogId\":\"3\"}"
-----
-
-==== Containerize Backend Services `[Alternative]`
-
-Instead of running the backend APIs using `mvn spring-boot:run` you may wish to manage and run
-everything via containers. In this case, we've provided several config files to help facilitate
-this setup.
-
-1. You'll first want to build the project and then create the docker image
-+
-[source, shell script]
-----
-mvn clean install
-----
-+
-[source, shell script]
-----
-mvn clean package -am -pl . -Pdocker -Ddockerfile.tag=latest-snapshot
-----
-+
-2. The above commands will produce a docker image with the name
-`repository.broadleafcommerce.com:5001/broadleaf-evaluation/tutorial-getting-started:latest-snapshot`
-+
-3. You can now start up the whole project using the following `docker-compose` files
-+
-[source, shell script]
-----
-docker-compose -f docker-compose.yml -f docker-compose.tgs.yml up -d
 ----
 
 == Project Structure Overview
@@ -413,16 +398,11 @@ want to try:
 - As the "Master" admin user, try switching between different applications using the site selector
 in the left hand navigation. Once you are working in a particular context (e.g. Heat Clinic), you
 can start modifying and editing items which you can then deploy to the corresponding storefront.
-- Modifing an existing product in the admin, saving those changes, and then promoting and deploying
+- Modifying an existing product in the admin, saving those changes, and then promoting and deploying
 that change into production.
 - Creating a new offer that targets a specific SKU or Variant
 - Try logging in as a different admin user to view the experience for someone with limited roles and permission:
 * Username: `readonly@test.com`
-* Password: `Pass1word!`
-- Try logging into the `Heat Clinic` storefront as the below user. Notice that when adding items to
-your cart, this customer automatically qualifies for "10% Off Order" based on a promotion that
-has been set up.
-* User: `heatcliniccustomer@customer.com`
 * Password: `Pass1word!`
 
 
@@ -430,8 +410,7 @@ has been set up.
 Now that you have the project running and have a high level understanding of how to build
 and use it, the next step would be to walk through some typical customizations.
 
-You can reference the following tutorial project and guide as you apply the same customization steps
-to this project.
+You can follow the customization steps outlined in the following tutorial project:
 
 - https://github.com/BroadleafCommerce/MicroservicesTutorial/tree/develop/ms-tutorial-extension-complete[Customization & Extension Guide]
 
@@ -456,42 +435,26 @@ When you finish, you can check your results against the code in `MicroservicesTu
 [[faq-where-data-stored]]
 === Where is the data for these services stored?
 
-- One of the supporting services defined in this project is a Postgres DB. 
+- By default, one of the supporting services defined in this project is a Postgres DB.
 For this project, each individual service is configured to point to the same Postgres instance 
 with a unique schema. The default schemas that correspond to each service can be found in 
-`application-default.yml`
+`application-default.yml` (or the corresponding RDBMS platform config)
 
-[[faq-where-data-go]]
-=== Why did my data get wiped after a restart of the services?
-
-- By default, the project is configured to drop all tables and re-run import scripts on startup 
-in the `default` runtime environment. You can find the following type of property config in 
-`application-default.yml`
-
-
-[source,yaml]
-----
-broadleaf:
-  service_abc:
-    jpa:
-      hibernate:
-        ddl-auto: create
-----
 
 [[faq-where-data-from]]
 === Where did all this initial data come from?
 
-- All of the Broadleaf services come with a set of default demo data. The seed data scripts are 
+- All of the Broadleaf services come with a set of default demo data provided via a
+liquibase demo changelog file. The seed data scripts are
 contained within each of the individual services dependency `.jar` and are loaded via a property
-configured in `application-default.yml`
+configured in `application-default.yml` (or the corresponding RDBMS platform config)
 
 [source,yaml]
 ----
 broadleaf:
   service_abc:
-    datasource:
-      data:
-        - 'classpath:/service-abc-data-jpa.sql'
+    liquibase:
+      change-log: 'classpath:/db/changelog/service_abc.demo.postgres.changelog-master.yaml'
 ----
 
 [[faq-javadocs]]
@@ -499,7 +462,6 @@ broadleaf:
 
 See this page for a listing of the services used in this project, along with a link to their JavaDoc:
 https://github.com/BroadleafCommerce/MicroservicesStarter/tree/develop/docs/Service_Directory.adoc[Service Directory]
-
 
 [[faq-supporting-services]]
 === What is the purpose for all of these supporting docker services?
@@ -544,7 +506,7 @@ for Kafka (Community Version)
 |`openapi-ui`
 |Broadleaf Open API Specs and Swagger UI
 
-|`postgres`
+|`database` (default Postgres)
 |Official Postgres 11.2 https://hub.docker.com/_/postgres[Docker Image]
 
 |`zk`
@@ -572,8 +534,8 @@ This project will attempt to utilize the following ports:
 |`commerceweb`
 | 4000
 
-|`postgres`
-| 5432
+|`database`
+| 5432 (default postgres)
 
 |`localkafka`
 | 9092, 7777 [JMX]

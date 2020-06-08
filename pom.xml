@@ -35,7 +35,8 @@
                 <configuration>
                     <attach>false</attach>
                     <jvmArguments>
-                        -DzkACLProvider=org.apache.solr.common.cloud.VMParamsAllAndReadonlyDigestZkACLProvider -DzkCredentialsProvider=org.apache.solr.common.cloud.VMParamsSingleSetCredentialsDigestZkCredentialsProvider -DzkDigestUsername=readonly-user -DzkDigestPassword=CHANGEME-READONLY-PASSWORD -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8004
+                        -Xdebug
+                        -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8004
                     </jvmArguments>
                 </configuration>
             </plugin>
@@ -77,16 +78,11 @@
                         <configuration>
                             <attach>false</attach>
                             <jvmArguments>
-                              -Dtutorial.cors.filter.enabled=true 
-                              -Dbroadleaf.resource.security.oauth2.defaultAllowAllAnonymous=true 
-                              -Dbroadleaf.resource.security.oauth2.enableGlobalMethodSecurity=false
-                              -Dbroadleaf.common.policy.validation.enforce=false 
-                              -DzkACLProvider=org.apache.solr.common.cloud.VMParamsAllAndReadonlyDigestZkACLProvider 
-                              -DzkCredentialsProvider=org.apache.solr.common.cloud.VMParamsSingleSetCredentialsDigestZkCredentialsProvider 
-                              -DzkDigestUsername=readonly-user 
-                              -DzkDigestPassword=CHANGEME-READONLY-PASSWORD 
-                              -Xdebug 
-                              -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8004
+                                -Dbroadleaf.resource.security.oauth2.enableGlobalMethodSecurity=false
+                                -Dtutorial.cors.filter.enabled=true
+                                -Dbroadleaf.resource.security.oauth2.defaultAllowAllAnonymous=true
+                                -Dbroadleaf.common.policy.validation.enforce=false -Xdebug
+                                -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8004
                             </jvmArguments>
                         </configuration>
                     </plugin>
@@ -152,56 +148,52 @@
 
     <properties>
         <skipTests>true</skipTests>
-        <blc.microservices.dependencies>1.0.2.5-RC2</blc.microservices.dependencies>
-        <blc.data.tracking.dependencies>1.0.0.2-RC2</blc.data.tracking.dependencies>
-        <blc.jpa.dependencies>1.0.2.1-RC2</blc.jpa.dependencies>
-        <blc.config.server.metadata>1.0.0.1-RC2</blc.config.server.metadata>
+        <blc.microservices.dependencies>1.0.2.1-RC3</blc.microservices.dependencies>
+        <blc.microservices.datatracking>1.0.0.1-RC3</blc.microservices.datatracking>
+        <blc.jpa.dependencies>1.0.2.1-RC3</blc.jpa.dependencies>
+        <blc.config.server.metadata>1.0.0.1-RC3</blc.config.server.metadata>
 
-        <blc.admin.navigation.services>1.0.0.2-RC2</blc.admin.navigation.services>
-        <blc.admin.navigation.metadata>1.0.0.2-RC2</blc.admin.navigation.metadata>
-        <blc.admin.user.services>1.0.0.2-RC2</blc.admin.user.services>
-        <blc.admin.user.metadata>1.0.0.2-RC2</blc.admin.user.metadata>
-        <blc.asset.services>1.0.0.2-RC2</blc.asset.services>
-        <blc.asset.metadata>1.0.0.2-RC2</blc.asset.metadata>
-        <blc.authentication.services>1.0.0.1-RC2</blc.authentication.services>
-        <blc.authentication.metadata>1.0.0.1-RC2</blc.authentication.metadata>
-        <blc.billing.services>1.0.0.1-RC2</blc.billing.services>
-        <blc.billing.metadata>1.0.0.1-RC2</blc.billing.metadata>
-        <blc.campaign.services>1.0.0.1-RC2</blc.campaign.services>
-        <blc.campaign.metadata>1.0.0.1-RC2</blc.campaign.metadata>
-        <blc.cart.services>1.0.0.1-RC2</blc.cart.services>
-        <blc.cart.metadata>1.0.0.1-RC2</blc.cart.metadata>
-        <blc.cartops.services>1.0.0.1-RC2</blc.cartops.services>
-        <blc.cartops.metadata>1.0.0.1-RC2</blc.cartops.metadata>
-        <blc.catalog.services>1.0.0.2-RC2</blc.catalog.services>
-        <blc.catalog.metadata>1.0.0.2-RC2</blc.catalog.metadata>
-        <blc.catalogbrowse.services>1.0.0.1-RC2</blc.catalogbrowse.services>
-        <blc.catalogbrowse.metadata>1.0.0.1-RC2</blc.catalogbrowse.metadata>
-        <blc.customer.services>1.0.0.1-RC2</blc.customer.services>
-        <blc.customer.metadata>1.0.0.1-RC2</blc.customer.metadata>
-        <blc.entitlement.services>1.0.0.1-RC2</blc.entitlement.services>
-        <blc.entitlement.metadata>1.0.0.1-RC2</blc.entitlement.metadata>
-        <blc.import.services>1.0.0.1-RC2</blc.import.services>
-        <blc.import.metadata>1.0.0.1-RC2</blc.import.metadata>
-        <blc.indexer.services>1.0.0.1-RC2</blc.indexer.services>
-        <blc.indexer.metadata>1.0.0.1-RC2</blc.indexer.metadata>
-        <blc.menu.services>1.0.0.1-RC2</blc.menu.services>
-        <blc.menu.metadata>1.0.0.1-RC2</blc.menu.metadata>
-        <blc.metadata.services>1.0.0.2-RC2</blc.metadata.services>
-        <blc.offer.services>1.0.0.1-RC2</blc.offer.services>
-        <blc.offer.metadata>1.0.0.1-RC2</blc.offer.metadata>
-        <blc.personalization.services>1.0.0.1-RC2</blc.personalization.services>
-        <blc.personalization.metadata>1.0.0.1-RC2</blc.personalization.metadata>
-        <blc.pricing.services>1.0.0.1-RC2</blc.pricing.services>
-        <blc.pricing.metadata>1.0.0.1-RC2</blc.pricing.metadata>
-        <blc.sandbox.services>1.0.0.1-RC2</blc.sandbox.services>
-        <blc.sandbox.metadata>1.0.0.1-RC2</blc.sandbox.metadata>
-        <blc.scheduled.job.services>1.0.0.1-RC2</blc.scheduled.job.services>
-        <blc.scheduled.job.metadata>1.0.0.1-RC2</blc.scheduled.job.metadata>
-        <blc.search.services>1.0.0.1-RC2</blc.search.services>
-        <blc.search.metadata>1.0.0.1-RC2</blc.search.metadata>
-        <blc.tenant.services>1.0.0.1-RC2</blc.tenant.services>
-        <blc.tenant.metadata>1.0.0.1-RC2</blc.tenant.metadata>
+        <blc.admin.navigation.services>1.0.0.1-RC3</blc.admin.navigation.services>
+        <blc.admin.navigation.metadata>1.0.0.1-RC3</blc.admin.navigation.metadata>
+        <blc.admin.user.services>1.0.0.1-RC3</blc.admin.user.services>
+        <blc.admin.user.metadata>1.0.0.1-RC3</blc.admin.user.metadata>
+        <blc.asset.services>1.0.0.1-RC3</blc.asset.services>
+        <blc.asset.metadata>1.0.0.1-RC3</blc.asset.metadata>
+        <blc.authentication.services>1.0.0.1-RC3</blc.authentication.services>
+        <blc.authentication.metadata>1.0.0.1-RC3</blc.authentication.metadata>
+        <blc.campaign.services>1.0.0.1-RC3</blc.campaign.services>
+        <blc.campaign.metadata>1.0.0.1-RC3</blc.campaign.metadata>
+        <blc.cart.services>1.0.0.1-RC3</blc.cart.services>
+        <blc.cart.metadata>1.0.0.1-RC3</blc.cart.metadata>
+        <blc.cartops.services>1.0.0.1-RC3</blc.cartops.services>
+        <blc.cartops.metadata>1.0.0.1-RC3</blc.cartops.metadata>
+        <blc.catalog.services>1.0.0.1-RC3</blc.catalog.services>
+        <blc.catalog.metadata>1.0.0.1-RC3</blc.catalog.metadata>
+        <blc.catalogbrowse.services>1.0.0.1-RC3</blc.catalogbrowse.services>
+        <blc.catalogbrowse.metadata>1.0.0.1-RC3</blc.catalogbrowse.metadata>
+        <blc.customer.services>1.0.0.1-RC3</blc.customer.services>
+        <blc.customer.metadata>1.0.0.1-RC3</blc.customer.metadata>
+        <blc.import.services>1.0.0.1-RC3</blc.import.services>
+        <blc.import.metadata>1.0.0.1-RC3</blc.import.metadata>
+        <blc.indexer.services>1.0.0.1-RC3</blc.indexer.services>
+        <blc.indexer.metadata>1.0.0.1-RC3</blc.indexer.metadata>
+        <blc.menu.services>1.0.0.1-RC3</blc.menu.services>
+        <blc.menu.metadata>1.0.0.1-RC3</blc.menu.metadata>
+        <blc.metadata.services>1.0.0.1-RC3</blc.metadata.services>
+        <blc.offer.services>1.0.0.1-RC3</blc.offer.services>
+        <blc.offer.metadata>1.0.0.1-RC3</blc.offer.metadata>
+        <blc.personalization.services>1.0.0.1-RC3</blc.personalization.services>
+        <blc.personalization.metadata>1.0.0.1-RC3</blc.personalization.metadata>
+        <blc.pricing.services>1.0.0.1-RC3</blc.pricing.services>
+        <blc.pricing.metadata>1.0.0.1-RC3</blc.pricing.metadata>
+        <blc.sandbox.services>1.0.0.1-RC3</blc.sandbox.services>
+        <blc.sandbox.metadata>1.0.0.1-RC3</blc.sandbox.metadata>
+        <blc.scheduled.job.services>1.0.0.1-RC3</blc.scheduled.job.services>
+        <blc.scheduled.job.metadata>1.0.0.1-RC3</blc.scheduled.job.metadata>
+        <blc.search.services>1.0.0.1-RC3</blc.search.services>
+        <blc.search.metadata>1.0.0.1-RC3</blc.search.metadata>
+        <blc.tenant.services>1.0.0.1-RC3</blc.tenant.services>
+        <blc.tenant.metadata>1.0.0.1-RC3</blc.tenant.metadata>
     </properties>
 
     <dependencyManagement>
@@ -213,17 +205,17 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>com.broadleafcommerce.microservices</groupId>
-                <artifactId>broadleaf-data-tracking-dependencies</artifactId>
-                <version>${blc.data.tracking.dependencies}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>
-        <!-- Services -->
+        <!-- JPA -->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-jpa-dependencies</artifactId>
+            <version>${blc.jpa.dependencies}</version>
+        </dependency>
+
+        <!-- Admin & Core Services -->
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
             <artifactId>broadleaf-admin-navigation-services</artifactId>
@@ -236,98 +228,13 @@
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-asset-services</artifactId>
-            <version>${blc.asset.services}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-campaign-services</artifactId>
-            <version>${blc.campaign.services}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-cart-services</artifactId>
-            <version>${blc.cart.services}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-cart-services-client</artifactId>
-            <version>${blc.cart.services}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-cart-operation-services</artifactId>
-            <version>${blc.cartops.services}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-catalog-services</artifactId>
-            <version>${blc.catalog.services}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-catalog-browse-services</artifactId>
-            <version>${blc.catalogbrowse.services}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-customer-services</artifactId>
-            <version>${blc.customer.services}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
             <artifactId>broadleaf-import-services</artifactId>
             <version>${blc.import.services}</version>
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-menu-services</artifactId>
-            <version>${blc.menu.services}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-metadata-services</artifactId>
-            <version>${blc.metadata.services}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-offer-services</artifactId>
-            <version>${blc.offer.services}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-personalization-services</artifactId>
-            <version>${blc.personalization.services}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-pricing-services</artifactId>
-            <version>${blc.pricing.services}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
             <artifactId>broadleaf-sandbox-services</artifactId>
             <version>${blc.sandbox.services}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-solr-catalog-indexer</artifactId>
-            <version>${blc.indexer.services}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-solr-catalog-search</artifactId>
-            <version>${blc.search.services}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-solr-customer-indexer</artifactId>
-            <version>${blc.indexer.services}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-solr-customer-search</artifactId>
-            <version>${blc.search.services}</version>
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
@@ -339,27 +246,109 @@
             <artifactId>broadleaf-tenant-services</artifactId>
             <version>${blc.tenant.services}</version>
         </dependency>
+
+        <!-- Catalog and Asset -->
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-jpa-dependencies</artifactId>
-            <version>${blc.jpa.dependencies}</version>
+            <artifactId>broadleaf-asset-services</artifactId>
+            <version>${blc.asset.services}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-catalog-services</artifactId>
+            <version>${blc.catalog.services}</version>
+        </dependency>
+
+        <!-- Pricing and Offers -->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-campaign-services</artifactId>
+            <version>${blc.campaign.services}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-offer-services</artifactId>
+            <version>${blc.offer.services}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-pricing-services</artifactId>
+            <version>${blc.pricing.services}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-common-money</artifactId>
+        </dependency>
+
+        <!-- Cart -->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-cart-services</artifactId>
+            <version>${blc.cart.services}</version>
+        </dependency>
+
+        <!-- Customers, Segments, and Accounts -->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-customer-services</artifactId>
+            <version>${blc.customer.services}</version>
+        </dependency>
+
+        <!-- Experience & Composite Services -->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-cart-operation-services</artifactId>
+            <version>${blc.cartops.services}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-catalog-browse-services</artifactId>
+            <version>${blc.catalogbrowse.services}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-menu-services</artifactId>
+            <version>${blc.menu.services}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-personalization-services</artifactId>
+            <version>${blc.personalization.services}</version>
+        </dependency>
+
+        <!-- Search & Indexing -->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-solr-catalog-indexer</artifactId>
+            <version>${blc.indexer.services}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-solr-customer-indexer</artifactId>
+            <version>${blc.indexer.services}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.zalando</groupId>
+            <artifactId>jackson-datatype-money</artifactId>
+            <version>1.1.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-solr-catalog-search</artifactId>
+            <version>${blc.search.services}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-solr-customer-search</artifactId>
+            <version>${blc.search.services}</version>
         </dependency>
 
         <!-- Metadata -->
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-asset-services-metadata</artifactId>
-            <version>${blc.asset.metadata}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-authentication-services-metadata</artifactId>
-            <version>${blc.authentication.metadata}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-campaign-services-metadata</artifactId>
-            <version>${blc.campaign.metadata}</version>
+            <artifactId>broadleaf-metadata-services</artifactId>
+            <version>${blc.metadata.services}</version>
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
@@ -368,18 +357,8 @@
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-customer-services-metadata</artifactId>
-            <version>${blc.customer.metadata}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-import-services-metadata</artifactId>
-            <version>${blc.import.metadata}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-menu-services-metadata</artifactId>
-            <version>${blc.menu.metadata}</version>
+            <artifactId>broadleaf-admin-user-services-metadata</artifactId>
+            <version>${blc.admin.user.metadata}</version>
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
@@ -388,8 +367,8 @@
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-personalization-services-metadata</artifactId>
-            <version>${blc.personalization.metadata}</version>
+            <artifactId>broadleaf-campaign-services-metadata</artifactId>
+            <version>${blc.campaign.metadata}</version>
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
@@ -403,11 +382,6 @@
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-search-services-metadata</artifactId>
-            <version>${blc.search.metadata}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
             <artifactId>broadleaf-scheduled-job-services-metadata</artifactId>
             <version>${blc.scheduled.job.metadata}</version>
         </dependency>
@@ -415,6 +389,41 @@
             <groupId>com.broadleafcommerce.microservices</groupId>
             <artifactId>broadleaf-tenant-services-metadata</artifactId>
             <version>${blc.tenant.metadata}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-menu-services-metadata</artifactId>
+            <version>${blc.menu.metadata}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-asset-services-metadata</artifactId>
+            <version>${blc.asset.metadata}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-search-services-metadata</artifactId>
+            <version>${blc.search.metadata}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-import-services-metadata</artifactId>
+            <version>${blc.import.metadata}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-personalization-services-metadata</artifactId>
+            <version>${blc.personalization.metadata}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-customer-services-metadata</artifactId>
+            <version>${blc.customer.metadata}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-authentication-services-metadata</artifactId>
+            <version>${blc.authentication.metadata}</version>
         </dependency>
 
         <!-- Misc -->
@@ -484,6 +493,21 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>com.oracle.ojdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <scope>runtime</scope>
+        </dependency>
 
         <!-- Tests -->
         <dependency>
@@ -507,8 +531,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>1.13.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
