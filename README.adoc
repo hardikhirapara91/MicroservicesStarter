@@ -181,20 +181,22 @@ and started from the command line by navigating to the root of this project and 
 +
 [source,shell script]
 ----
-docker-compose up -d
+docker-compose up -d && ./check-services-status.sh
 ----
 +
-The above command starts the creation process of all the supporting services.
+[NOTE]
+====
+The above command starts the creation process of all the supporting services using `docker-compose`.
 We've also included a script to "tail" all the relevant containers and verify successful startup.
-Execute the following from the command line:
-+
+
 [source,shell script]
 ----
 ./check-services-status.sh
 ----
-+
-Running the above should produce something like below when everything is up and running:
-+
+
+This shell script will wait (for a period of time) to verify that all supporting services have
+started up before exiting and should produce something like below when everything is up and running:
+
 [source,shell script]
 ----
 zk - Container Started
@@ -217,6 +219,7 @@ commercegateway - Service Ready
 admingateway - Service Ready
 localkafka - Service Ready
 ----
+====
 
 === Running Backend APIs
 
