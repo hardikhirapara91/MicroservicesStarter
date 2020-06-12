@@ -596,3 +596,32 @@ This is because the Broadleaf Repository has an SSL cert provided by Let's Encry
 === I'm unable to start the app due to a Solr or Postgres Connection Failure
 
 Double check you have given Docker enough resources as described in the Docker section above. The supporting services may fail to start up or may fail to connect if not given enough resources.
+
+[[faq-windows-path-too-long]]
+=== I am running on Windows, and when executing mvn spring-boot:run, I get the error "CreateProcess error=206, The filename or extension is too long."
+
+This is a hardcoded limitation imposed by Windows on command lengths, and a known issue with Spring Boot due to how it builds its classpath. For more information, see https://github.com/spring-projects/spring-boot/issues/17766.
+
+There are a few ways this can be dealt with.
+
+- To simply get the app running, run the compiled jar with
+[source]
+---
+java -jar .\target\ms-tutorial-getting-started.jar
+---
+
+- To enable debugging, instead run the compiled jar with
+[source]
+----
+java -jar -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8004 .\target\ms-tutorial-getting-started.jar
+----
+
+- If running the app through IntelliJ, there are `Run/Debug Configuration` options to shorten the command line. In the run configuration, set "Shorten Command Line" to either `JAR Manifest` or `manifest file`. Visit the JetBrains website for more information, https://www.jetbrains.com/help/idea/2020.1/run-debug-configuration-spring-boot.html
+
+- A work-around to allow running with `mvn spring-boot:run` is to soft link your .m2 directory to the root of the drive. This will shorten the overall classpath by reducing absolute filepaths in your dependencies.
+[source]
+----
+mklink /J c:\repo C:\<long path to your maven repository>
+mvn -Dmaven.repo.local=c:\repo spring-boot:run
+----
+
