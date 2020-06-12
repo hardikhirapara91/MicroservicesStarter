@@ -316,7 +316,12 @@ APIs provided by some core Broadleaf services.
 [TIP]
 ====
 Be sure to "Try Out" a few endpoints as the specs do define example payloads that should return
-valid data given the test seed data loaded for this project
+valid data given the test seed data loaded for this project.
+
+The default credentials are:
+
+* client_id = `openapi`
+* client_secret = `openapi_secret`
 ====
 
 ==== Starting Up With Other RDBMS Platforms `[Alternative]`
