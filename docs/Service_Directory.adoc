@@ -1,3 +1,18 @@
+:blc_ms_version: 1.0.0-RC4
+:toc:
+:toc-placement!:
+:icons: font
+:source-highlighter: prettify
+:project_id: ms-starter
+:sectnums:
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
 .Core Commerce Services Directory
 |===
 |Service | Description | Documentation
