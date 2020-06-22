@@ -1,4 +1,4 @@
-:blc_ms_version: 1.0.0-RC3
+:blc_ms_version: 1.0.0-RC4
 :toc:
 :toc-placement!:
 :icons: font
