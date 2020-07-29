@@ -57,6 +57,10 @@ endif::[]
 | enable support for flatfile imports and statuses that works across microservices
 | http://javadocs.microservices.broadleafcommerce.com/broadleaf-import-services/{blc_ms_version}/[JavaDoc]
 
+| Inventory
+| services to check, reserve, and manage inventory
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-inventory-services/{blc_ms_version}/[JavaDoc]
+
 | Menu
 | data-driven menus used to drive customer facing layout and hierarchies
 | http://javadocs.microservices.broadleafcommerce.com/broadleaf-menu-services/{blc_ms_version}/[JavaDoc]
@@ -65,9 +69,17 @@ endif::[]
 | cross-cutting metadata service that drives the dynamic nature of the Broadleaf Admin
 | http://javadocs.microservices.broadleafcommerce.com/broadleaf-metadata-services/{blc_ms_version}/[JavaDoc]
 
+| Notification
+| provides ability to send email and SMS Notifications
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-notification-services/{blc_ms_version}/[JavaDoc]
+
 | Offer
 | management of offers and offer discount calculations
 | http://javadocs.microservices.broadleafcommerce.com/broadleaf-offer-services/{blc_ms_version}/[JavaDoc]
+
+| Order
+| enables creation, management, and retrieval of well-defined hierarchical order structures
+| http://javadocs.microservices.broadleafcommerce.com/broadleaf-order-services/{blc_ms_version}/[JavaDoc]
 
 | Personalization
 | content and content item management with various targeting capabilities
