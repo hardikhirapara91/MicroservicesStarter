@@ -1,4 +1,4 @@
-:blc_ms_version: 1.0.0-RC4
+:blc_ms_version: 1.0.0-GA
 :toc:
 :toc-placement!:
 :icons: font
@@ -463,10 +463,10 @@ broadleaf:
 ----
 
 [[faq-javadocs]]
-=== What core commerce services are utilized in this reference project?
+=== What core commerce capabilities are available with Broadleaf Microservices?
 
-See this page for a listing of the services used in this project, along with a link to their JavaDoc:
-https://github.com/BroadleafCommerce/MicroservicesStarter/tree/develop/docs/Service_Directory.adoc[Service Directory]
+See our
+https://developer.broadleafcommerce.com/[Developer Center] for more information around Broadleaf's core capabilities.
 
 [[faq-supporting-services]]
 === What is the purpose for all of these supporting docker services?
@@ -474,7 +474,7 @@ https://github.com/BroadleafCommerce/MicroservicesStarter/tree/develop/docs/Serv
 - the `docker-compose` file defines various services that aid in facilitating a full commerce 
 experience needed for this overview project and tutorial, such as an `auth` service and
 a couple API gateways. A majority of these images should be considered for example purposes only
-and **NOT FOR PRODUCTION USE**. The following is a list of all the supporting services with a brief
+and **not for Production use**. The following is a list of all the supporting services with a brief
 description of their intent.
 
 .Non-Production Supporting Services Directory
