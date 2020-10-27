@@ -1,30 +1,34 @@
 broadleaf:
   database:
     provider: jpa
-  adminnavigation:
+  composite:
     datasource:
-      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=adminnavigation'
+      url: 'jdbc:postgresql://localhost:5432/broadleaf'
       username: broadleaf
       password: demo
       hikari:
-        maximumPoolSize: 2
+        maximumPoolSize: 10
+      properties:
+        hibernate:
+          jdbc:
+            lob:
+              non_contextual_creation: true
+  adminnavigation:
     liquibase:
       change-log: 'classpath:/db/changelog/adminnavigation.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: adminnavigation
-      drop-first: 'false'
+    delegating:
+      schema: adminnavigation
+      delegate-ref: composite
   adminuser:
-    datasource:
-      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=adminuser'
-      username: broadleaf
-      password: demo
-      hikari:
-        maximumPoolSize: 2
     liquibase:
       change-log: 'classpath:/db/changelog/adminuser.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: adminuser
-      drop-first: 'false'
+    delegating:
+      schema: adminuser
+      delegate-ref: composite
   asset:
     internal:
       content-provider-url-prefix: 'https://localhost:8447/'
@@ -35,48 +39,31 @@ broadleaf:
         - path: 'classpath:__initial-data.zip'
           context:
             tenant-id: 5DF1363059675161A85F576D
-    datasource:
-      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=asset'
-      username: broadleaf
-      password: demo
-      hikari:
-        maximumPoolSize: 2
     provider:
       contentUrlPrefix: 'https://localhost:8447/content'
     liquibase:
       change-log: 'classpath:/db/changelog/asset.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: asset
-      drop-first: 'false'
+    delegating:
+      schema: asset
+      delegate-ref: composite
   campaign:
-    datasource:
-      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=campaign'
-      username: broadleaf
-      password: demo
-      hikari:
-        maximumPoolSize: 2
     liquibase:
       change-log: 'classpath:/db/changelog/campaign.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: campaign
-      drop-first: 'false'
+    delegating:
+      schema: campaign
+      delegate-ref: composite
   cart:
-    datasource:
-      password: demo
-      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=cart'
-      username: broadleaf
-      hikari:
-        maximumPoolSize: 2
-      properties:
-        hibernate:
-          jdbc:
-            lob:
-              non_contextual_creation: true
     liquibase:
       change-log: 'classpath:/db/changelog/cart.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: cart
-      drop-first: 'false'
+    delegating:
+      schema: cart
+      delegate-ref: composite
   cartoperation:
     anonymouscart:
       application-id-included-in-cookie-name: true
@@ -92,6 +79,8 @@ broadleaf:
       url: 'https://localhost:8447'
     walletprovider:
       url: 'https://localhost:8447'
+    inventoryprovider:
+      url: 'https://localhost:8447'
     transfercart:
       encoder:
         # Generated using KeyGeneratorUtil at 2048-bit strength
@@ -99,19 +88,15 @@ broadleaf:
       decoder:
         encoded-public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjfueooS8dVb9PV0P3bmZZFIetUXzbPFSj175aVOr+xz6fXH2SI9iG5vFlp+wBJSInGO+YV9hXFEOERwEIZM5LAJwLUPqucK5MsvxDUiO+MZmx8aJIOWCBrke9P9e6S4/cAly848J2f7OtKlyTmQj2rvZQi/6SdwlCFXHqbsO08EqbjReRsN37Lhac7rR+Djfkuhe8CJF5RQXXj+UZQIdUIGGZlgL2dyov+ppEsbOcLuHZPq2UpUHfTlWBIOaHgVAaBOH+XArHfsq4ua8yFumq7j5yy+xns/EBUp8/EL8qsVpC5Bqmkb5K18cL/tbojKt5HrQZsCWapNeBkOH/P7VPQIDAQAB
   catalog:
-    datasource:
-      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=catalog'
-      username: broadleaf
-      password: demo
-      hikari:
-        maximumPoolSize: 2
     liquibase:
       change-log: 'classpath:/db/changelog/catalog.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: catalog
-      drop-first: 'false'
     reindex:
       startup: true
+    delegating:
+      schema: catalog
+      delegate-ref: composite
   catalogbrowse:
     catalogprovider:
       url: 'https://localhost:8447'
@@ -129,156 +114,149 @@ broadleaf:
     ssl-verification:
       disabled: true
   customer:
-    datasource:
-      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=customer'
-      username: broadleaf
-      password: demo
-      hikari:
-        maximumPoolSize: 2
     liquibase:
       change-log: 'classpath:/db/changelog/customer.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: customer
-      drop-first: 'false'
     reindex:
       startup: true
+    delegating:
+      schema: customer
+      delegate-ref: composite
     useFullName: true
   dataimport:
-    datasource:
-      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=import'
-      username: broadleaf
-      password: demo
-      hikari:
-        maximumPoolSize: 2
     liquibase:
       change-log: 'classpath:/db/changelog/import.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: import
-      drop-first: 'false'
+    delegating:
+      schema: import
+      delegate-ref: composite
   image:
     availableEffects: 'crop, resize, scale, thumbnail, unsharp'
   indexer:
-    datasource:
-      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=indexer'
-      username: broadleaf
-      password: demo
-      hikari:
-        maximumPoolSize: 2
     liquibase:
       change-log: 'classpath:/db/changelog/indexer.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: indexer
-      drop-first: 'false'
     catalog:
       service:
         endpoint: 'https://localhost:8447'
     customer:
       service:
         endpoint: 'https://localhost:8447'
+    order:
+      service:
+        endpoint: 'https://localhost:8447'
     search:
       service:
         endpoint: 'https://localhost:8447'
+    delegating:
+      schema: indexer
+      delegate-ref: composite
+  inventory:
+    liquibase:
+      change-log: 'classpath:/db/changelog/inventory.demo.postgres.changelog-master.yaml'
+      liquibase-schema: public
+      default-schema: inventory
+    delegating:
+      schema: inventory
+      delegate-ref: composite
   menu:
-    datasource:
-      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=menu'
-      username: broadleaf
-      password: demo
-      hikari:
-        maximumPoolSize: 2
     liquibase:
       change-log: 'classpath:/db/changelog/menu.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: menu
-      drop-first: 'false'
+    delegating:
+      schema: menu
+      delegate-ref: composite
   metadata:
-    datasource:
-      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=metadata'
-      username: broadleaf
-      password: demo
-      hikari:
-        maximumPoolSize: 2
     liquibase:
       change-log: 'classpath:/db/changelog/metadata.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: metadata
-      drop-first: 'false'
+    delegating:
+      schema: metadata
+      delegate-ref: composite
+  modelmapper:
+    cache:
+      load:
+        enabled: true
+  notification:
+    liquibase:
+      change-log: 'classpath:/db/changelog/notification.demo.postgres.changelog-master.yaml'
+      liquibase-schema: public
+      default-schema: notification
+    delegating:
+      schema: notification
+      delegate-ref: composite
   offer:
-    datasource:
-      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=offer'
-      username: broadleaf
-      password: demo
-      hikari:
-        maximumPoolSize: 2
     liquibase:
       change-log: 'classpath:/db/changelog/offer.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: offer
-      drop-first: 'false'
+    delegating:
+      schema: offer
+      delegate-ref: composite
+  order:
+    liquibase:
+      change-log: 'classpath:/db/changelog/order.demo.postgres.changelog-master.yaml'
+      liquibase-schema: public
+      default-schema: order
+    delegating:
+      schema: order
+      delegate-ref: composite
+    reindex:
+      startup: true
+  orderoperation:
+    orderprovider:
+      url: 'https://localhost:8447'
   payment:
     gateway:
       passthrough-transactions:
         active: true
-  persistence:
-    retry:
-      developerMode: true
   personalization:
-    datasource:
-      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=personalization'
-      username: broadleaf
-      password: demo
-      hikari:
-        maximumPoolSize: 2
     liquibase:
       change-log: 'classpath:/db/changelog/personalization.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: personalization
-      drop-first: 'false'
+    delegating:
+      schema: personalization
+      delegate-ref: composite
   pricing:
-    datasource:
-      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=pricing'
-      username: broadleaf
-      password: demo
-      hikari:
-        maximumPoolSize: 2
     liquibase:
       change-log: 'classpath:/db/changelog/pricing.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: pricing
-      drop-first: 'false'
+    delegating:
+      schema: pricing
+      delegate-ref: composite
   resource:
     security:
       oauth2:
         defaultAllowAllAnonymous: false
   sandbox:
-    datasource:
-      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=sandbox'
-      username: broadleaf
-      password: demo
-      hikari:
-        maximumPoolSize: 2
     liquibase:
       change-log: 'classpath:/db/changelog/sandbox.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: sandbox
-      drop-first: 'false'
     preview:
       encoder:
         # Generated using KeyGeneratorUtil at 2048-bit strength
         encoded-private-key: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCMQ9Xq3UWtXkMj2M2z9f0Za/HhaBWMpycZ4eRTGAKQH9kMYLm0CiUG/Jm2GKdrGZKBYqI8mXUxK979qCvQuR+xdaAvK02KzyMUWlu9b6ALhrVw3Er/aiZhkxhQE/MIYoW3RBVFt9yuAJqaKJuFEFFSYjLmt2GlfcBt6L1lRcLignfm26Bu7nLhCFC29Y59fIlfe6RpJvok7ppTOvvRCUzODbVNWjeDjQ3jvpra56zJcPW9KNxQggBPVKjuGbR9AOyTsWt3Pt4BvBjdNmieVluz27BoVdMGcju/nEdRhwbikQFp0qeWi0utZbfgM4QdR2XC5rc+7ras/aMkTCtoJmS1AgMBAAECggEAYhOYw3XfH592sN0K0JfjVuA8rFD8KHJEi/uAjH2QZThvqxEDKJmjVGRSEprgjam+4EuYh2kCIdS8Qn9Ry8t2Fr7Zt8G+oZ2+uJ+J4EbqEMUrn3PZ2QhfOAEDkhKw8B77wq6PdUVfwCdZ8wsL25oSUtmpH9wAIhhw8ik4LVT/NSPbTiOaGRPdQE31DCnwLG8chDpkX2VkhQp0ah4+1NwQHyGLkrPY9P6tpcsxCpDK9OcIC8eJW612dMUpTLr1AGvAiuCO/Bhzr1d7HCwBOm95PhJWRi+zLOmWz2K9QWxvqwOsGiNb/23ngFu03tsAGz8yGdKFMRpG0ywLPykZmnEw7QKBgQDbry8lcIRlYSigcPZWo2AHLCOZGxmi9O9dXE/MB5d+Qw4HalHbVxnykwRF0uWobQf99JNSeFqkZy51dGvr55ADaJYuA1Hvr+Yqu63aS2iLbMk+xmBpfLRAmuuCcC0v+WbsNjYz0hdNHf08/sumjM6QoGOGF2PWfddtwJo0847nXwKBgQCjc7Tb3AHlkQR6pfHUwz/7oynI6p0/nw/Q9UXIYXhCYJlrqddz0QMn5LhOILTjJq9dAX7vUNhIIpBBFaVk5voagpnkRbkUG5LHPtm/Wps/Uosdg6WHgB4xWVcE0nWJZWCtwgv60N9T3qU8t3lyQg8BkFyBcJJg9gL2D2BrF6JQawKBgQDCKxurpsCOboqfDFjeiLZGgJ/SIl7NZlnulbm95vPiWFgc+77v9BNuEL1VDauI6x2GO9a+rLvI1Z39mHIO5vOl35nlf2+7Pyhbmth1ufLkULmq72GluuACvirsdkOqRHDQ1LWhpc6MjbYXZEkRoyCsOebdTO0kVsPDMNnbdW5YVwKBgH+K8y64T1aWQVt/D+SI8u1llV5tDIUvlkTkjy5cOF37SNxFLJT4HLFNfS+hv+ScNCyr1SPi/tHS/qN6w5On1LNJA9KnQVNabL9C4OC7T/cqbtl593lzVJwHbaqamxK6Y6VSjMyLniiwzFlDheXNfC4pOrXaZK56aTceKouGZqa/AoGAbPkdybZD/NyJxcQm3sE+ff6v9iHxzhg4aULGWhGeJd38Iq3rSJBo4gCt3Zj7Psq+Jt9s+BY4GbT/5MbfWG2dC1mbexkbdz/cH+ytg55ihD0TJVhGCHz/5o+eYkP26nDIAvnbWcGRA5Vzxg2XB9g/OoPPNhakmhLQXDILu7OJY0k=
       decoder:
         encoded-public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjEPV6t1FrV5DI9jNs/X9GWvx4WgVjKcnGeHkUxgCkB/ZDGC5tAolBvyZthinaxmSgWKiPJl1MSve/agr0LkfsXWgLytNis8jFFpbvW+gC4a1cNxK/2omYZMYUBPzCGKFt0QVRbfcrgCamiibhRBRUmIy5rdhpX3Abei9ZUXC4oJ35tugbu5y4QhQtvWOfXyJX3ukaSb6JO6aUzr70QlMzg21TVo3g40N476a2uesyXD1vSjcUIIAT1So7hm0fQDsk7Frdz7eAbwY3TZonlZbs9uwaFXTBnI7v5xHUYcG4pEBadKnlotLrWW34DOEHUdlwua3Pu62rP2jJEwraCZktQIDAQAB
+    delegating:
+      schema: sandbox
+      delegate-ref: composite
   scheduledjob:
-    datasource:
-      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=scheduledjob'
-      username: broadleaf
-      password: demo
-      hikari:
-        maximumPoolSize: 2
     liquibase:
       change-log: 'classpath:/db/changelog/scheduledjob.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: scheduledjob
-      drop-first: 'false'
+    delegating:
+      schema: scheduledjob
+      delegate-ref: composite
   search:
     catalog:
       primaryAlias: catalog_alias_1
@@ -286,17 +264,16 @@ broadleaf:
     customer:
       primaryAlias: customer_alias_1
       secondaryAlias: customer_alias_2
-    datasource:
-      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=search'
-      username: broadleaf
-      password: demo
-      hikari:
-        maximumPoolSize: 2
+    order:
+      primaryAlias: order_alias_1
+      secondaryAlias: order_alias_2
     liquibase:
       change-log: 'classpath:/db/changelog/search.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: search
-      drop-first: 'false'
+    delegating:
+      schema: search
+      delegate-ref: composite
     solr:
       boost:
         phraseBoost: 3
@@ -319,17 +296,13 @@ broadleaf:
           suggestionCount: 1
           suggestionQueryCollationTries: 1
   tenant:
-    datasource:
-      url: 'jdbc:postgresql://localhost:5432/broadleaf?currentSchema=tenant'
-      username: broadleaf
-      password: demo
-      hikari:
-        maximumPoolSize: 2
     liquibase:
       change-log: 'classpath:/db/changelog/tenant.demo.postgres.changelog-master.yaml'
       liquibase-schema: public
       default-schema: tenant
-      drop-first: 'false'
+    delegating:
+      schema: tenant
+      delegate-ref: composite
     global:
       allowed-locales:
         - en_US
@@ -345,19 +318,108 @@ broadleaf:
         port: 8456
       admin:
         port: 8446
+  bulk:
+    processBulkUpdateRequest:
+      retry:
+        retryClusterServiceNamespace: process-bulkupdate-request-flexpackage
+    createSandboxRequest:
+      retry:
+        retryClusterServiceNamespace: create-sandbox-request-bulk-flexpackage
+    deleteSandboxRequest:
+      retry:
+        retryClusterServiceNamespace: delete-sandbox-request-bulk-flexpackage
+  changesummary:
+    retry:
+      retryClusterServiceNamespace: changesummary-flexpackage
+  export:
+    process-export-request:
+      retry:
+        retryClusterServiceNamespace: process-export-request-flexpackage
+  import:
+    createSandboxRequest:
+      retry:
+        retryClusterServiceNamespace: create-sandbox-request-import-flexpackage
+  persistence:
+    retry:
+      retryClusterServiceNamespace: persistence-flexpackage
+  single-index-request:
+    retry:
+      retryClusterServiceNamespace: single-index-request-flexpackage
+  transitionrequestcompletion:
+    retry:
+      retryClusterServiceNamespace: completion-flexpackage
+  transition:
+    retry:
+      retryClusterServiceNamespace: transition-flexpackage
+  scheduledjobtrigger:
+    retry:
+      retryClusterServiceNamespace: trigger-flexpackage
 server:
   port: 8447
   servlet:
     context-path: /
   ssl:
-    key-password: keypass
     key-store: 'classpath:local.keystore'
     key-store-password: storepass
 spring:
+  cache:
+    type: none
   integration:
     jdbc:
       initialize-schema: always
   cloud:
+    stream:
+      bindings:
+        persistenceInputTenantSyncDataTracking:
+          group: flexpackage-tenant-sync
+          destination: persistence
+        promotionInput:
+          group: flexpackage-promotion
+          destination: promotion
+        deploymentInput:
+          group: flexpackage-deployment
+          destination: deployment
+        rejectionInput:
+          group: flexpackage-rejection
+          destination: rejection
+        reversionInput:
+          group: flexpackage-reversion
+          destination: reversion
+        rebasingInput:
+          group: flexpackage-rebase
+          destination: rebasing
+        processBulkUpdateRequestInput:
+          group: flexpackage-bulk-update
+          destination: bulkUpdateRequest
+        batchRequestInput:
+          group: flexpackage-batch
+          destination: batchRequest
+        triggeredJobEventInputOrphanBulk:
+          group: flexpackage-orphan-bulk
+          destination: triggeredJobEvent
+        triggeredJobEventInputOrphanExport:
+          group: flexpackage-orphan-export
+          destination: triggeredJobEvent
+        processExportRequestInput:
+          group: flexpackage-export
+          destination: exportRequest
+        triggeredJobEventInputPurgeLock:
+          group: flexpackage-purge-lock
+          destination: triggeredJobEvent
+        triggeredJobEventInputPruneNotification:
+          group: flexpackage-prune-notification
+          destination: triggeredJobEvent
+        triggeredJobEventInputPurgeSandbox:
+          group: flexpackage-purge-sandbox
+          destination: triggeredJobEvent
+      kafka:
+        default:
+          consumer:
+            configuration:
+              max:
+                poll:
+                  interval:
+                    ms: 1200000
     bus:
       enabled: false
   datasource:
@@ -369,8 +431,8 @@ spring:
     properties:
       hibernate:
         temp:
-          use_jdbc_metadata_defaults: false
-    database: postgresql
+          use_jdbc_metadata_defaults: true
+        dialect: com.broadleafcommerce.data.tracking.jpa.hibernate.PostgresDialect
   messages:
     useCodeAsDefaultMessage: true
   security:
@@ -390,6 +452,10 @@ spring:
           campaign:
             token-uri: 'https://localhost:8443/auth/oauth/token'
           cart:
+            token-uri: 'https://localhost:8443/auth/oauth/token'
+          order:
+            token-uri: 'https://localhost:8443/auth/oauth/token'
+          inventory:
             token-uri: 'https://localhost:8443/auth/oauth/token'
         registration:
           catalog:
@@ -420,9 +486,17 @@ spring:
             authorization-grant-type: client_credentials
             client-id: cart
             client-secret: cart_secret
+          order:
+            authorization-grant-type: client_credentials
+            client-id: order
+            client-secret: order_secret
+          inventory:
+            authorization-grant-type: client_credentials
+            client-id: inventory
+            client-secret: inventory_secret
   servlet:
     multipart:
-      max-file-size: 1MB
+      max-file-size: 20MB
       max-request-size: 20MB
       resolve-lazily: true
   thymeleaf:

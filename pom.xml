@@ -10,7 +10,7 @@
         <!-- When updating Spring Boot versions ensure that the version here matches the property for
             spring.boot.version -->
         <!-- IMPORTANT - READ THE NOTE ^^^ -->
-        <version>2.2.1.RELEASE</version> <!-- IMPORTANT - READ THE NOTE ^^^ -->
+        <version>2.3.3.RELEASE</version> <!-- IMPORTANT - READ THE NOTE ^^^ -->
         <!-- IMPORTANT -->
         <relativePath />
     </parent>
@@ -18,14 +18,17 @@
     <groupId>com.broadleafcommerce.microservices</groupId>
     <artifactId>ms-tutorial-getting-started</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+
     <name>ms-tutorial-getting-started</name>
     <description>Getting Started Tutorial for Broadleaf Microservices</description>
+
     <repositories>
         <repository>
             <id>broadleaf-microservices</id>
             <url>https://repository.broadleafcommerce.com/repository/microservices/</url>
         </repository>
     </repositories>
+    
     <build>
         <finalName>ms-tutorial-getting-started</finalName>
         <plugins>
@@ -63,6 +66,34 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>keytool-maven-plugin</artifactId>
+                    <version>1.5</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>generateKeyPair</goal>
+                            </goals>
+                            <phase>generate-resources</phase>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <keystore>${project.basedir}/src/main/resources/local.keystore
+                        </keystore>
+                        <storetype>pkcs12</storetype>
+                        <storepass>storepass</storepass>
+                        <alias>foo_alias</alias>
+                        <dname>cn=localhost, ou=None, L=Dallas, ST=Texas, o=LocalCom, c=US
+                        </dname>
+                        <sigalg>SHA256withRSA</sigalg>
+                        <ext />
+                        <validity>100</validity>
+                        <keyalg>RSA</keyalg>
+                        <keysize>2048</keysize>
+                        <skipIfExist>true</skipIfExist>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -116,30 +147,6 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>keytool-maven-plugin</artifactId>
-                        <version>1.5</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>generateKeyPair</goal>
-                                </goals>
-                                <phase>generate-resources</phase>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <keystore>${project.basedir}/src/main/resources/local.keystore</keystore>
-                            <storepass>storepass</storepass>
-                            <keypass>keypass</keypass>
-                            <alias>foo_alias</alias>
-                            <dname>cn=localhost, ou=None, L=Dallas,
-                                ST=Texas, o=LocalCom, c=US
-                            </dname>
-                            <sigalg>SHA256withRSA</sigalg>
-                            <ext></ext>
-                            <validity>100</validity>
-                            <keyalg>RSA</keyalg>
-                            <keysize>2048</keysize>
-                            <skipIfExist>true</skipIfExist>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
@@ -148,65 +155,76 @@
 
     <properties>
         <skipTests>true</skipTests>
-        <blc.microservices.dependencies>1.0.2.1-RC3</blc.microservices.dependencies>
-        <blc.microservices.datatracking>1.0.0.1-RC3</blc.microservices.datatracking>
-        <blc.jpa.dependencies>1.0.2.1-RC3</blc.jpa.dependencies>
-        <blc.config.server.metadata>1.0.0.1-RC3</blc.config.server.metadata>
 
-        <blc.admin.navigation.services>1.0.0.1-RC3</blc.admin.navigation.services>
-        <blc.admin.navigation.metadata>1.0.0.1-RC3</blc.admin.navigation.metadata>
-        <blc.admin.user.services>1.0.0.1-RC3</blc.admin.user.services>
-        <blc.admin.user.metadata>1.0.0.1-RC3</blc.admin.user.metadata>
-        <blc.asset.services>1.0.0.1-RC3</blc.asset.services>
-        <blc.asset.metadata>1.0.0.1-RC3</blc.asset.metadata>
-        <blc.authentication.services>1.0.0.1-RC3</blc.authentication.services>
-        <blc.authentication.metadata>1.0.0.1-RC3</blc.authentication.metadata>
-        <blc.campaign.services>1.0.0.1-RC3</blc.campaign.services>
-        <blc.campaign.metadata>1.0.0.1-RC3</blc.campaign.metadata>
-        <blc.cart.services>1.0.0.1-RC3</blc.cart.services>
-        <blc.cart.metadata>1.0.0.1-RC3</blc.cart.metadata>
-        <blc.cartops.services>1.0.0.1-RC3</blc.cartops.services>
-        <blc.cartops.metadata>1.0.0.1-RC3</blc.cartops.metadata>
-        <blc.catalog.services>1.0.0.1-RC3</blc.catalog.services>
-        <blc.catalog.metadata>1.0.0.1-RC3</blc.catalog.metadata>
-        <blc.catalogbrowse.services>1.0.0.1-RC3</blc.catalogbrowse.services>
-        <blc.catalogbrowse.metadata>1.0.0.1-RC3</blc.catalogbrowse.metadata>
-        <blc.customer.services>1.0.0.1-RC3</blc.customer.services>
-        <blc.customer.metadata>1.0.0.1-RC3</blc.customer.metadata>
-        <blc.import.services>1.0.0.1-RC3</blc.import.services>
-        <blc.import.metadata>1.0.0.1-RC3</blc.import.metadata>
-        <blc.indexer.services>1.0.0.1-RC3</blc.indexer.services>
-        <blc.indexer.metadata>1.0.0.1-RC3</blc.indexer.metadata>
-        <blc.menu.services>1.0.0.1-RC3</blc.menu.services>
-        <blc.menu.metadata>1.0.0.1-RC3</blc.menu.metadata>
-        <blc.metadata.services>1.0.0.1-RC3</blc.metadata.services>
-        <blc.offer.services>1.0.0.1-RC3</blc.offer.services>
-        <blc.offer.metadata>1.0.0.1-RC3</blc.offer.metadata>
-        <blc.personalization.services>1.0.0.1-RC3</blc.personalization.services>
-        <blc.personalization.metadata>1.0.0.1-RC3</blc.personalization.metadata>
-        <blc.pricing.services>1.0.0.1-RC3</blc.pricing.services>
-        <blc.pricing.metadata>1.0.0.1-RC3</blc.pricing.metadata>
-        <blc.sandbox.services>1.0.0.1-RC3</blc.sandbox.services>
-        <blc.sandbox.metadata>1.0.0.1-RC3</blc.sandbox.metadata>
-        <blc.scheduled.job.services>1.0.0.1-RC3</blc.scheduled.job.services>
-        <blc.scheduled.job.metadata>1.0.0.1-RC3</blc.scheduled.job.metadata>
-        <blc.search.services>1.0.0.1-RC3</blc.search.services>
-        <blc.search.metadata>1.0.0.1-RC3</blc.search.metadata>
-        <blc.tenant.services>1.0.0.1-RC3</blc.tenant.services>
-        <blc.tenant.metadata>1.0.0.1-RC3</blc.tenant.metadata>
+        <!-- Pin h2 version for ignite compatibility -->
+        <h2.version>1.4.197</h2.version>
+
+        <!-- Microservice Versions -->
+        <blc.jpa.dependencies>1.0.3-GA</blc.jpa.dependencies>
+
+        <blc.admin.navigation.services>1.0.1-GA</blc.admin.navigation.services>
+        <blc.admin.navigation.metadata>1.0.1-GA</blc.admin.navigation.metadata>
+        <blc.admin.user.services>1.0.1-GA</blc.admin.user.services>
+        <blc.admin.user.metadata>1.0.1-GA</blc.admin.user.metadata>
+        <blc.asset.services>1.0.1-GA</blc.asset.services>
+        <blc.asset.metadata>1.0.1-GA</blc.asset.metadata>
+        <blc.authentication.services>1.0.1-GA</blc.authentication.services>
+        <blc.authentication.metadata>1.0.1-GA</blc.authentication.metadata>
+        <blc.campaign.services>1.0.1-GA</blc.campaign.services>
+        <blc.campaign.metadata>1.0.1-GA</blc.campaign.metadata>
+        <blc.cart.services>1.0.0-GA</blc.cart.services>
+        <blc.cart.metadata>1.0.0-GA</blc.cart.metadata>
+        <blc.cartops.services>1.0.1-GA</blc.cartops.services>
+        <blc.cartops.metadata>1.0.1-GA</blc.cartops.metadata>
+        <blc.catalog.services>1.0.1-GA</blc.catalog.services>
+        <blc.catalog.metadata>1.0.1-GA</blc.catalog.metadata>
+        <blc.catalogbrowse.services>1.0.0-GA</blc.catalogbrowse.services>
+        <blc.catalogbrowse.metadata>1.0.0-GA</blc.catalogbrowse.metadata>
+        <blc.customer.services>1.0.1-GA</blc.customer.services>
+        <blc.customer.metadata>1.0.1-GA</blc.customer.metadata>
+        <blc.import.services>1.0.1-GA</blc.import.services>
+        <blc.import.metadata>1.0.1-GA</blc.import.metadata>
+        <blc.inventory.services>1.0.1-GA</blc.inventory.services>
+        <blc.inventory.metadata>1.0.1-GA</blc.inventory.metadata>
+        <blc.indexer.services>1.0.1-GA</blc.indexer.services>
+        <blc.indexer.metadata>1.0.1-GA</blc.indexer.metadata>
+        <blc.menu.services>1.0.1-GA</blc.menu.services>
+        <blc.menu.metadata>1.0.1-GA</blc.menu.metadata>
+        <blc.metadata.services>1.0.1-GA</blc.metadata.services>
+        <blc.notification.services>1.0.0-GA</blc.notification.services>
+        <blc.notification.metadata>1.0.0-GA</blc.notification.metadata>
+        <blc.offer.services>1.0.1-GA</blc.offer.services>
+        <blc.offer.metadata>1.0.1-GA</blc.offer.metadata>
+        <blc.order.services>1.0.1-GA</blc.order.services>
+        <blc.orderops.services>1.0.1-GA</blc.orderops.services>
+        <blc.order.metadata>1.0.1-GA</blc.order.metadata>
+        <blc.personalization.services>1.0.0-GA</blc.personalization.services>
+        <blc.personalization.metadata>1.0.0-GA</blc.personalization.metadata>
+        <blc.pricing.services>1.0.2-GA</blc.pricing.services>
+        <blc.pricing.metadata>1.0.2-GA</blc.pricing.metadata>
+        <blc.sandbox.services>1.0.0-GA</blc.sandbox.services>
+        <blc.sandbox.metadata>1.0.0-GA</blc.sandbox.metadata>
+        <blc.scheduled.job.services>1.0.0-GA</blc.scheduled.job.services>
+        <blc.scheduled.job.metadata>1.0.0-GA</blc.scheduled.job.metadata>
+        <blc.search.services>1.0.1-GA</blc.search.services>
+        <blc.search.metadata>1.0.1-GA</blc.search.metadata>
+        <blc.tenant.services>1.0.1-GA</blc.tenant.services>
+        <blc.tenant.metadata>1.0.1-GA</blc.tenant.metadata>
+
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>com.broadleafcommerce.microservices</groupId>
-                <artifactId>broadleaf-microservices-dependencies</artifactId>
-                <version>${blc.microservices.dependencies}</version>
+                <artifactId>broadleaf-jpa-dependencies</artifactId>
+                <version>${blc.jpa.dependencies}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
+    
     <dependencies>
         <!-- JPA -->
         <dependency>
@@ -259,6 +277,13 @@
             <version>${blc.catalog.services}</version>
         </dependency>
 
+        <!-- Inventory -->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-inventory-services</artifactId>
+            <version>${blc.inventory.services}</version>
+        </dependency>
+        
         <!-- Pricing and Offers -->
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
@@ -287,11 +312,25 @@
             <version>${blc.cart.services}</version>
         </dependency>
 
+        <!-- Order -->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-order-services</artifactId>
+            <version>${blc.order.services}</version>
+        </dependency>
+
         <!-- Customers, Segments, and Accounts -->
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
             <artifactId>broadleaf-customer-services</artifactId>
             <version>${blc.customer.services}</version>
+        </dependency>
+
+        <!-- Notification -->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-notification-services</artifactId>
+            <version>${blc.notification.services}</version>
         </dependency>
 
         <!-- Experience & Composite Services -->
@@ -315,8 +354,28 @@
             <artifactId>broadleaf-personalization-services</artifactId>
             <version>${blc.personalization.services}</version>
         </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-order-operation-services</artifactId>
+            <version>${blc.orderops.services}</version>
+        </dependency>
 
         <!-- Search & Indexing -->
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-solr-catalog-search</artifactId>
+            <version>${blc.search.services}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-solr-customer-search</artifactId>
+            <version>${blc.search.services}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-solr-order-search</artifactId>
+            <version>${blc.search.services}</version>
+        </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
             <artifactId>broadleaf-solr-catalog-indexer</artifactId>
@@ -328,20 +387,9 @@
             <version>${blc.indexer.services}</version>
         </dependency>
         <dependency>
-            <groupId>org.zalando</groupId>
-            <artifactId>jackson-datatype-money</artifactId>
-            <version>1.1.1</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-solr-catalog-search</artifactId>
-            <version>${blc.search.services}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.broadleafcommerce.microservices</groupId>
-            <artifactId>broadleaf-solr-customer-search</artifactId>
-            <version>${blc.search.services}</version>
+            <artifactId>broadleaf-solr-order-indexer</artifactId>
+            <version>${blc.indexer.services}</version>
         </dependency>
 
         <!-- Metadata -->
@@ -362,8 +410,18 @@
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-notification-services-metadata</artifactId>
+            <version>${blc.notification.metadata}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
             <artifactId>broadleaf-offer-services-metadata</artifactId>
             <version>${blc.offer.metadata}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-order-services-metadata</artifactId>
+            <version>${blc.order.metadata}</version>
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
@@ -409,6 +467,11 @@
             <groupId>com.broadleafcommerce.microservices</groupId>
             <artifactId>broadleaf-import-services-metadata</artifactId>
             <version>${blc.import.metadata}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.broadleafcommerce.microservices</groupId>
+            <artifactId>broadleaf-inventory-services-metadata</artifactId>
+            <version>${blc.inventory.metadata}</version>
         </dependency>
         <dependency>
             <groupId>com.broadleafcommerce.microservices</groupId>
@@ -469,12 +532,25 @@
             <artifactId>liquibase-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.integration</groupId>
-            <artifactId>spring-integration-jdbc</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.zalando</groupId>
+            <artifactId>jackson-datatype-money</artifactId>
+            <version>1.1.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.owasp</groupId>
+            <artifactId>security-logging-logback</artifactId>
+            <version>LATEST</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Non-transitive (optional/provided/runtime) -->

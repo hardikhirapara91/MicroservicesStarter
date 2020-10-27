@@ -1,4 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <!--<logger name="org.springframework.data.mongodb" level="DEBUG"/> -->
+    <conversionRule conversionWord="crlf"
+                    converterClass="org.owasp.security.logging.mask.CRLFConverter" />
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <property name="LOG_FILE"
+              value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/spring.log}" />
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- Encode any CRLF chars in the message and limit
+                its maximum size -->
+            <pattern>%relative [%thread] %-5level %logger{35} - %crlf(%.-1000msg) %n</pattern>
+        </encoder>
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <!-- Encode any CRLF chars in the message and limit
+                its maximum size -->
+            <pattern>%relative [%thread] %-5level %logger{35} - %crlf(%.-1000msg) %n</pattern>
+        </encoder>
+        <file>${LOG_FILE}</file>
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <cleanHistoryOnStart>${LOG_FILE_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
+            <fileNamePattern>${ROLLING_FILE_NAME_PATTERN:-${LOG_FILE}.%d{yyyy-MM-dd}.%i.gz}</fileNamePattern>
+            <maxFileSize>${LOG_FILE_MAX_SIZE:-10MB}</maxFileSize>
+            <maxHistory>${LOG_FILE_MAX_HISTORY:-7}</maxHistory>
+            <totalSizeCap>${LOG_FILE_TOTAL_SIZE_CAP:-0}</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </root>
 </configuration>
